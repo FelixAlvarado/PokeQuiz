@@ -13,7 +13,7 @@ cursor = cnx.cursor()
 
 #code from https://dev.mysql.com/doc/connector-python/en/connector-python-example-ddl.html
 
-#create database (one run once)
+#****************create database (one run once). already ran
 
 # try:
 #         cursor.execute(
@@ -22,13 +22,12 @@ cursor = cnx.cursor()
 #         print("Failed creating database: {}".format(err))
 #         exit(1)
 
-#using database (run everytime)
+# ************using database (run everytime)
 
 try:
     cursor.execute("USE {}".format("PokeQuiz"))
 except mysql.connector.Error as err:
     print("Database {} does not exists.".format("PokeQuiz"))
 
-#stoping here for today. next thing to do is to create tables and utilize one-to-many associations
 
 
