@@ -6,6 +6,7 @@ load_dotenv()
 
 user = os.environ.get("USERNAME")
 password = os.environ.get("PASSWORD")
+DB_NAME = os.environ.get("DB_NAME")
 
 cnx = mysql.connector.connect(user=f"{user}", password=f"{password}")
 
@@ -25,9 +26,9 @@ cursor = cnx.cursor()
 # ************using database (run everytime)
 
 try:
-    cursor.execute("USE {}".format("PokeQuiz"))
+    cursor.execute("USE {}".format(DB_NAME))
 except mysql.connector.Error as err:
-    print("Database {} does not exists.".format("PokeQuiz"))
+    print("Database {} does not exists.".format(DB_NAME))
 
 
 
