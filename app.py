@@ -17,7 +17,7 @@ cursor.execute("USE {}".format(DB_NAME))
 
 app = Flask(__name__)
 
-@app.route('/quizes', methods=["GET"])
+@app.route('/', methods=["GET"])
 def quizes():
     return fetch_quizes(cursor)
 

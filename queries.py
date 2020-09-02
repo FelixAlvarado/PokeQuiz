@@ -1,9 +1,9 @@
 
 
 def fetch_quizes(cursor):
-    result = []
+    result = {'quizes':[],'status':200}
     cursor.execute("SELECT * FROM quizes")
     for quiz in cursor:
-        result.append(quiz)
+        result['quizes'].append(quiz)
     
     return result
