@@ -1,13 +1,11 @@
 import React, { useEffect } from 'react';
-import { fetchQuizes } from '../utility/fetch';
 
-export function Home() {
+export default function Home({getQuizes}) {
 
   useEffect(() => {
     
-  //stropping here for today. next time implement  container component, and make it work with the splice file
-  //https://redux.js.org/basics/example
-  //https://react-redux.js.org/api/connect
+    getQuizes();
+
   });
 
   return (
