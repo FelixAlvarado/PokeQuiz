@@ -1,9 +1,10 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask
 from queries import fetch_quizes
 import mysql.connector
 from mysql.connector import errorcode 
 from dotenv import load_dotenv
 import os 
+from flask_cors import CORS
 
 load_dotenv()
 
@@ -16,8 +17,9 @@ cursor = cnx.cursor()
 cursor.execute("USE {}".format(DB_NAME))
 
 app = Flask(__name__)
+CORS(app)
 
-@app.route('/', methods=["GET"])
+@app.route('/quizes', methods=["GET"])
 def quizes():
     return fetch_quizes(cursor)
 
