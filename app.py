@@ -13,7 +13,7 @@ password = os.environ.get("PASSWORD")
 DB_NAME = os.environ.get("DB_NAME")
 
 cnx = mysql.connector.connect(user=f"{user}", password=f"{password}")
-cursor = cnx.cursor()
+cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
 
 app = Flask(__name__)

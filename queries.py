@@ -5,7 +5,6 @@ def fetch_quizes(cursor):
     search_string = ""
     count = 0
     cursor.execute("SELECT * FROM quizes")
-
 #tuple returned is (id, title)
     for quiz in cursor:
         result['quizes'][f"{quiz[0]}"] = {'id':quiz[0],'title':quiz[1], 'scores':[]}
@@ -14,8 +13,8 @@ def fetch_quizes(cursor):
         if (count < cursor.rowcount):
             search_string += f"quiz_id = {quiz[0]} OR "
         else:
-            search_string += f"quiz_id = {quiz[0]}"
-    
+            search_string += f"quiz_id = {quiz[0]} "
+
     cursor.execute(f"SELECT * FROM scores WHERE {search_string}")
 
 #tuple returned is (id, quiz_id, test_taker, score)
