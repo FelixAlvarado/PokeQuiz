@@ -2,6 +2,9 @@
   width: 100vw;
   background-color: red;
   color: white;
-  text-align: center; }
+  text-align: center;
+  position: fixed;
+  top: 0;
+  height: 100px; }
 
 /*# sourceMappingURL=nav.css.map */
