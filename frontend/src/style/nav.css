@@ -5,6 +5,28 @@
   text-align: center;
   position: fixed;
   top: 0;
-  height: 100px; }
+  height: 55px;
+  display: flex;
+  justify-content: space-between;
+  border: black 2px solid; }
+
+.logo {
+  background-image: url("../media/logo.jpg");
+  width: 150px;
+  height: 44px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin: 6px 0px 0px 5px; }
+
+.create-quiz-button {
+  height: 41px;
+  width: 125px;
+  border-radius: 30px;
+  margin: 7px 5px 0px 0px;
+  background-color: green;
+  color: black;
+  font-weight: 700;
+  font-size: 18px;
+  border: black solid 2px; }
 
 /*# sourceMappingURL=nav.css.map */

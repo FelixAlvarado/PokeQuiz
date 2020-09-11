@@ -5,7 +5,8 @@ export default function Nav() {
 
   return (
     <div className="nav-bar">
-      <img alt="PokeQuiz logo" src="../utility/PokeQuiz.jpg"/>
+      <div className='logo' ></div>
+      <button className='create-quiz-button'>Create Quiz</button>
     </div>
   );    
 }
