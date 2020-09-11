@@ -18,6 +18,9 @@
   background-size: contain;
   margin: 6px 0px 0px 5px; }
 
+.logo:hover {
+  cursor: pointer; }
+
 .create-quiz-button {
   height: 41px;
   width: 125px;
@@ -28,5 +31,9 @@
   font-weight: 700;
   font-size: 18px;
   border: black solid 2px; }
+
+.create-quiz-button:hover {
+  cursor: pointer;
+  background-color: #D5F5E3; }
 
 /*# sourceMappingURL=nav.css.map */
