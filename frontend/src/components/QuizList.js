@@ -2,8 +2,6 @@ import React, { useEffect, useRef } from 'react';
 import { getQuizes, selectQuizes } from '../app/quizesSlice.js'
 import { useSelector, useDispatch } from 'react-redux';
 import QuizItem from './QuizItem'
-import {Redirect, useLocation} from "react-router-dom";
-
 
 export default function QuizList() {
     const quizes = useSelector(selectQuizes)
@@ -13,6 +11,7 @@ export default function QuizList() {
 
   useEffect(() => {
     if(onLoad.current){
+      // console.log('rerender of quiz list')
       dispatch(getQuizes());
       onLoad.current = false;
     }

@@ -16,11 +16,11 @@ function App() {
     <Router>
       <Nav/>
       <Switch>
-        <Route path="/">
-          <QuizList/>
-        </Route>
         <Route path="/quiz/:id">
           <QuizPage/>
+        </Route>
+        <Route path="/">
+          <QuizList/>
         </Route>
       </Switch>
     </Router>

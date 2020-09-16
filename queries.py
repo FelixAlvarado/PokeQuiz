@@ -20,7 +20,18 @@ def fetch_quizes(cursor):
 #tuple returned is (id, quiz_id, test_taker, score)
     for score in cursor:
         result['quizes'][f"{score[1]}"]['scores'].append([score[2],score[3]])
-
-
-    
+  
     return result
+
+def fetch_quiz(cursor, id):
+    cursor.execute(f"SELECT * FROM quizes WHERE id = {id}")
+    result = {'quiz':{}}
+    for quiz in cursor:
+        result['quiz'][f"{quiz[0]}"] = {'id':quiz[0],'title':quiz[1], 'scores':[]}
+    
+    cursor.execute(f"SELECT * FROM scores WHERE quiz_id = {id}")
+
+    for score in cursor:
+        result['quiz'][f"{score[1]}"]['scores'].append([score[2],score[3]])
+ 
+    return result 

@@ -1,28 +1,18 @@
-import React, { useState, } from 'react';
+import React, { useEffect, useState, useRef} from 'react';
 import '../style/quizesview.css'
-import {pokePicture} from '../utility/pokemon'
-import {Redirect, useLocation} from "react-router-dom";
+import {pokePicture, averageScore} from '../utility/util'
+import {Redirect} from "react-router-dom";
 
 export default function QuizItem({quiz}) {
-  console.log('here is the quiz id', quiz.id)
   const [redirect, setRedirect] = useState(false)
- // let location = useLocation();
-
-  function average(){
-    let total = 0;
-
-    quiz.scores.forEach(score =>{
-      total += score[1]
-    })
-
-    return Math.floor(total / quiz.scores.length)
-  }
+  const [picture, setPicture] = useState('')
+  const onLoad = useRef(true)
 
   function handlePress(e){
     e.preventDefault()
     setRedirect(true)
   }
-
+//set up personal link item save
   function handleRedirect(){
     if(redirect){
       return(
@@ -31,12 +21,32 @@ export default function QuizItem({quiz}) {
     }
   }
 
+  function handleImage(){
+    if (picture.length > 0){
+      return(
+        <img alt="pokemon" src={picture} className="picture"/>
+      )
+    } else {
+      return(
+        <div className="picture"></div>
+      )
+    }
+  }
+
+  useEffect(() => {
+    if(onLoad.current){
+      // console.log('rerender of quiz list')
+      setPicture(pokePicture())
+      onLoad.current = false;
+    }
+  },[onLoad]);
+
   return (
     <div onClick={(e) => handlePress(e)} className="quiz-item">
-        <img alt="pokemon" src={pokePicture()} className="picture"/>
+        {handleImage()}
         <div><h2>{quiz.title}</h2></div>
         <div>
-          <h3>Average Score: {average()}%</h3>
+          <h3>Average Score: {averageScore(quiz.scores)}%</h3>
         </div>
         {handleRedirect()}
     </div>

@@ -1,5 +1,5 @@
-from flask import Flask
-from queries import fetch_quizes
+from flask import Flask, request
+from queries import fetch_quizes, fetch_quiz
 import mysql.connector
 from mysql.connector import errorcode 
 from dotenv import load_dotenv
@@ -22,6 +22,11 @@ CORS(app)
 @app.route('/quizes', methods=["GET"])
 def quizes():
     return fetch_quizes(cursor)
+
+@app.route('/quiz', methods=["GET"])
+def quiz():
+    id = request.args.get('id')
+    return fetch_quiz(cursor,id)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -6,3 +6,9 @@ export const fetchQuizes = () => {
     })
 }
 
+export const fetchQuiz = (id) => {
+    return axios.get(`http://localhost:5000/quiz?id=${id}`).then(response =>{
+        return response.data.quiz
+    })
+}
+

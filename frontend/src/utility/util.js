@@ -4,3 +4,13 @@ export const pokePicture = () => {
     index = index.toString()
     return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${index}.png`
 }
+
+export const averageScore = (scores) => {
+    let total = 0;
+
+    scores.forEach(score =>{
+      total += score[1]
+    })
+
+    return Math.floor(total / scores.length)
+}

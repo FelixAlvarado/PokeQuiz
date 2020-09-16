@@ -1,18 +1,20 @@
 import React, { useRef, useEffect } from 'react';
-import { useParams, useLocation } from "react-router-dom"
+import { useParams } from "react-router-dom"
+import { getQuiz  } from '../app/quizesSlice.js'
+import { useSelector, useDispatch } from 'react-redux';
+
 
 export default function QuizPage() {
-
+  const dispatch = useDispatch();
   let { id } = useParams();
+  const quiz = useSelector(state => state.quizes[`${id}`])
   const onLoad = useRef(true)
- // let location = useLocation;
- // let { from } = location.state 
-  //console.log('here is location', location)
+  console.log('here is the quiz', quiz)
 
 
 useEffect(() => {
   if(onLoad.current){
-
+    dispatch(getQuiz(id))
     onLoad.current = false;
   }
 });
