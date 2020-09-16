@@ -2,6 +2,8 @@ import React, { useEffect, useRef } from 'react';
 import { getQuizes, selectQuizes } from '../app/quizesSlice.js'
 import { useSelector, useDispatch } from 'react-redux';
 import QuizItem from './QuizItem'
+import {Redirect, useLocation} from "react-router-dom";
+
 
 export default function QuizList() {
     const quizes = useSelector(selectQuizes)
@@ -25,7 +27,7 @@ export default function QuizList() {
       array = array.concat(array);
       array = array.concat(array);
 
-                quizList = array.map((quiz, i) =>{
+    quizList = array.map((quiz, i) =>{
           return <QuizItem key={i} quiz={quiz} />
       })
   }
