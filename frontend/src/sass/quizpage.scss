@@ -1,0 +1,93 @@
+@mixin vertical-center {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@mixin horizontal-center {
+    position: relative;
+    lef: 50%;
+    transform: translateX(50%);
+}
+
+.page-holder {
+    background-color: rgba(255,255,255,.75); 
+    width: 80%;
+    display: inline-block;
+    margin-left: 10%;
+    margin-top: 110px;
+}
+
+.take-quiz-button{
+    height: 41px;
+    width: 95%;
+    border-radius: 30px;
+    margin: 5px 0px 0px 0px;
+    background-color:#35BB70;
+    color: black;
+    font-weight: 700;
+    font-size: 18px;
+    border: black solid 2px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-52%);
+
+}
+
+
+.page-title{
+    font-size: 26px;
+    font-weight: 900;
+    flex-grow: 3;
+    text-align: center;
+    div {
+        @include vertical-center;
+    }
+}
+
+.page-top-section{
+    display: flex;
+
+    .page-picture{
+        width: 100px;
+        height: 100%;
+    }
+
+    .page-top-right{
+            justify-content: space-evenly;
+            display: flex;
+            flex-grow: 3;
+     }
+
+}
+
+
+.link-button-holder{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.page-link-holder {
+    flex-grow: 3;
+    display: flex;
+    justify-content: center;
+    
+    input{
+        width: 175px;
+        height: 30px;
+        @include vertical-center();
+    }
+}
+
+.copy-icon{   
+    @include vertical-center();
+    margin: 0px 7px 3px 5px;
+}
+
+@media screen and (max-width: 880px) {
+    .quiz-item {
+        }
+  }
+
+
