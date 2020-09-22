@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import '../style/quizpage.css'
 import {pokePicture} from '../utility/util'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCopy, faCoffee } from '@fortawesome/free-solid-svg-icons'
+import { faCopy, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function QuizPage() {
@@ -14,6 +14,7 @@ export default function QuizPage() {
   const quiz = useSelector(state => state.quizes[`${id}`])
   const onLoad = useRef(true)
   const [picture, setPicture] = useState('')
+  const [copyIcon, setCopyIcon] = useState({icon:faCopy,className:"copy-icon"})
   console.log('here is the quiz', quiz)
   const title = quiz ? quiz.title : ''
 
@@ -30,6 +31,14 @@ export default function QuizPage() {
     }
   }
 
+  function handleClick(e) {
+    e.preventDefault()
+    let text = document.getElementById("currentLink")
+    text.select()
+    document.execCommand("copy")
+    setCopyIcon({icon:faCheckCircle,className:"copy-icon2"})
+  }
+
 
 useEffect(() => {
   if(onLoad.current){
@@ -37,9 +46,10 @@ useEffect(() => {
     setPicture(pokePicture())
     onLoad.current = false;
   }
-});
+},[dispatch,id]);
 
   return (
+
     <div className="page-holder">
       <div className="page-top-section">
         {handleImage()}
@@ -48,12 +58,15 @@ useEffect(() => {
               <div className="link-button-holder">
               <button className="take-quiz-button">Take Quiz</button>
               <div className="page-link-holder">
-                <input defaultValue={window.location.href}/>
-                <FontAwesomeIcon className="copy-icon" icon={faCopy} size="lg" />
+                <input id="currentLink" defaultValue={window.location.href}/>
+                <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />
               </div>
             </div>
           </div>
       </div>
+      <button className="copy-link">Copy Link</button>
     </div>
+
+
   );    
 }

@@ -1,5 +1,9 @@
+.page-title div, .page-link-holder input, .copy-icon, .copy-icon2 {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); }
+
 .page-holder {
-  background-color: rgba(255, 255, 255, 0.75);
   width: 80%;
   display: inline-block;
   margin-left: 10%;
@@ -9,7 +13,7 @@
   height: 41px;
   width: 95%;
   border-radius: 30px;
-  margin: 5px 0px 0px 0px;
+  margin: 7px 0px 0px 0px;
   background-color: #35BB70;
   color: black;
   font-weight: 700;
@@ -24,13 +28,12 @@
   font-weight: 900;
   flex-grow: 3;
   text-align: center; }
-  .page-title div {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%); }
 
 .page-top-section {
-  display: flex; }
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.75);
+  border: black solid 2px;
+  width: 100%; }
   .page-top-section .page-picture {
     width: 100px;
     height: 100%; }
@@ -50,16 +53,22 @@
   justify-content: center; }
   .page-link-holder input {
     width: 175px;
-    height: 30px;
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%); }
+    height: 30px; }
 
 .copy-icon {
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
   margin: 0px 7px 3px 5px; }
+
+.copy-icon:hover {
+  cursor: pointer; }
+
+.copy-icon2 {
+  margin: 0px 7px 3px 5px; }
+
+.copy-icon2:hover {
+  cursor: not-allowed; }
+
+.copy-link {
+  display: none; }
 
 @media screen and (max-width: 880px) {
   .page-link-holder {
@@ -74,6 +83,15 @@
 
   .page-holder {
     width: 90%;
-    margin-left: 5%; } }
+    margin-left: 5%; }
+
+  .copy-link {
+    display: block;
+    width: 60%;
+    margin-top: 15px;
+    margin-bottom: 7px;
+    margin-left: 20%;
+    height: 35px;
+    background-color: rgba(255, 255, 255, 0.75); } }
 
 /*# sourceMappingURL=quizpage.css.map */
