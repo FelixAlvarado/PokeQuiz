@@ -1,0 +1,34 @@
+.score-list {
+    background-color: rgba(255,255,255,.75); 
+    border: black solid 2px;
+    width: 100%;
+    margin-top: 20px;
+
+    p {
+        text-align: center;
+        font-size: 26px;
+        font-weight: 900;
+    }
+
+}
+
+.score-info {
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    span {
+        font-size: 22px;
+        font-weight: 900;
+        width: 15%;
+        text-align: center;
+    }
+
+    .score-bar{
+       border: black 2px solid;
+
+    }
+
+}
+

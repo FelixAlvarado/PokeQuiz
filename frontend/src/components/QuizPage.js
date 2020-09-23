@@ -6,16 +6,23 @@ import '../style/quizpage.css'
 import {pokePicture} from '../utility/util'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
-
+import ScoreList from './ScoreList'
 
 export default function QuizPage() {
   const dispatch = useDispatch();
   let { id } = useParams();
-  const quiz = useSelector(state => state.quizes[`${id}`])
+
+  const quiz = useSelector(state => {
+    if(state.quizes[`${id}`]){
+    return state.quizes[`${id}`]
+    }else{
+      return {}
+    }
+  })
+
   const onLoad = useRef(true)
   const [picture, setPicture] = useState('')
   const [copyIcon, setCopyIcon] = useState({icon:faCopy,className:"copy-icon"})
-  console.log('here is the quiz', quiz)
   const title = quiz ? quiz.title : ''
 
 
@@ -65,6 +72,7 @@ useEffect(() => {
           </div>
       </div>
       <button className="copy-link">Copy Link</button>
+      <ScoreList scores={quiz.scores} />
     </div>
 
 
