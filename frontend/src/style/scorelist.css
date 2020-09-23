@@ -34,10 +34,29 @@
 .inner-score {
   display: none; }
 
-@media screen and (max-width: 880px) {
+@media screen and (max-width: 530px) {
   .score-info span {
-    font-size: 20px;
-    font-weight: 900;
-    margin: 7px 10px 0px 0px; } }
+    font-size: 18px;
+    margin: 7px 10px 0px 0px; }
+  .score-info .attempt-button {
+    font-size: 18px; } }
+@media screen and (max-width: 400px) {
+  .score-info span {
+    font-size: 15px;
+    margin: 7px 10px 0px 0px; }
+  .score-info .attempt-button {
+    font-size: 14px; } }
+@media screen and (max-width: 305px) {
+  .score-info span {
+    font-size: 13px;
+    margin: 7px 10px 0px 0px; }
+  .score-info .attempt-button {
+    font-size: 12px; } }
+@media screen and (max-width: 265px) {
+  .score-list p {
+    font-size: 18px; }
+
+  .score-info .score-bar {
+    display: none; } }
 
 /*# sourceMappingURL=scorelist.css.map */

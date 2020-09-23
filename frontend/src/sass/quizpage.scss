@@ -10,19 +10,11 @@
     transform: translateX(-50%);
 }
 
-.page-holder {
-    width: 80%;
-    display: inline-block;
-    margin-left: 10%;
-    margin-top: 110px;
-
-}
-
-.take-quiz-button{
-    height: 41px;
+@mixin quiz-button($height,$marginTop) {
+    height: $height;
     width: 95%;
     border-radius: 30px;
-    margin: 7px 0px 0px 0px;
+    margin: $marginTop 0px 0px 0px;
     background-color:#35BB70;
     color: black;
     font-weight: 700;
@@ -31,7 +23,22 @@
     position: relative;
     left: 50%;
     transform: translateX(-52%);
+}
 
+.page-holder {
+    width: 80%;
+    display: inline-block;
+    margin-left: 10%;
+    margin-top: 110px;
+
+}
+
+.take-quiz{
+    @include quiz-button(41px,7px)
+}
+
+.take-quiz2 {
+    display: none;
 }
 
 
@@ -111,7 +118,7 @@
         display: none
         }
 
-    .take-quiz-button{
+    .take-quiz{
         height: 75%;
         width: 75px;
         position: relative;
@@ -134,4 +141,29 @@
         background-color: rgba(255,255,255,.75);    }
   }
 
+  @media screen and (max-width: 375px) {
+
+    .page-title{
+        font-size: 20px;
+    }
+
+    .take-quiz{
+        display: none
+    }
+
+    .take-quiz2{
+        @include quiz-button(41px,20px);
+        display: block;
+    }
+  }
+
+  @media screen and (max-width: 270px) {
+    .page-title {
+        font-size: 14px;
+    }
+
+    .take-quiz2{
+        font-size: 14px;
+    }
+  }
 

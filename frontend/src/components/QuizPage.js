@@ -63,7 +63,7 @@ useEffect(() => {
           <div className="page-top-right">
             <div className="page-title"><div>{title}</div></div>
               <div className="link-button-holder">
-              <button className="take-quiz-button">Take Quiz</button>
+              <button className="take-quiz">Take Quiz</button>
               <div className="page-link-holder">
                 <input id="currentLink" defaultValue={window.location.href}/>
                 <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />
@@ -71,6 +71,7 @@ useEffect(() => {
             </div>
           </div>
       </div>
+      <button className="take-quiz2">Take Quiz</button>
       <button className="copy-link">Copy Link</button>
       <ScoreList scores={quiz.scores} />
     </div>
