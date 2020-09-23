@@ -15,9 +15,15 @@ export default function ScoreList({scores}) {
             return "#ff1a1a"
         }
     }
-
+//see if can handle width basis in scss file instead
     function scoreWidthPercent(score){
-        return (score / 100 * 65).toString() + '%'
+        //using 55% as the max width the bar will take up
+        return (score / 100 * 55).toString() + '%'
+    }
+
+    function margin(score) {
+        return (55 - (score / 100 * 55)).toString() + '%'
+
     }
 
 
@@ -26,8 +32,9 @@ export default function ScoreList({scores}) {
             return (
                 <div className="score-info" key={i}>
                     <span>{score[0]}</span>
-                    <div className="score-bar" style={{width: `${scoreWidthPercent(score[1])}`, backgroundColor: `${barColor(score[1])}`}}></div>
+                    <div className="score-bar" style={{width: `${scoreWidthPercent(score[1])}`, marginRight: `${margin(score[1])}`, backgroundColor: `${barColor(score[1])}`}}></div>
                     <span>{score[1]}</span>
+                    <button className="attempt-button">Attempt</button>
                 </div>
             )
         })

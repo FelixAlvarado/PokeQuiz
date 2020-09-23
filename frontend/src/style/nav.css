@@ -8,7 +8,8 @@
   height: 55px;
   display: flex;
   justify-content: space-between;
-  border: black 2px solid; }
+  border: black 2px solid;
+  z-index: 1; }
 
 .logo {
   background-image: url("../media/logo.jpg");
