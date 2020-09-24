@@ -1,15 +1,12 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, { useRef, useState, useEffect} from 'react';
 import '../style/scorelist.css'
 
 
 export default function ScoreList({scores}) {
-    console.log('here are the scores',scores);
     let scoreList 
     //sets width of bars based on window height
     const [widthBase, setWidthBase] = useState(findWidthBase())
-
     const onLoad = useRef(true)
-
     
     function barColor(score) {
         if (score > 50){
@@ -23,13 +20,13 @@ export default function ScoreList({scores}) {
 
     function findWidthBase(){
         let width = window.innerWidth
-        if(width < 305){
+        if(width < 330){
             return 10
         }else if(width < 400) {
             return 25
-        } else if (width < 530) {
+        } else if (width < 565) {
             return 30
-        } else if (width < 680) {
+        } else if (width < 705) {
             return 40
         } else {
             return 55
@@ -60,15 +57,19 @@ export default function ScoreList({scores}) {
         })
     }
 
-    useEffect(() => {
-        if(onLoad.current){
+    function setWidth(){
+        setWidthBase(findWidthBase())
+    }
 
-            window.addEventListener("resize",() =>{
-                setWidthBase(findWidthBase())
-        })
-          onLoad.current = false;
-        }
-      });
+    useEffect(() => {
+
+            window.addEventListener("resize", setWidth)
+
+        return function cleanup()  {
+
+            window.removeEventListener('resize', setWidth)
+      }
+    });
 
   return (
       <div className="score-list">

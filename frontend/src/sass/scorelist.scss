@@ -19,7 +19,7 @@
     margin-bottom: 20px;
 
     span {
-        font-size: 22px;
+        font-size: 20px;
         font-weight: 900;
         width: 15%;
         text-align: center; 
@@ -50,7 +50,7 @@
 }
 
 
-@media screen and (max-width: 530px) {
+@media screen and (max-width: 620px) {
     .score-info {
         
         span{
@@ -68,7 +68,7 @@
 
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (max-width: 465px) {
     .score-info{
 
         span{
@@ -83,7 +83,7 @@
 
 }
 
-@media screen and (max-width: 305px) {
+@media screen and (max-width: 365px) {
     .score-info{
         span{
             font-size: 13px;
@@ -97,7 +97,7 @@
 }
 }
 
-@media screen and (max-width: 265px) {
+@media screen and (max-width: 275px) {
 
     .score-list {
         p {
