@@ -59,4 +59,52 @@
   }
 
 
+  @media screen and (max-width: 775px) {
 
+    .quiz-item {
+        height: 110px;
+        div {
+            font-size: 12px;
+        }
+    }
+
+    .picture {
+        width: 80px;
+    }
+
+
+
+  }
+
+
+  @media screen and (max-width: 375px) {
+
+    .quiz-item {
+        height: 90px;
+        margin-top: 7px;
+        div {
+            font-size: 10px;
+        }
+    }
+
+    .picture {
+        width: 70px;
+    }
+
+  }
+
+  @media screen and (max-width: 305px) {
+
+    .quiz-item {
+        height: 85px;
+        margin-top: 7px;
+        div {
+            font-size: 8px;
+        }
+    }
+
+    .picture {
+        width: 65px;
+    }
+
+  }
