@@ -11,7 +11,6 @@ export default function QuizList() {
 
   useEffect(() => {
     if(onLoad.current){
-      // console.log('rerender of quiz list')
       dispatch(getQuizes());
       onLoad.current = false;
     }

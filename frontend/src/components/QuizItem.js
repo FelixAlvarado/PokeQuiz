@@ -35,7 +35,6 @@ export default function QuizItem({quiz}) {
 
   useEffect(() => {
     if(onLoad.current){
-      // console.log('rerender of quiz list')
       setPicture(pokePicture())
       onLoad.current = false;
     }

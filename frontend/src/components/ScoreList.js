@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect} from 'react';
+import React, { useState, useEffect} from 'react';
 import '../style/scorelist.css'
 
 
@@ -6,7 +6,6 @@ export default function ScoreList({scores}) {
     let scoreList 
     //sets width of bars based on window height
     const [widthBase, setWidthBase] = useState(findWidthBase())
-    const onLoad = useRef(true)
     
     function barColor(score) {
         if (score > 50){
@@ -46,6 +45,7 @@ export default function ScoreList({scores}) {
 
     if (scores) {
         scoreList = scores.map((score,i)=>{
+            console.log('score id', score[2])
             return (
                 <div className="score-info" key={i}>
                     <span>{score[0]}</span>

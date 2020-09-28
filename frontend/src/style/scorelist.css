@@ -30,6 +30,9 @@
     font-weight: 700;
     font-size: 18px;
     border: black solid 2px; }
+  .score-info .attempt-button:hover {
+    cursor: pointer;
+    background-color: #B2D6F3; }
 
 .inner-score {
   display: none; }

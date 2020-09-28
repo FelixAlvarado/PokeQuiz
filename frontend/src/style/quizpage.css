@@ -23,6 +23,10 @@
   left: 50%;
   transform: translateX(-52%); }
 
+.take-quiz:hover {
+  cursor: pointer;
+  background-color: #D5F5E3; }
+
 .take-quiz2 {
   display: none; }
 
@@ -116,7 +120,11 @@
     position: relative;
     left: 50%;
     transform: translateX(-52%);
-    display: block; } }
+    display: block; }
+
+  .take-quiz2:hover {
+    cursor: pointer;
+    background-color: #D5F5E3; } }
 @media screen and (max-width: 270px) {
   .page-title {
     font-size: 14px; }

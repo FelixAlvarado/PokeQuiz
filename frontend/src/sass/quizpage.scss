@@ -37,6 +37,11 @@
     @include quiz-button(41px,7px)
 }
 
+.take-quiz:hover{
+    cursor:pointer;
+    background-color: #D5F5E3
+}
+
 .take-quiz2 {
     display: none;
 }
@@ -154,6 +159,11 @@
     .take-quiz2{
         @include quiz-button(41px,20px);
         display: block;
+    }
+
+    .take-quiz2:hover{
+        cursor:pointer;
+        background-color: #D5F5E3
     }
   }
 

@@ -32,6 +32,6 @@ def fetch_quiz(cursor, id):
     cursor.execute(f"SELECT * FROM scores WHERE quiz_id = {id}")
 
     for score in cursor:
-        result['quiz'][f"{score[1]}"]['scores'].append([score[2],score[3]])
+        result['quiz'][f"{score[1]}"]['scores'].append([score[2],score[3],score[0]])
  
     return result 
