@@ -1,5 +1,5 @@
 from flask import Flask, request
-from queries import fetch_quizes, fetch_quiz
+from queries import fetch_quizes, fetch_quiz, fetch_attempt
 import mysql.connector
 from mysql.connector import errorcode 
 from dotenv import load_dotenv
@@ -25,8 +25,14 @@ def quizes():
 
 @app.route('/quiz', methods=["GET"])
 def quiz():
-    id = request.args.get('id')
-    return fetch_quiz(cursor,id)
+    quiz_id = request.args.get('id')
+    return fetch_quiz(cursor,quiz_id)
+
+@app.route('/attempt', methods=["GET"])
+def attempt():
+    score_id = request.args.get('id')
+    return fetch_attempt(cursor,score_id)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

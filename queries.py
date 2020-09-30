@@ -35,3 +35,33 @@ def fetch_quiz(cursor, id):
         result['quiz'][f"{score[1]}"]['scores'].append([score[2],score[3],score[0]])
  
     return result 
+
+def fetch_attempt(cursor,id):
+
+    result = {}
+    score = []
+
+    cursor.execute(f"SELECT * FROM scores WHERE id = {id}")
+
+    quiz_id = ''
+    score_id = ''
+
+    for score in cursor:
+        score = [score[2],score[3],score[0]]
+        quiz_id = score[1]
+        score_id = score[0]
+    
+    result[f"{quiz_id}"] = {}
+
+    result[f"{quiz_id}"]["score"] = score
+    
+    print('quiz id')
+    print(result)
+
+    #above result is correct. now need to get quiz, question, and attempt information. can probably do that with one request
+
+    return 'hello'
+
+    # for question in cursor:
+
+

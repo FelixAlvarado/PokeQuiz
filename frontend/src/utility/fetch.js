@@ -12,3 +12,11 @@ export const fetchQuiz = (id) => {
     })
 }
 
+export const fetchQuizAttempt = (id) => {
+    return axios.get(`http://localhost:5000/attempt?id=${id}`).then(response =>{
+        return response.data
+    })
+}
+
+  
+

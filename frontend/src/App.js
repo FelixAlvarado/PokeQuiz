@@ -3,6 +3,7 @@ import './style/App.css';
 import QuizList from './components/QuizList'
 import Nav from './components/Nav'
 import QuizPage from './components/QuizPage'
+import ScorePage from './components/ScorePage'
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,6 +19,9 @@ function App() {
       <Switch>
         <Route path="/quiz/:id">
           <QuizPage/>
+        </Route>
+        <Route path="/score/:id">
+          <ScorePage/>
         </Route>
         <Route path="/">
           <QuizList/>

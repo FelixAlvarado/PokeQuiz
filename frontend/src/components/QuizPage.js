@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { useParams } from "react-router-dom"
 import { getQuiz  } from '../app/quizesSlice.js'
 import { useSelector, useDispatch } from 'react-redux';
 import '../style/quizpage.css'
@@ -10,7 +9,7 @@ import ScoreList from './ScoreList'
 
 export default function QuizPage() {
   const dispatch = useDispatch();
-  let { id } = useParams();
+  let id = window.location.href.split('/')[4]
 
   const quiz = useSelector(state => {
     if(state.quizes[`${id}`]){
@@ -19,7 +18,7 @@ export default function QuizPage() {
       return {}
     }
   })
-
+  
   const onLoad = useRef(true)
   const [picture, setPicture] = useState('')
   const [copyIcon, setCopyIcon] = useState({icon:faCopy,className:"copy-icon"})

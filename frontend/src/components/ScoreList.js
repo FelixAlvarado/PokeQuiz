@@ -1,5 +1,8 @@
 import React, { useState, useEffect} from 'react';
 import '../style/scorelist.css'
+import {averageScore} from '../utility/util'
+import {Link} from "react-router-dom";
+
 
 
 export default function ScoreList({scores}) {
@@ -45,13 +48,12 @@ export default function ScoreList({scores}) {
 
     if (scores) {
         scoreList = scores.map((score,i)=>{
-            console.log('score id', score[2])
             return (
                 <div className="score-info" key={i}>
                     <span>{score[0]}</span>
                     <div className="score-bar" style={{width: `${scoreWidthPercent(score[1])}`, marginRight: `${margin(score[1])}`, backgroundColor: `${barColor(score[1])}`}}></div>
                     <span>{score[1]}</span>
-                    <button className="attempt-button">Attempt</button>
+                    <Link to={`/score/${score[2]}`}><button className="attempt-button">Attempt</button></Link>
                 </div>
             )
         })
@@ -75,6 +77,7 @@ export default function ScoreList({scores}) {
       <div className="score-list">
         <p>Scores</p>
         {scoreList}
+        <p className="score-average">Average Score: {averageScore(scores)}</p>
       </div>
   );    
 }

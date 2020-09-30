@@ -6,6 +6,11 @@ export const pokePicture = () => {
 }
 
 export const averageScore = (scores) => {
+
+    if(!scores){
+      return ''
+    }
+
     let total = 0;
 
     scores.forEach(score =>{

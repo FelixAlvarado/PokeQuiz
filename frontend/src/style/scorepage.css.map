@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,kBAAmB;EACf,KAAK,EAAE,GAAG;EACV,OAAO,EAAE,YAAY;EACrB,WAAW,EAAE,GAAG;EAChB,UAAU,EAAE,KAAK;EACjB,gBAAgB,EAAE,yBAAqB",
+"sources": ["../sass/scorepage.scss"],
+"names": [],
+"file": "scorepage.css"
+}
