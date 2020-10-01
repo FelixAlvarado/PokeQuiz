@@ -5,7 +5,8 @@ import {Link} from "react-router-dom";
 
 
 
-export default function ScoreList({scores}) {
+export default function ScoreList({scores, quizId}) {
+    console.log('here are the scores', scores)
     let scoreList 
     //sets width of bars based on window height
     const [widthBase, setWidthBase] = useState(findWidthBase())
@@ -53,7 +54,7 @@ export default function ScoreList({scores}) {
                     <span>{score[0]}</span>
                     <div className="score-bar" style={{width: `${scoreWidthPercent(score[1])}`, marginRight: `${margin(score[1])}`, backgroundColor: `${barColor(score[1])}`}}></div>
                     <span>{score[1]}</span>
-                    <Link to={`/score/${score[2]}`}><button className="attempt-button">Attempt</button></Link>
+                    <Link to={`/score/${score[2]}?quiz=${quizId}`}><button className="attempt-button">Attempt</button></Link>
                 </div>
             )
         })

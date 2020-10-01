@@ -41,7 +41,10 @@ export const quizesSlice = createSlice({
         },
         [getQuiz.fulfilled]: (state, action) => {
           Object.assign(state,action.payload)
-      }
+      },
+        [getQuizAttempt.fulfilled]: (state, action) => {
+           Object.assign(state,action.payload)
+    }
 
   },
 });

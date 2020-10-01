@@ -39,29 +39,48 @@ def fetch_quiz(cursor, id):
 def fetch_attempt(cursor,id):
 
     result = {}
-    score = []
+    scores = []
 
     cursor.execute(f"SELECT * FROM scores WHERE id = {id}")
 
     quiz_id = ''
-    score_id = ''
 
     for score in cursor:
-        score = [score[2],score[3],score[0]]
+        scores = [score[2],score[3],score[0]]
         quiz_id = score[1]
-        score_id = score[0]
     
     result[f"{quiz_id}"] = {}
+    result[f"{quiz_id}"]["scores"] = [scores]
 
-    result[f"{quiz_id}"]["score"] = score
-    
-    print('quiz id')
-    print(result)
+    cursor.execute(f'''SELECT *
+                     FROM quizes 
+                     JOIN quiz_questions ON quizes.id = quiz_questions.quiz_id 
+                     JOIN questions ON quiz_questions.question_id = questions.id
+                     JOIN attempts ON questions.id = attempts.question_id 
+                     WHERE attempts.score_id = {id}''')
 
-    #above result is correct. now need to get quiz, question, and attempt information. can probably do that with one request
+ 
+    result[f"{quiz_id}"]["questions"] = {}
+    result[f"{quiz_id}"]["attempts"] = {}
 
-    return 'hello'
+    count = 0
+    for attempt in cursor:
+        if count < 1:
+            result[f"{quiz_id}"]["title"] = attempt[1]
+            count += 1
+        
+        result[f"{quiz_id}"]["questions"][f"{attempt[4]}"] = {"id":attempt[4],
+                                                              "question":attempt[5],  
+                                                              "corect_answer":attempt[6],
+                                                              "wrong_answer1":attempt[7],
+                                                              "wrong_answer2":attempt[8],
+                                                              "wrong_answer3":attempt[9]}
+        result[f"{quiz_id}"]["attempts"][f"{attempt[10]}"] = {"id":attempt[10],
+                                                              "question_id":attempt[11],  
+                                                              "score_id":attempt[12],
+                                                              "answer":attempt[13]
+                                                              }
+        return result
 
-    # for question in cursor:
 
 

@@ -72,7 +72,7 @@ useEffect(() => {
       </div>
       <button className="take-quiz2">Take Quiz</button>
       <button className="copy-link">Copy Link</button>
-      <ScoreList scores={quiz.scores} />
+      <ScoreList scores={quiz.scores} quizId={quiz.id} />
     </div>
 
 
