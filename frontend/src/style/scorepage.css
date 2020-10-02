@@ -1,8 +1,93 @@
-.score-page-holder {
+.page-holder {
   width: 80%;
   display: inline-block;
   margin-left: 10%;
-  margin-top: 110px;
-  background-color: rgba(255, 255, 255, 0.75); }
+  margin-top: 110px; }
+
+.page-top-section {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.75);
+  border: black solid 2px;
+  width: 100%; }
+  .page-top-section .page-picture {
+    width: 100px;
+    height: 100%; }
+  .page-top-section .page-top-right {
+    justify-content: space-evenly;
+    display: flex;
+    flex-grow: 3; }
+
+.quiz-button:hover {
+  cursor: pointer;
+  background-color: #D5F5E3; }
+
+.link-button-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+
+.score-info-holder {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.75);
+  margin-top: 25px;
+  border: black solid 2px;
+  justify-content: space-evenly;
+  width: 100%; }
+  .score-info-holder div {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 15px 0px 15px 0px; }
+
+.questions {
+  background-color: rgba(255, 255, 255, 0.75);
+  margin-top: 25px;
+  border: black solid 2px;
+  padding-left: 7px;
+  padding-bottom: 20px; }
+  .questions .result-title {
+    font-size: 22px;
+    padding-top: 5px;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 20px; }
+  .questions div {
+    margin-top: 20px; }
+  .questions mark {
+    margin-top: 20px; }
+
+.question-holder {
+  padding-right: 7px; }
+
+.question {
+  font-size: 18px;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 20px; }
+  .question div {
+    display: inline; }
+
+.correct {
+  background-color: #7AFE83; }
+
+.incorrect {
+  background-color: #F79999; }
+
+.right {
+  color: green;
+  margin-right: 5px; }
+
+.wrong {
+  color: red;
+  margin-right: 5px; }
+
+@media screen and (max-width: 400px) {
+  .score-info-holder div {
+    font-size: 14px; }
+
+  .question {
+    font-size: 15px; }
+
+  .questions .result-title {
+    font-size: 20px; } }
 
 /*# sourceMappingURL=scorepage.css.map */

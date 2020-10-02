@@ -2,7 +2,8 @@
   background-color: rgba(255, 255, 255, 0.75);
   border: black solid 2px;
   width: 100%;
-  margin-top: 20px; }
+  margin-top: 20px;
+  padding-left: 1px; }
   .score-list p {
     text-align: center;
     font-size: 26px;
@@ -27,7 +28,7 @@
     height: 41px;
     border-radius: 30px;
     background-color: #3097EA;
-    margin: 0px 20px 0px 0px;
+    margin: 0px 10px 0px 0px;
     color: black;
     font-weight: 700;
     font-size: 18px;
@@ -41,26 +42,26 @@
 
 @media screen and (max-width: 620px) {
   .score-info span {
-    font-size: 18px;
+    font-size: 17px;
     margin: 7px 10px 0px 0px; }
   .score-info .attempt-button {
     font-size: 18px; } }
 @media screen and (max-width: 465px) {
   .score-info span {
-    font-size: 15px;
+    font-size: 14px;
     margin: 7px 10px 0px 0px; }
   .score-info .attempt-button {
     font-size: 14px; } }
 @media screen and (max-width: 365px) {
   .score-info span {
-    font-size: 13px;
+    font-size: 12px;
     margin: 7px 10px 0px 0px; }
   .score-info .attempt-button {
     font-size: 12px; }
 
   .score-list .score-average {
     font-size: 18px; } }
-@media screen and (max-width: 275px) {
+@media screen and (max-width: 300px) {
   .score-list p {
     font-size: 18px; }
   .score-list .score-average {

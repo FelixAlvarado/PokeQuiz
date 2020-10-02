@@ -71,7 +71,7 @@ def fetch_attempt(cursor,id):
         
         result[f"{quiz_id}"]["questions"][f"{attempt[4]}"] = {"id":attempt[4],
                                                               "question":attempt[5],  
-                                                              "corect_answer":attempt[6],
+                                                              "correct_answer":attempt[6],
                                                               "wrong_answer1":attempt[7],
                                                               "wrong_answer2":attempt[8],
                                                               "wrong_answer3":attempt[9]}
@@ -79,8 +79,9 @@ def fetch_attempt(cursor,id):
                                                               "question_id":attempt[11],  
                                                               "score_id":attempt[12],
                                                               "answer":attempt[13]
-                                                              }
-        return result
+                                                              }                                                      
+    
+    return result
 
 
 
