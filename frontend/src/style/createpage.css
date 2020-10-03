@@ -1,0 +1,65 @@
+.quiz-form {
+  background-color: rgba(255, 255, 255, 0.75);
+  border: solid black 2px; }
+  .quiz-form h1 {
+    text-align: center; }
+  .quiz-form span {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0px 0px 15px 10px; }
+  .quiz-form p {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0px 0px 15px 10px;
+    text-align: center; }
+  .quiz-form .question-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin: 0px 0px 15px 10px; }
+  .quiz-form input {
+    height: 30px;
+    margin-bottom: 15px;
+    width: 225px; }
+  .quiz-form .counter {
+    position: absolute;
+    display: inline;
+    transform: translate(-108%, 105%);
+    color: gray; }
+  .quiz-form .counter2 {
+    position: absolute;
+    display: inline;
+    transform: translate(-108%, 200%);
+    color: gray; }
+
+.question-counter {
+  position: relative; }
+
+.question-holder {
+  margin-bottom: 10px;
+  border-top: black solid 2px;
+  padding-top: 20px; }
+  .question-holder p {
+    font-size: 16px;
+    text-align: left;
+    width: 90%;
+    margin-left: 5%; }
+  .question-holder input {
+    width: 90%;
+    margin-left: 5%; }
+
+@media screen and (max-width: 400px) {
+  .quiz-form span {
+    display: block;
+    text-align: center;
+    margin-left: 0px; }
+  .quiz-form h1 {
+    font-size: 26px; }
+  .quiz-form input {
+    width: 90%;
+    margin-left: 4%; }
+
+  .question-holder input {
+    width: 90%;
+    margin-left: 5%; } }
+
+/*# sourceMappingURL=createpage.css.map */

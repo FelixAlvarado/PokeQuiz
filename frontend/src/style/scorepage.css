@@ -57,6 +57,10 @@
 
 .question-holder {
   padding-right: 7px; }
+  .question-holder div {
+    word-wrap: break-word; }
+  .question-holder mark {
+    word-wrap: break-word; }
 
 .question {
   font-size: 18px;

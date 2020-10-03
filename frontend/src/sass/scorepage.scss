@@ -43,6 +43,14 @@
 
 .question-holder {
     padding-right: 7px;
+
+    div{
+        word-wrap: break-word;
+    }
+
+    mark{
+        word-wrap: break-word;
+    }
 }
 
 .question{
@@ -57,7 +65,7 @@
 }
 
 .correct{
-    background-color: #7AFE83; 
+    background-color: #7AFE83;
 }
 
 .incorrect{

@@ -7,7 +7,7 @@ export default function Nav() {
   return (
     <div className="nav-bar">
       <Link to="/"><div className='logo' ></div></Link>
-      <button className='create-quiz-button'>Create Quiz</button>
+      <Link to="/create"><button className='create-quiz-button'>Create Quiz</button></Link>
     </div>
   );    
 }

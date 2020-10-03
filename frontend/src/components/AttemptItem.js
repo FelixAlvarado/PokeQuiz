@@ -7,11 +7,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 export default function AttemptItem({attempt, question}) {
-
+    console.log('questions length', question.correct_answer.length)
     function handleIcon(){
         console.log('answer', attempt.answer)
         console.log('correct answer', question.correct_answer)
-        if(attempt.answer == question.correct_answer){
+        if(attempt.answer === question.correct_answer){
             return <FontAwesomeIcon className="right" icon={faCheck} size="lg" />
         } else {
             return <FontAwesomeIcon className="wrong" icon={faTimes} size="lg" />
@@ -19,7 +19,7 @@ export default function AttemptItem({attempt, question}) {
     }
 
     function handleAnswer(wrongAnswer){
-        if(wrongAnswer != attempt.answer){
+        if(wrongAnswer !== attempt.answer){
             return <div>{wrongAnswer}</div>
         } else {
             return <div><mark className="incorrect">{wrongAnswer}</mark></div>
@@ -27,7 +27,7 @@ export default function AttemptItem({attempt, question}) {
     }
 
   return (
-  
+   
  <div className="question-holder">
     <div className="question">
         {handleIcon()}<div>{question.question}</div>
@@ -36,7 +36,7 @@ export default function AttemptItem({attempt, question}) {
         {handleAnswer(question.wrong_answer1)}
         {handleAnswer(question.wrong_answer2)}
         {handleAnswer(question.wrong_answer3)}
-    </div>
-
+    
+</div>
   );    
 }
