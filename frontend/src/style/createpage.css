@@ -1,6 +1,30 @@
 .quiz-form {
   background-color: rgba(255, 255, 255, 0.75);
   border: solid black 2px; }
+  .quiz-form .icon-holder {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px; }
+  .quiz-form .remove {
+    margin-right: 65px;
+    color: #F63131; }
+  .quiz-form .remove2 {
+    color: #EE8B8B;
+    margin-right: 65px; }
+  .quiz-form .remove2:hover {
+    cursor: not-allowed; }
+  .quiz-form .remove:hover {
+    color: #EE8B8B;
+    cursor: pointer; }
+  .quiz-form .add {
+    color: #0074DA; }
+  .quiz-form .add2 {
+    color: #54A1E5; }
+  .quiz-form .add2:hover {
+    cursor: not-allowed; }
+  .quiz-form .add:hover {
+    color: #54A1E5;
+    cursor: pointer; }
   .quiz-form h1 {
     text-align: center; }
   .quiz-form span {

@@ -1,6 +1,50 @@
 .quiz-form{
     background-color: rgba(255,255,255,.75); 
     border: solid black 2px;
+
+    .icon-holder{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .remove{
+        margin-right:65px;
+        color: #F63131;
+    }
+
+    .remove2{
+        color: #EE8B8B;
+        margin-right:65px;
+
+    }
+
+    .remove2:hover{
+        cursor: not-allowed;
+    }
+
+    .remove:hover{
+        color: #EE8B8B;
+        cursor: pointer;
+    }
+
+    .add{
+        color: #0074DA;
+    }
+
+    .add2 {
+        color: #54A1E5
+    }
+
+    .add2:hover {
+        cursor: not-allowed
+    }
+
+    .add:hover{
+        color: #54A1E5;
+        cursor: pointer;
+    }
+
     h1{
         text-align: center;
     }

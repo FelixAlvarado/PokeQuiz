@@ -62,7 +62,7 @@ useEffect(() => {
       <div className="page-top-section">
         {handleImage()}
           <div className="page-top-right">
-            <div className="page-title"><div>{title}{title}ee</div></div>
+            <div className="page-title"><div>{title}</div></div>
               <div className="link-button-holder">
               <Link to="/takequiz" className="quiz-button">Take Quiz</Link>
               <div className="page-link-holder">
