@@ -39,8 +39,8 @@ def create():
     data = request.json 
     title = data['title']
     questions = data['questions']
-    # create_quiz(cnx, cursor, title, questions)
-    return 'success'
+    quiz_id = create_quiz(cnx, cursor, title, questions)
+    return quiz_id
 
 
 if __name__ == "__main__":

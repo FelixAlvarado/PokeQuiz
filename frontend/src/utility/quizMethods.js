@@ -6,7 +6,6 @@ export const createQuiz = (title, questions) => {
         title: title,
         questions: questions
         }).then(response =>{
-            console.log('here the response', response)
             return response.data
         })
 

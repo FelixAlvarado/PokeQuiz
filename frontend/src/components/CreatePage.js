@@ -107,12 +107,15 @@ export default function CreatePage() {
     })
 
     if(unfilled.length === 0 && !wrongInput){
-        createQuiz(title, questions).then(respone =>{
+        createQuiz(title, Object.values(questions)).then(response =>{
           let newObject = Object.assign({},newQuiz)
           newObject.boolean = true; 
-          newObject.id = '22'
+          newObject.id = response
           setNewQuiz(newObject)
-        })
+        }).catch(error => {
+            console.log('error from the server side', error)
+            alert('An error occurred with our servers. Please try submitting your quiz at a later time.')}
+            )
         return
     }
     let alertString = ''
@@ -136,7 +139,6 @@ export default function CreatePage() {
   }
 
   function handleRedirect(){
-    console.log('made it to handle redirect')
     if(newQuiz.boolean){
       return <Redirect to={{pathname:`/quiz/${newQuiz.id}`,state:{justCreated:true}}}/>
     }

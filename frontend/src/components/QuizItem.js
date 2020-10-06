@@ -31,7 +31,7 @@ export default function QuizItem({quiz}) {
         {handleImage()}
         <div><h2>{quiz.title}</h2></div>
         <div>
-          <h3>Average Score: {averageScore(quiz.scores)}%</h3>
+          <h3>Average Score: {averageScore(quiz.scores)}</h3>
         </div>
     </Link>
 

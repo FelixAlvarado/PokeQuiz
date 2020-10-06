@@ -5,6 +5,7 @@ import Nav from './components/Nav'
 import QuizPage from './components/QuizPage'
 import ScorePage from './components/ScorePage'
 import CreatePage from './components/CreatePage'
+import TestPage from './components/TestPage'
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,8 +19,11 @@ function App() {
     <Router>
       <Nav/>
       <Switch>
-      <Route path="/create">
+        <Route path="/create">
           <CreatePage/>
+        </Route>
+        <Route path="/test/:id">
+          <TestPage/>
         </Route>
         <Route path="/quiz/:id">
           <QuizPage/>

@@ -1,0 +1,50 @@
+.hidden {
+    display: none;
+  }
+
+  .alert-modal{
+    background-color: black;
+    border: solid white 3px;
+    position: fixed;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    height: 30%;
+    padding: 0px 30px 0px 30px;
+    top: 35%;
+    left: 25%;
+    text-align: center;
+    font-weight: 800;
+    color: white;
+    font-size: 21px;
+    z-index: 1
+}
+
+.modal-background{
+    width: 100vw;
+    height: 100vh;
+}
+
+.modal-background{
+    /* Hidden by default */
+   position: fixed; /* Stay in place */
+   z-index: .99; /* Sit on top */
+   left: 0;
+   top: 0;
+   width: 100%; /* Full width */
+   height: 100%; /* Full height */
+   overflow: auto; /* Enable scroll if needed */
+   background-color: rgb(0,0,0); /* Fallback color */
+   background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-background:hover{
+    cursor: pointer;
+}
+
+.alert-modal:hover{
+    cursor: not-allowed;
+}
+

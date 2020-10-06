@@ -17,17 +17,17 @@ export default function QuizList() {
   });
 
   if(quizes) { 
-      //     quizList = Object.values(quizes).map((quiz, i) =>{
-      //     return <QuizItem key={i} quiz={quiz} />
-      // })
-
-      let array = Object.values(quizes);
-      array = array.concat(array);
-      array = array.concat(array);
-
-    quizList = array.map((quiz, i) =>{
+          quizList = Object.values(quizes).map((quiz, i) =>{
           return <QuizItem key={i} quiz={quiz} />
       })
+
+      // let array = Object.values(quizes);
+      // array = array.concat(array);
+      // array = array.concat(array);
+
+    // quizList = array.map((quiz, i) =>{
+    //       return <QuizItem key={i} quiz={quiz} />
+    //   })
   }
 
   return (

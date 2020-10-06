@@ -7,8 +7,9 @@ export const pokePicture = () => {
 
 export const averageScore = (scores) => {
 
-    if(!scores){
-      return ''
+
+    if(!scores || scores.length === 0){
+      return 'N/A'
     }
 
     let total = 0;
@@ -17,5 +18,5 @@ export const averageScore = (scores) => {
       total += score[1]
     })
 
-    return Math.floor(total / scores.length)
+    return Math.floor(total / scores.length).toString() + '%'
 }

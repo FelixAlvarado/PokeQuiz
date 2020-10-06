@@ -63,6 +63,14 @@ export default function ScoreList({scores, quizId}) {
         setWidthBase(findWidthBase())
     }
 
+    function handleScoreAverage() {
+        if(scores && scores.length > 0){
+            return <p className="score-average">Average Score: {averageScore(scores)}</p>;
+        }else{
+            return <p className="score-average">No one has taken this quiz yet</p>;
+        }
+    }
+
     useEffect(() => {
 
             window.addEventListener("resize", setWidth)
@@ -77,7 +85,7 @@ export default function ScoreList({scores, quizId}) {
       <div className="score-list">
         <p>Scores</p>
         {scoreList}
-        <p className="score-average">Average Score: {averageScore(scores)}</p>
+        {handleScoreAverage()}
       </div>
   );    
 }

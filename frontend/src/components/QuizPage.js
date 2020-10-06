@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import ScoreList from './ScoreList'
 import {Link, useLocation} from "react-router-dom";
+import AlertModal from './alertModal.js'
 
 
 export default function QuizPage() {
@@ -16,6 +17,9 @@ export default function QuizPage() {
   const [picture, setPicture] = useState('')
   const [copyIcon, setCopyIcon] = useState({icon:faCopy,className:"copy-icon"})
   let location = useLocation()
+  let [showAlert, setShowAlert] = useState(false)
+  let [alertText, setAlertText] = useState('');
+
 
   const quiz = useSelector(state => {
     if(state.quizes[`${id}`]){
@@ -49,13 +53,27 @@ export default function QuizPage() {
     setCopyIcon({icon:faCheckCircle,className:"copy-icon2"})
   }
 
+  function handleAlert(){
+    if(showAlert){
+      return <AlertModal showAlert={showAlert} alertText={alertText}/>
+
+    }
+  }
+
 
 useEffect(() => {
+
   if(onLoad.current){
     dispatch(getQuiz(id))
     setPicture(pokePicture())
     if(location.state && location.state.justCreated){
-      setTimeout(function(){alert("You quiz was successfully created! Share this page's link with your friends to see how they will score!")}, 500)
+      console.log('navigator', navigator.userAgent)
+      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+        alert("Your quiz was successfully created! Share this page's link with your friends to see how they score!")
+      }else{
+        setAlertText("Your quiz was successfully created! Share this page's link with your friends to see how they score!")
+        setShowAlert(true)
+      }
     }
     onLoad.current = false;
   }
@@ -69,7 +87,7 @@ useEffect(() => {
           <div className="page-top-right">
             <div className="page-title"><div>{title}</div></div>
               <div className="link-button-holder">
-              <Link to="/takequiz" className="quiz-button">Take Quiz</Link>
+              <Link to={`/test/${id}`} className="quiz-button">Take Quiz</Link>
               <div className="page-link-holder">
                 <input id="currentLink" defaultValue={window.location.href}/>
                 <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />
@@ -80,6 +98,7 @@ useEffect(() => {
       <button className="quiz-button2">Take Quiz</button>
       <button onClick={(e) => handleClick(e)} className="copy-link">Copy Link</button>
       <ScoreList scores={quiz.scores} quizId={quiz.id} />
+      {handleAlert()}
     </div>
 
 
