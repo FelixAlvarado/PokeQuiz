@@ -2,14 +2,16 @@ import React, {useState} from 'react';
 import '../style/createpage.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
+import {createQuiz} from '../utility/quizMethods'
+import {Redirect} from 'react-router-dom'
 
 export default function CreatePage() {
 
   const [title, setTitle] = useState('')
-  const questionObject1 = {question:'', correctAnswer:'', wrongAnswer1:'', wrongAnswer2:'', wrongAnswer3:''}
-  const questionObject2 = {question:'', correctAnswer:'', wrongAnswer1:'', wrongAnswer2:'', wrongAnswer3:''}
-  const [questions, setQuestions] = useState({0:questionObject1, 1:questionObject2})
+  const questionObject = {question:'', correctAnswer:'', wrongAnswer1:'', wrongAnswer2:'', wrongAnswer3:''}
+  const [questions, setQuestions] = useState({0:Object.assign({},questionObject), 1:Object.assign({},questionObject)})
   const [index, setIndex] = useState(1)
+  const [newQuiz, setNewQuiz] = useState({boolean: false,id:''})
   let questionForm
 
   function removeQuestion(e){
@@ -17,7 +19,7 @@ export default function CreatePage() {
     if(index < 2){
       return
     }
-    let newObject = Object.assign(questions)
+    let newObject = Object.assign({},questions)
     delete newObject[`${index}`]
     let newIndex = index - 1 
     setQuestions(newObject)
@@ -42,22 +44,17 @@ export default function CreatePage() {
 
     let counter
 
-    console.log('here is the id', id)
-
     if(typeof id == 'number'){
       let newId = id.toString() + keyword
-      console.log('here is the newId', newId)
       counter = document.getElementById(newId)
-      console.log('here is the counter object', counter)
     } else {
-      console.log('made it to else')
       counter = document.getElementById(keyword)
     }
 
     let value = e.currentTarget.value 
     if (value.length === 0) value = ''
 
-    let newObject = Object.assign(questions)
+    let newObject = Object.assign({},questions)
 
     switch(keyword) {
       case 'title':
@@ -93,35 +90,62 @@ export default function CreatePage() {
   }
 
   function handleSubmit(e)  {
-    e.preventDefault();
+    e.preventDefault()
     let unfilled = []
-    if (title.length == 0) unfilled.push('Title')
-    Object.keys(questions).map(index => {
-      console.log(questions[`${index}`].wrongAnswer1)
-      if (questions[`${index}`].question.length == 0) unfilled.push(`Question ${parseInt(index) + 1}`)
-      if (questions[`${index}`].correctAnswer.length == 0)  unfilled.push(`Correct Answer (Question ${parseInt(index)  + 1})`)
-      if (questions[`${index}`].wrongAnswer1.length == 0) unfilled.push(`Wrong Answer 1 (Question ${parseInt(index)  + 1})`)
-      if (questions[`${index}`].wrongAnswer2.length == 0) unfilled.push(`Wrong Answer 2 (Question ${parseInt(index)  + 1})`)
-      if (questions[`${index}`].wrongAnswer3.length == 0) unfilled.push(`Wrong Answer 3 (Question ${parseInt(index)  + 1})`)
+    let wrongInput = false
+    if (title.length === 0) unfilled.push('Title')
+    Object.keys(questions).forEach(index => {
+      let questionNumber = parseInt(index)  + 1
+      if (questions[`${index}`].question.length === 0) unfilled.push(`Question ${questionNumber}`)
+      if (questions[`${index}`].correctAnswer.length === 0)  unfilled.push(`Correct Answer (Question ${questionNumber})`)
+      if (questions[`${index}`].wrongAnswer1.length === 0) unfilled.push(`Wrong Answer 1 (Question ${questionNumber})`)
+      if (questions[`${index}`].wrongAnswer2.length === 0) unfilled.push(`Wrong Answer 2 (Question ${questionNumber})`)
+      if (questions[`${index}`].wrongAnswer3.length === 0) unfilled.push(`Wrong Answer 3 (Question ${questionNumber})`)
+      if (questions[`${index}`].wrongAnswer1.toLowerCase() === 'n/a' && questions[`${index}`].wrongAnswer2.toLowerCase() === 'n/a' && questions[`${index}`].wrongAnswer3.toLowerCase() === 'n/a') {
+        wrongInput = true;
+      }
     })
 
-    if(unfilled.length == 0){
-      alert('sucess!')
-    }else {
-      let alertString = 'Please fill out the following inputs: ';
-      unfilled.map((input,i) =>{
+    if(unfilled.length === 0 && !wrongInput){
+        createQuiz(title, questions).then(respone =>{
+          let newObject = Object.assign({},newQuiz)
+          newObject.boolean = true; 
+          newObject.id = '22'
+          setNewQuiz(newObject)
+        })
+        return
+    }
+    let alertString = ''
+
+    if (unfilled.length > 0){
+      alertString += 'Please fill out the following inputs: ';
+      unfilled.forEach((input,i) =>{
         alertString += input 
         if (i + 1 < unfilled.length){
           alertString += ', '
         }
-      })
-      alert(alertString)
+      })   
+    } 
+
+    if (wrongInput){
+      alertString += "\n \n Please note that you cannot use 'n/a' as an answer choice for all of a question's wrong answers"
+    }
+
+    alert(alertString)
+
+  }
+
+  function handleRedirect(){
+    console.log('made it to handle redirect')
+    if(newQuiz.boolean){
+      return <Redirect to={{pathname:`/quiz/${newQuiz.id}`,state:{justCreated:true}}}/>
     }
   }
 
   questionForm = Object.values(questions).map((question, i) =>{
     return (
       <div key={i} className="question-holder">
+        {handleRedirect()}
         <div><p>Question {i + 1}: </p><input onChange={(e) =>handleChange(e,"question", i)} placeholder={question.question}/><div id={`${i}question`} className="counter2">0/150</div></div>
         <div><p>Correct Answer: </p><input onChange={(e) =>handleChange(e,"correctAnswer", i)} placeholder={question.correctAnswer}/><div id={`${i}correctAnswer`} className="counter2">0/100</div></div>
         <div><p>Wrong Answer 1: </p><input onChange={(e) =>handleChange(e,"wrongAnswer1", i)} placeholder={question.wrongAnswer}/><div id={`${i}wrongAnswer1`} className="counter2">0/100</div></div>

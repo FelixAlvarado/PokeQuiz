@@ -6,12 +6,16 @@ import {pokePicture} from '../utility/util'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import ScoreList from './ScoreList'
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 
 
 export default function QuizPage() {
   const dispatch = useDispatch();
   let id = window.location.href.split('/')[4]
+  const onLoad = useRef(true)
+  const [picture, setPicture] = useState('')
+  const [copyIcon, setCopyIcon] = useState({icon:faCopy,className:"copy-icon"})
+  let location = useLocation()
 
   const quiz = useSelector(state => {
     if(state.quizes[`${id}`]){
@@ -20,10 +24,7 @@ export default function QuizPage() {
       return {}
     }
   })
-  
-  const onLoad = useRef(true)
-  const [picture, setPicture] = useState('')
-  const [copyIcon, setCopyIcon] = useState({icon:faCopy,className:"copy-icon"})
+
   const title = quiz ? quiz.title : ''
 
 
@@ -53,6 +54,9 @@ useEffect(() => {
   if(onLoad.current){
     dispatch(getQuiz(id))
     setPicture(pokePicture())
+    if(location.state && location.state.justCreated){
+      setTimeout(function(){alert("You quiz was successfully created! Share this page's link with your friends to see how they will score!")}, 500)
+    }
     onLoad.current = false;
   }
 },[dispatch,id]);
