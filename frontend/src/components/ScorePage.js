@@ -82,7 +82,7 @@ export default function ScorePage() {
           </div>
       </div>
       <Link className="quiz-button2" to={`/quiz/${quizId}`}><span>Quiz Page</span></Link>
-      <button className="copy-link">Copy Link</button>
+      <button onClick={(e) => handleClick(e)} className="copy-link">Copy Link</button>
       <div className="score-info-holder">
         <div>Testee: {quiz.scores[0][0]}</div>
         <div>Score: {quiz.scores[0][1]}</div>

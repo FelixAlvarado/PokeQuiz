@@ -86,7 +86,8 @@
     }
 
     .page-link-holder {
-        display:none
+        position: absolute;
+        left: -300px;
     }
 
 

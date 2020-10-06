@@ -95,7 +95,8 @@
     margin-left: 5%; }
 
   .page-link-holder {
-    display: none; }
+    position: absolute;
+    left: -300px; }
 
   .copy-link {
     display: block;

@@ -42,6 +42,7 @@ export default function QuizPage() {
   function handleClick(e) {
     e.preventDefault()
     let text = document.getElementById("currentLink")
+    console.log('here is the text', text)
     text.select()
     document.execCommand("copy")
     setCopyIcon({icon:faCheckCircle,className:"copy-icon2"})
@@ -73,7 +74,7 @@ useEffect(() => {
           </div>
       </div>
       <button className="quiz-button2">Take Quiz</button>
-      <button className="copy-link">Copy Link</button>
+      <button onClick={(e) => handleClick(e)} className="copy-link">Copy Link</button>
       <ScoreList scores={quiz.scores} quizId={quiz.id} />
     </div>
 
