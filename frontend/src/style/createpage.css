@@ -8,22 +8,28 @@
   .quiz-form .remove {
     margin-right: 65px;
     color: #F63131; }
+  .quiz-form .remove path {
+    stroke: black;
+    stroke-width: 14px; }
   .quiz-form .remove2 {
-    color: #EE8B8B;
+    color: #CBC5C5;
     margin-right: 65px; }
   .quiz-form .remove2:hover {
     cursor: not-allowed; }
   .quiz-form .remove:hover {
-    color: #EE8B8B;
+    color: #EBA7A7;
     cursor: pointer; }
   .quiz-form .add {
     color: #0074DA; }
+  .quiz-form .add path {
+    stroke: black;
+    stroke-width: 14px; }
   .quiz-form .add2 {
-    color: #54A1E5; }
+    color: #CBC5C5; }
   .quiz-form .add2:hover {
     cursor: not-allowed; }
   .quiz-form .add:hover {
-    color: #54A1E5;
+    color: #98BFE1;
     cursor: pointer; }
   .quiz-form h1 {
     text-align: center; }
@@ -36,10 +42,11 @@
     font-weight: 700;
     margin: 0px 0px 15px 10px;
     text-align: center; }
-  .quiz-form .question-title {
-    font-size: 26px;
-    font-weight: 700;
-    margin: 0px 0px 15px 10px; }
+  .quiz-form .instructions {
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    margin: 5px; }
   .quiz-form input {
     height: 30px;
     margin-bottom: 15px;
@@ -54,12 +61,26 @@
     display: inline;
     transform: translate(-108%, 200%);
     color: gray; }
+  .quiz-form .submit {
+    width: 40%;
+    border-radius: 25px;
+    margin-left: 30%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    height: 40px;
+    background-color: #35BB70;
+    color: black;
+    font-weight: 700;
+    font-size: 18px;
+    border: black solid 2px; }
+  .quiz-form .submit:hover {
+    cursor: pointer;
+    background-color: #D5F5E3; }
 
 .question-counter {
   position: relative; }
 
 .question-holder {
-  margin-bottom: 10px;
   border-top: black solid 2px;
   padding-top: 20px; }
   .question-holder p {
@@ -83,6 +104,10 @@
     margin-left: 4%; }
 
   .question-holder input {
+    width: 90%;
+    margin-left: 5%; }
+
+  .page-holder {
     width: 90%;
     margin-left: 5%; } }
 

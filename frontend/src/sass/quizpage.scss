@@ -102,6 +102,7 @@
 
   @media screen and (max-width: 450px) {
 
+
     .page-title{
         font-size: 18px;
     }
@@ -116,6 +117,17 @@
 
     .quiz-button{
         display: none
+    }
+
+    .quiz-button2{
+        font-size: 14px;
+        text-align: center;
+        text-decoration: none;
+
+        span{
+            display: block;
+            margin-top: 10px;
+        }
     }
 
     .quiz-button2{
@@ -135,8 +147,8 @@
         font-size: 14px;
     }
 
-    .quiz-button2{
-        font-size: 14px;
+    .button-link{
+        text-decoration: none;
     }
   }
 

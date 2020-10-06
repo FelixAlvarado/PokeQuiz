@@ -92,6 +92,33 @@ export default function CreatePage() {
     return;
   }
 
+  function handleSubmit(e)  {
+    e.preventDefault();
+    let unfilled = []
+    if (title.length == 0) unfilled.push('Title')
+    Object.keys(questions).map(index => {
+      console.log(questions[`${index}`].wrongAnswer1)
+      if (questions[`${index}`].question.length == 0) unfilled.push(`Question ${parseInt(index) + 1}`)
+      if (questions[`${index}`].correctAnswer.length == 0)  unfilled.push(`Correct Answer (Question ${parseInt(index)  + 1})`)
+      if (questions[`${index}`].wrongAnswer1.length == 0) unfilled.push(`Wrong Answer 1 (Question ${parseInt(index)  + 1})`)
+      if (questions[`${index}`].wrongAnswer2.length == 0) unfilled.push(`Wrong Answer 2 (Question ${parseInt(index)  + 1})`)
+      if (questions[`${index}`].wrongAnswer3.length == 0) unfilled.push(`Wrong Answer 3 (Question ${parseInt(index)  + 1})`)
+    })
+
+    if(unfilled.length == 0){
+      alert('sucess!')
+    }else {
+      let alertString = 'Please fill out the following inputs: ';
+      unfilled.map((input,i) =>{
+        alertString += input 
+        if (i + 1 < unfilled.length){
+          alertString += ', '
+        }
+      })
+      alert(alertString)
+    }
+  }
+
   questionForm = Object.values(questions).map((question, i) =>{
     return (
       <div key={i} className="question-holder">
@@ -107,21 +134,6 @@ export default function CreatePage() {
     );
   })
 
-  function handleAddClass(){
-    if (index > 8){
-      return "add"
-    }else {
-      return "add2"
-    }
-  }
-
-  function handleRemoveClass(){
-    if (index < 2){
-      return "remove"
-    }else {
-      return "remove2"
-    }
-  }
 
   return (  
     <div className="page-holder">
@@ -129,6 +141,7 @@ export default function CreatePage() {
         <h1>Create Your Quiz!</h1>
         <span>Title: </span><input onChange={(e) => handleChange(e, "title")}/><div id="title" className="counter">0/22</div>
         <p>Questions:</p>
+        <div className="instructions">Please fill out all of the below inputs. If you would like to use less than four answer choices for any of your questions, enter "n/a" for the corresponding wrong answer. Each question must have at least two answer choices</div>
         <br/>
         <br/>
         {questionForm}
@@ -136,7 +149,7 @@ export default function CreatePage() {
           <FontAwesomeIcon className={ index < 2 ? "remove2" : "remove"} onClick={(e) => removeQuestion(e)} icon={faMinus} size="3x" />
           <FontAwesomeIcon className={ index > 8 ? "add2" : "add"} onClick={(e) => addQuestion(e)} icon={faPlus} size="3x" />
         </div>
-        <button>Submit</button>
+        <button onClick={(e) => handleSubmit(e)} className="submit">Submit</button>
       </div>
     </div>
   );    

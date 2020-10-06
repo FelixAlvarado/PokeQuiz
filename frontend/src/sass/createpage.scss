@@ -8,13 +8,19 @@
         margin-bottom: 20px;
     }
 
+
     .remove{
         margin-right:65px;
         color: #F63131;
     }
 
+    .remove path {
+        stroke: black;
+        stroke-width: 14px;
+    }
+
     .remove2{
-        color: #EE8B8B;
+        color: #CBC5C5;
         margin-right:65px;
 
     }
@@ -24,7 +30,7 @@
     }
 
     .remove:hover{
-        color: #EE8B8B;
+        color: #EBA7A7;
         cursor: pointer;
     }
 
@@ -32,8 +38,13 @@
         color: #0074DA;
     }
 
+    .add path {
+        stroke: black;
+        stroke-width: 14px;
+    }
+
     .add2 {
-        color: #54A1E5
+        color: #CBC5C5
     }
 
     .add2:hover {
@@ -41,7 +52,7 @@
     }
 
     .add:hover{
-        color: #54A1E5;
+        color: #98BFE1;
         cursor: pointer;
     }
 
@@ -62,10 +73,11 @@
         text-align: center;
     }
 
-    .question-title{
-        font-size: 26px;
-        font-weight: 700;
-        margin: 0px 0px 15px 10px;
+    .instructions{
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        margin: 5px;
     }
 
     input{
@@ -88,6 +100,25 @@
         color: gray;
     }
 
+    .submit {
+        width: 40%;
+        border-radius: 25px;
+        margin-left: 30%;
+        margin-top: 10px;
+        margin-bottom: 30px;
+        height: 40px;
+        background-color:#35BB70;
+        color: black;
+        font-weight: 700;
+        font-size: 18px;
+        border: black solid 2px;
+    }
+
+    .submit:hover {
+        cursor: pointer;
+        background-color: #D5F5E3;
+    }
+
 }
 
 .question-counter{
@@ -97,7 +128,6 @@
 
 
 .question-holder {
-    margin-bottom: 10px;
     border-top: black solid 2px;
     padding-top: 20px;
     p {
@@ -111,6 +141,7 @@
         margin-left: 5%;
     }
 }
+
 
 
 @media screen and (max-width: 400px) {
@@ -139,6 +170,11 @@
             width: 90%;
             margin-left: 5%;
         }
+    }
+
+    .page-holder{
+        width: 90%;
+        margin-left: 5%;
     }
 
 }
