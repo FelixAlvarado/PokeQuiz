@@ -1,0 +1,100 @@
+.page-holder {
+  width: 80%;
+  display: inline-block;
+  margin-left: 10%;
+  margin-top: 110px; }
+
+.page-top-section {
+  border: black solid 2px;
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.75);
+  width: 100%; }
+  .page-top-section .page-picture {
+    width: 100px;
+    height: 100%; }
+  .page-top-section .page-top-right {
+    justify-content: space-evenly;
+    display: flex;
+    flex-grow: 3; }
+
+.quiz-button:hover {
+  cursor: pointer;
+  background-color: #D5F5E3; }
+
+.link-button-holder {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; }
+
+.test-title div {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); }
+
+.pokeball {
+  width: 90px;
+  height: 90px;
+  background-image: url("../media/pokeball2.png");
+  background-size: cover; }
+
+.pokeball2 {
+  width: 90px;
+  height: 90px;
+  background-image: url("../media/pokeball2.png");
+  background-size: cover; }
+
+.test-title {
+  font-size: 26px;
+  font-weight: 900;
+  flex-grow: 3;
+  text-align: center;
+  word-break: break-all; }
+
+@media screen and (max-width: 650px) {
+  .pokeball2 {
+    display: none; }
+
+  .test-title {
+    font-size: 20px; } }
+@media screen and (max-width: 475px) {
+  .test-title {
+    font-size: 18px; }
+
+  .page-holder {
+    width: 90%;
+    margin-left: 5%; } }
+@media screen and (max-width: 360px) {
+  .test-title {
+    font-size: 16px; }
+
+  .page-holder {
+    width: 90%;
+    margin-left: 5%; }
+
+  .pokeball {
+    width: 65px;
+    height: 65px; } }
+@media screen and (max-width: 295px) {
+  .test-title {
+    font-size: 16px; }
+
+  .page-holder {
+    width: 90%;
+    margin-left: 5%; }
+
+  .pokeball {
+    width: 65px;
+    height: 65px; } }
+@media screen and (max-width: 295px) {
+  .test-title {
+    font-size: 16px;
+    margin: 15px 5px 15px 5px; }
+
+  .page-holder {
+    width: 90%;
+    margin-left: 5%; }
+
+  .pokeball {
+    display: none; } }
+
+/*# sourceMappingURL=testpage.css.map */

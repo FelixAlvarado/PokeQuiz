@@ -1,0 +1,112 @@
+@import 'page';
+
+%vertical-center {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.pokeball {
+    width: 90px;
+    height: 90px;
+    background-image: url('../media/pokeball2.png');
+    background-size: cover;
+}
+
+.pokeball2 {
+    width: 90px;
+    height: 90px;
+    background-image: url('../media/pokeball2.png');
+    background-size: cover;
+}
+
+.test-title{
+    font-size: 26px;
+    font-weight: 900;
+    flex-grow: 3;
+    text-align: center;
+    word-break: break-all;
+    div {
+        @extend %vertical-center;
+    }
+}
+
+@media screen and (max-width: 650px) {
+
+    .pokeball2{
+        display: none; 
+    }
+
+    .test-title{
+        font-size: 20px;
+    }
+
+  }
+
+  @media screen and (max-width: 475px) {
+
+    .test-title{
+        font-size: 18px;
+    }
+
+    .page-holder{
+        width: 90%;
+        margin-left: 5%;
+    }
+
+  }
+
+  @media screen and (max-width: 360px) {
+
+    .test-title{
+        font-size: 16px;
+    }
+
+    .page-holder{
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .pokeball{
+        width: 65px;
+        height: 65px;
+    }
+
+  }
+
+  @media screen and (max-width: 295px) {
+
+    .test-title{
+        font-size: 16px;
+    }
+
+    .page-holder{
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .pokeball{
+        width: 65px;
+        height: 65px;
+    }
+
+  }
+
+
+  @media screen and (max-width: 295px) {
+
+    .test-title{
+        font-size: 16px;
+        margin: 15px 5px 15px 5px;
+    }
+
+    .page-holder{
+        width: 90%;
+        margin-left: 5%;
+    }
+
+    .pokeball{
+        display: none
+    }
+
+  }

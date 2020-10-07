@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import {fetchQuizes, fetchQuiz, fetchQuizAttempt} from '../utility/fetch'
+import {fetchQuizes, fetchQuiz, fetchQuizAttempt, fetchQuestions} from '../utility/fetch'
 
 export const getQuizes = createAsyncThunk(
     'quiz/fetchQuizesStatus',
@@ -30,6 +30,16 @@ export const getQuizes = createAsyncThunk(
     }     
   )
 
+  //fetches questions for test page
+  export const getQuestions = createAsyncThunk(
+    'quiz/fetchQuizStatus',
+    async (id) => {
+      const response = await fetchQuestions(id)
+      return response
+    
+    }     
+  )
+
 
 export const quizesSlice = createSlice({
   name: 'quizes',
@@ -44,7 +54,10 @@ export const quizesSlice = createSlice({
       },
         [getQuizAttempt.fulfilled]: (state, action) => {
            Object.assign(state,action.payload)
-    }
+    },
+    [getQuestions.fulfilled]: (state, action) => {
+       Object.assign(state,action.payload)
+}
 
   },
 });

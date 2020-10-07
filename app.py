@@ -1,5 +1,5 @@
 from flask import Flask, request
-from queries import fetch_quizes, fetch_quiz, fetch_attempt
+from queries import fetch_quizes, fetch_quiz, fetch_attempt, fetch_questions
 from create_quiz import create_quiz
 import mysql.connector
 from mysql.connector import errorcode 
@@ -41,6 +41,11 @@ def create():
     questions = data['questions']
     quiz_id = create_quiz(cnx, cursor, title, questions)
     return quiz_id
+
+@app.route('/questions', methods=["GET"])
+def questions():
+    quiz_id = request.args.get('id')
+    return fetch_questions(cursor,quiz_id)
 
 
 if __name__ == "__main__":

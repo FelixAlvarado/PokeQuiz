@@ -30,6 +30,7 @@
     font-weight: 900;
     flex-grow: 3;
     text-align: center;
+    word-break: break-all;
     div {
         @extend %vertical-center;
     }

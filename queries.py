@@ -74,7 +74,7 @@ def fetch_attempt(cursor,id):
                                                               "correct_answer":attempt[6],
                                                               "wrong_answer1":attempt[7],
                                                               "wrong_answer2":attempt[8],
-                                                              "wrong_answer3":attempt[9]}
+                                                             "wrong_answer3":attempt[9]}
         result[f"{quiz_id}"]["attempts"][f"{attempt[10]}"] = {"id":attempt[10],
                                                               "question_id":attempt[11],  
                                                               "score_id":attempt[12],
@@ -84,4 +84,18 @@ def fetch_attempt(cursor,id):
     return result
 
 
+def fetch_questions(cursor, quiz_id):
+    result = {}
+    cursor.execute(f"SELECT * FROM quizes WHERE id = {quiz_id}")
 
+    for quiz in cursor:
+        result[f"{quiz[0]}"] = {"title":quiz[1]}
+        result[f"{quiz[0]}"]["questions"] = {}
+
+    cursor.execute(f"SELECT questions.id, question, correct_answer, wrong_answer1, wrong_answer2, wrong_answer3 FROM questions JOIN quiz_questions ON questions.id = quiz_questions.question_id JOIN quizes ON quizes.id = quiz_questions.quiz_id WHERE quizes.id = {quiz_id}")
+
+    for question in cursor:
+        result[f"{quiz_id}"]["questions"][f"{question[0]}"] = {"id":question[0],"question":question[1],"correct_answer": question[2],"wrong_answer1":question[3],"wrong_answer2":question[4],"wrong_answer3":question[5]}
+    
+    
+    return result
