@@ -8,8 +8,10 @@ import { faCopy, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import AttemptItem from './AttemptItem'
 import {Link} from "react-router-dom";
 import '../style/testpage.css'
+import '../style/createpage.css'
 
-export default function ScorePage() {
+
+export default function TestPage() {
     const dispatch = useDispatch();
     let quizId = window.location.href.split('/')[4].split('?')[0]
     const onLoad = useRef(true)
@@ -21,11 +23,11 @@ export default function ScorePage() {
 
  
     const quiz = useSelector(state => {
-      if(state.quizes[`${quizId}`]){
-      return state.quizes[`${quizId}`]
-      }else{
-        return {scores:[[]]}
-      }
+      if(state.quizes[`${quizId}`])
+        return state.quizes[`${quizId}`]
+        else{
+          return {}
+        }
     })
 
     function handleClick(e) {
@@ -61,11 +63,23 @@ export default function ScorePage() {
       }
     },[dispatch,quizId]);
 
-    if(quiz.attempts && quiz.questions){
-      questionList = Object.keys(quiz.attempts).map((key,i) =>{
-        let currentAttempt = quiz.attempts[`${key}`]
-        let currentQuestion = quiz.questions[`${currentAttempt.question_id}`]
-        return <AttemptItem key={i} attempt={currentAttempt} question={currentQuestion} />
+    if(quiz && quiz.questions){
+      questionList = Object.keys(quiz.questions).map((key,i) =>{
+        let question = quiz.questions[`${key}`]
+        console.log('here is the quetion')
+        return (
+          <div key={i} className="question-holder">
+            <div className="question">
+                <div>{question.question}</div>
+            </div>
+              <div><input type="radio" name={question.id} /><label>{question.correct_answer}</label></div>
+              <div><input type="radio" name={question.id} /><label>{question.wrong_answer1}</label></div>
+              <div><input type="radio" name={question.id} /><label>{question.wrong_answer2}</label></div>
+              <div><input type="radio" name={question.id} /><label>{question.wrong_answer3}</label></div>
+          
+          </div>
+        );
+
       });
     }
 
@@ -83,6 +97,7 @@ export default function ScorePage() {
         <div className="result-title">Results</div>
         {questionList}
       </div>
+      {/* <button className="submit">Submit</button> */}
 </div>
   );    
 }

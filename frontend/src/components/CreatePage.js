@@ -146,7 +146,7 @@ export default function CreatePage() {
 
   questionForm = Object.values(questions).map((question, i) =>{
     return (
-      <div key={i} className="question-holder">
+      <div key={i} className="create-question-holder">
         {handleRedirect()}
         <div><p>Question {i + 1}: </p><input onChange={(e) =>handleChange(e,"question", i)} placeholder={question.question}/><div id={`${i}question`} className="counter2">0/150</div></div>
         <div><p>Correct Answer: </p><input onChange={(e) =>handleChange(e,"correctAnswer", i)} placeholder={question.correctAnswer}/><div id={`${i}correctAnswer`} className="counter2">0/100</div></div>
