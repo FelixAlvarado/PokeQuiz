@@ -7,8 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import AttemptItem from './AttemptItem'
 import {Link} from "react-router-dom";
-import '../style/testpage.css'
 import '../style/createpage.css'
+import '../style/testpage.css'
 
 
 export default function TestPage() {
@@ -18,6 +18,7 @@ export default function TestPage() {
     const [picture, setPicture] = useState('')
     const [picture2, setPicture2] = useState('')
     const [copyIcon, setCopyIcon] = useState({icon:faCopy,className:"copy-icon"})
+    const [name, setName] = useState('')
     let questionList
 
 
@@ -54,6 +55,21 @@ export default function TestPage() {
       }
     }
 
+    function handleChange(e){
+  
+      let value = e.currentTarget.value 
+      if (value.length === 0) value = ''
+   
+      if(value.length > 8){
+        e.currentTarget.value = name 
+        return
+      }
+      let counter = document.getElementById('name')
+      counter.innerHTML = value.length.toString() + "/8"
+      setName(value)
+      return
+    }
+
     useEffect(() => {
       if(onLoad.current){
         dispatch(getQuestions(quizId))
@@ -68,9 +84,9 @@ export default function TestPage() {
         let question = quiz.questions[`${key}`]
         console.log('here is the quetion')
         return (
-          <div key={i} className="question-holder">
+          <div key={i} className="question-holder question-margin">
             <div className="question">
-                <div>{question.question}</div>
+                <div>Question {i + 1}: {question.question}</div>
             </div>
               <div><input type="radio" name={question.id} /><label>{question.correct_answer}</label></div>
               <div><input type="radio" name={question.id} /><label>{question.wrong_answer1}</label></div>
@@ -83,6 +99,8 @@ export default function TestPage() {
       });
     }
 
+
+
   return (
   
 <div className="page-holder">
@@ -93,11 +111,12 @@ export default function TestPage() {
           </div>
           <div className="pokeball2"></div>
       </div>
-      <div className="questions">
-        <div className="result-title">Results</div>
+      <div className="questions test-questions">
+        <span>Name: </span><input className="name-input" onChange={(e) => handleChange(e)} /><div id="name" className="name-counter">0/8</div>
+        <div className="result-title">Questions</div>
         {questionList}
       </div>
-      {/* <button className="submit">Submit</button> */}
+      <button className="submit">Submit</button>
 </div>
   );    
 }

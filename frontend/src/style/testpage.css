@@ -50,6 +50,20 @@
   text-align: center;
   word-break: break-all; }
 
+.test-questions span {
+  font-size: 19px;
+  font-weight: 600; }
+.test-questions .name-input {
+  height: 25px;
+  width: 100px;
+  margin-top: 10px; }
+
+.name-counter {
+  position: absolute;
+  display: inline;
+  color: gray;
+  transform: translate(-105%, 17%); }
+
 @media screen and (max-width: 650px) {
   .pokeball2 {
     display: none; }
