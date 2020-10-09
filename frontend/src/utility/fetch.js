@@ -3,7 +3,7 @@ const axios = require('axios');
 let host 
 
 if(window.origin.includes("herokuapp")){
-    host = "https://PokeQuiz.herokuapp.com"
+    host = "https://pokequiz1.herokuapp.com"
 }else {
     host = "http://localhost:5000"
 }
