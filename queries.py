@@ -101,7 +101,8 @@ def fetch_questions(cursor, quiz_id):
         answers.append(question[4])
         answers.append(question[5])
         random.shuffle(answers)
-        result[f"{quiz_id}"]["questions"][f"{question[0]}"] = {"id":question[0],"question":question[1],"answer_1": answers[0],"answer_2":answers[1],"answer_3":answers[2],"answer_4":answers[3]}
+        result[f"{quiz_id}"]["questions"][f"{question[0]}"] = {"id":question[0],"question":question[1],"correct_answer":question[2],"answer_1": answers[0],"answer_2":answers[1],"answer_3":answers[2],"answer_4":answers[3]}
     
-    
+    result[f"{quiz_id}"]["scores"] = [[]]
+
     return result

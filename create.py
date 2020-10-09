@@ -34,7 +34,33 @@ def create_quiz(cnx, cursor, title, questions):
     
     return str(quiz_id)
 
+def create_score_attempts(cnx,cursor, attempts,score):
+
+    score_format = ("INSERT INTO scores "
+        "(quiz_id, test_taker, score) "
+        "VALUES (%s, %s, %s)")
+
+    score_data = (score["quizId"], score["testTaker"],score["score"])
+
+    cursor.execute(score_format, score_data)
+
+    cnx.commit()
+
+    score_id = cursor.lastrowid
+
+    for attempt in attempts:
+        attempt_format = ("INSERT INTO attempts "
+            "(question_id, score_id, answer) "
+            "VALUES (%s, %s, %s)")
+
+        attempt_data = (attempt["questionId"], score_id, attempt["answer"])
+
+        cursor.execute(attempt_format, attempt_data)
+
+        cnx.commit()
     
+    return str(score_id)
+
 
 
 

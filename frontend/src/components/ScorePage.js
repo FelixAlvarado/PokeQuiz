@@ -6,7 +6,8 @@ import {pokePicture} from '../utility/util'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import AttemptItem from './AttemptItem'
-import {Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
+import AlertModal from './alertModal.js'
 
 export default function ScorePage() {
     const dispatch = useDispatch();
@@ -16,6 +17,9 @@ export default function ScorePage() {
     const [picture, setPicture] = useState('')
     const [copyIcon, setCopyIcon] = useState({icon:faCopy,className:"copy-icon"})
     let questionList
+    let location = useLocation()
+    let [showAlert, setShowAlert] = useState(false)
+    let [alertText, setAlertText] = useState('');
 
 
  
@@ -49,13 +53,28 @@ export default function ScorePage() {
       }
     }
 
+    function handleAlert(){
+      if(showAlert){
+        return <AlertModal showAlert={showAlert} alertText={alertText}/>
+  
+      }
+    }
+
     useEffect(() => {
       if(onLoad.current){
         dispatch(getQuizAttempt(scoreId))
         setPicture(pokePicture())
+        if(location.state && location.state.justScored){
+          if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            alert(`You scored ${location.state.score}%! You can view your answers on this page. Share this page with the quiz creater so they can see how you did!`)
+          }else{
+            setAlertText(`You scored ${location.state.score}%! You can view your answers on this page. Share this page with the quiz creater so they can see how you did!`)
+            setShowAlert(true)
+          }
+        }
         onLoad.current = false;
       }
-    },[dispatch,scoreId]);
+    },[dispatch,scoreId, location.state]);
 
     if(quiz.attempts && quiz.questions){
       questionList = Object.keys(quiz.attempts).map((key,i) =>{
@@ -91,6 +110,7 @@ export default function ScorePage() {
         <div className="result-title">Results</div>
         {questionList}
       </div>
+      {handleAlert()}
 </div>
   );    
 }

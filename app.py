@@ -1,6 +1,6 @@
 from flask import Flask, request
 from queries import fetch_quizes, fetch_quiz, fetch_attempt, fetch_questions
-from create_quiz import create_quiz
+from create import create_quiz, create_score_attempts
 import mysql.connector
 from mysql.connector import errorcode 
 from dotenv import load_dotenv
@@ -46,6 +46,17 @@ def create():
 def questions():
     quiz_id = request.args.get('id')
     return fetch_questions(cursor,quiz_id)
+
+@app.route('/score', methods=["POST"])
+def score():
+    data = request.json 
+    attempts = data['attempts']
+    print('attempts')
+    print(attempts)
+    score = data['score']
+    print('here is the score')
+    print(score)
+    return create_score_attempts(cnx, cursor,attempts, score)
 
 
 if __name__ == "__main__":

@@ -21,3 +21,16 @@ export const averageScore = (scores) => {
     return Math.floor(total / scores.length).toString() + '%'
 }
 
+export const gradeQuiz = (questions, answers) => {
+  let correct = 0;
+  let quizLength = Object.keys(questions).length
+
+  Object.keys(answers).forEach(key =>{
+    if(answers[`${key}`].answer === questions[`${key}`].correct_answer){
+      correct += 1
+    }
+  }); 
+
+  return Math.floor((correct / quizLength) * 100)
+
+}

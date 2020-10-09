@@ -10,3 +10,13 @@ export const createQuiz = (title, questions) => {
         })
 
 }
+
+export const scoreQuiz = (attempts, score) => {
+    return axios.post('http://localhost:5000/score',{
+        attempts: attempts,
+        score: score
+        }).then(response =>{
+            return response.data
+        })
+
+}

@@ -67,7 +67,6 @@ useEffect(() => {
     dispatch(getQuiz(id))
     setPicture(pokePicture())
     if(location.state && location.state.justCreated){
-      console.log('navigator', navigator.userAgent)
       if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
         alert("Your quiz was successfully created! Share this page's link with your friends to see how they score!")
       }else{
@@ -77,7 +76,7 @@ useEffect(() => {
     }
     onLoad.current = false;
   }
-},[dispatch,id]);
+},[dispatch,id, location.state]);
 
   return (
 
@@ -95,7 +94,7 @@ useEffect(() => {
             </div>
           </div>
       </div>
-      <button className="quiz-button2">Take Quiz</button>
+      <Link to={`/test/${id}`} className="quiz-button2"><span>Take Quiz</span></Link>
       <button onClick={(e) => handleClick(e)} className="copy-link">Copy Link</button>
       <ScoreList scores={quiz.scores} quizId={quiz.id} />
       {handleAlert()}

@@ -2,25 +2,22 @@ import React,{ useState, useRef, useEffect } from 'react';
 import '../style/scorepage.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getQuestions  } from '../app/quizesSlice.js'
-import {pokePicture} from '../utility/util'
+import {gradeQuiz} from '../utility/util'
 import {Redirect} from "react-router-dom";
 import '../style/createpage.css'
 import '../style/testpage.css'
+import {scoreQuiz} from '../utility/quizMethods'
 
 
 export default function TestPage() {
     const dispatch = useDispatch();
     let quizId = window.location.href.split('/')[4].split('?')[0]
     const onLoad = useRef(true)
-    const [picture, setPicture] = useState('')
-    const [picture2, setPicture2] = useState('')
     const [name, setName] = useState('')
     const [attempts, setAttempts] = useState({})
-    const [quizSubmitted, setQuizSubmitted] = useState(false)
+    const [quizSubmitted, setQuizSubmitted] = useState({boolean: false, scoreId:''})
     let questionList
 
-
- 
     const quiz = useSelector(state => {
       if(state.quizes[`${quizId}`])
         return state.quizes[`${quizId}`]
@@ -29,14 +26,23 @@ export default function TestPage() {
         }
     })
 
-    function handleSubmit(e)  {
-      //e.preventDefault()
+    function handleSubmit()  {
       let unfilled = []
       if (name.length === 0) unfilled.push('Please enter your name before submitting your answers')
-      if (Object.keys(questionList).length != Object.keys(attempts).length) unfilled.push('Please answer all of the questions before submitting your answers')
+      if (Object.keys(questionList).length !== Object.keys(attempts).length) unfilled.push('Please answer all of the questions before submitting your answers')
   
       if(unfilled.length === 0){
-        setQuizSubmitted(true)
+       scoreQuiz(Object.values(attempts),{score:gradeQuiz(quiz.questions, attempts),testTaker:name, quizId:quizId})
+       .then(response => {
+         let newObject = Object.assign({}, quizSubmitted)
+         newObject.scoreId = response 
+         newObject.boolean = true
+        setQuizSubmitted(newObject)
+       })
+       .catch((error) =>{
+        console.log(error)
+        alert('An error occurred with our servers. Please try submitting your answers at a later time.')
+       })
         return
       }
       let alertString = ''
@@ -70,12 +76,11 @@ export default function TestPage() {
       let newObject = Object.assign({}, attempts)
       newObject[`${key}`] = {questionId:key,answer:answer}
       setAttempts(newObject)
-      console.log('here is the new object', newObject)
     }
 
     function handleRedirect(){
-      if(quizSubmitted){
-        return <Redirect to={{pathname:`/quiz/${quizId}`,state:{justCreated:true}}}/>
+      if(quizSubmitted.boolean){
+        return <Redirect to={{pathname:`/score/${quizSubmitted.scoreId}?quiz=${quizId}`,state:{justScored:true,score:gradeQuiz(quiz.questions, attempts)}}}/>
       }
     }
 
@@ -83,8 +88,6 @@ export default function TestPage() {
     useEffect(() => {
       if(onLoad.current){
         dispatch(getQuestions(quizId))
-        setPicture(pokePicture())
-        setPicture2(pokePicture())
         onLoad.current = false;
       }
     },[dispatch,quizId]);
@@ -97,10 +100,10 @@ export default function TestPage() {
             <div className="question">
                 <div>Question {i + 1}: {question.question}</div>
             </div>
-              <div className={question.answer_1.toLowerCase() != 'n/a' ? "" : "no-display" }><input onChange={(e) => handleSelect(key, question.answer_1)} type="radio" name={question.id} /><label>{question.answer_1}</label></div>
-              <div className={question.answer_2.toLowerCase() != 'n/a' ? "" : "no-display" }><input onChange={(e) => handleSelect(key, question.answer_2)} type="radio" name={question.id} /><label>{question.answer_2}</label></div>
-              <div className={question.answer_3.toLowerCase() != 'n/a' ? "" : "no-display" }><input onChange={(e) => handleSelect(key, question.answer_3)} type="radio" name={question.id} /><label>{question.answer_3}</label></div>
-              <div className={question.answer_4.toLowerCase() != 'n/a' ? "" : "no-display" }><input onChange={(e) => handleSelect(key, question.answer_4)} type="radio" name={question.id} /><label>{question.answer_4}</label></div>
+              <div className={question.answer_1.toLowerCase() !== 'n/a' ? "" : "no-display" }><input onChange={(e) => handleSelect(key, question.answer_1)} type="radio" name={question.id} /><label>{question.answer_1}</label></div>
+              <div className={question.answer_2.toLowerCase() !== 'n/a' ? "" : "no-display" }><input onChange={(e) => handleSelect(key, question.answer_2)} type="radio" name={question.id} /><label>{question.answer_2}</label></div>
+              <div className={question.answer_3.toLowerCase() !== 'n/a' ? "" : "no-display" }><input onChange={(e) => handleSelect(key, question.answer_3)} type="radio" name={question.id} /><label>{question.answer_3}</label></div>
+              <div className={question.answer_4.toLowerCase() !== 'n/a' ? "" : "no-display" }><input onChange={(e) => handleSelect(key, question.answer_4)} type="radio" name={question.id} /><label>{question.answer_4}</label></div>
           
           </div>
         );
