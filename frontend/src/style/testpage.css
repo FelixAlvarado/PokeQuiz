@@ -26,6 +26,23 @@
   flex-direction: column;
   justify-content: space-between; }
 
+.submit {
+  width: 40%;
+  border-radius: 25px;
+  margin-left: 30%;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  height: 40px;
+  background-color: #35BB70;
+  color: black;
+  font-weight: 700;
+  font-size: 18px;
+  border: black solid 2px; }
+
+.submit:hover {
+  cursor: pointer;
+  background-color: #D5F5E3; }
+
 .test-title div {
   position: relative;
   top: 50%;
@@ -64,6 +81,9 @@
   color: gray;
   transform: translate(-105%, 17%); }
 
+.test-submit {
+  margin-top: 60px; }
+
 @media screen and (max-width: 650px) {
   .pokeball2 {
     display: none; }
@@ -99,6 +119,9 @@
   .pokeball {
     width: 65px;
     height: 65px; } }
+.no-display {
+  display: none; }
+
 @media screen and (max-width: 295px) {
   .test-title {
     font-size: 16px;

@@ -1,4 +1,4 @@
-
+import random
 
 def fetch_quizes(cursor):
     result = {'quizes':{}}
@@ -95,7 +95,13 @@ def fetch_questions(cursor, quiz_id):
     cursor.execute(f"SELECT questions.id, question, correct_answer, wrong_answer1, wrong_answer2, wrong_answer3 FROM questions JOIN quiz_questions ON questions.id = quiz_questions.question_id JOIN quizes ON quizes.id = quiz_questions.quiz_id WHERE quizes.id = {quiz_id}")
 
     for question in cursor:
-        result[f"{quiz_id}"]["questions"][f"{question[0]}"] = {"id":question[0],"question":question[1],"correct_answer": question[2],"wrong_answer1":question[3],"wrong_answer2":question[4],"wrong_answer3":question[5]}
+        answers = []
+        answers.append(question[2])
+        answers.append(question[3])
+        answers.append(question[4])
+        answers.append(question[5])
+        random.shuffle(answers)
+        result[f"{quiz_id}"]["questions"][f"{question[0]}"] = {"id":question[0],"question":question[1],"answer_1": answers[0],"answer_2":answers[1],"answer_3":answers[2],"answer_4":answers[3]}
     
     
     return result

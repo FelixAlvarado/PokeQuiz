@@ -52,6 +52,10 @@
     transform: translate(-105%, 17%);    
 }
 
+.test-submit {
+    margin-top: 60px;
+}
+
 @media screen and (max-width: 650px) {
 
     .pokeball2{
@@ -111,6 +115,10 @@
         height: 65px;
     }
 
+  }
+
+  .no-display{
+      display:none;
   }
 
 

@@ -20,3 +20,4 @@ export const averageScore = (scores) => {
 
     return Math.floor(total / scores.length).toString() + '%'
 }
+
