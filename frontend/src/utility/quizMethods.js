@@ -1,8 +1,16 @@
 const axios = require('axios');
 
+let host 
+
+if(window.origin.includes("herokuapp")){
+    host = "https://pokequiz1.herokuapp.com"
+}else {
+    host = "http://localhost:5000"
+}
+
 
 export const createQuiz = (title, questions) => {
-    return axios.post('http://localhost:5000/create',{
+    return axios.post(`${host}/create`,{
         title: title,
         questions: questions
         }).then(response =>{
@@ -12,7 +20,7 @@ export const createQuiz = (title, questions) => {
 }
 
 export const scoreQuiz = (attempts, score) => {
-    return axios.post('http://localhost:5000/score',{
+    return axios.post(`${host}/score`,{
         attempts: attempts,
         score: score
         }).then(response =>{

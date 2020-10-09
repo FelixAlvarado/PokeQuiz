@@ -84,8 +84,9 @@ export default function ScoreList({scores, quizId}) {
   return (
       <div className="score-list">
         <p>Scores</p>
-        {scoreList}
         {handleScoreAverage()}
+        <br></br>
+        {scoreList}
       </div>
   );    
 }
