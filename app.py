@@ -17,7 +17,7 @@ cnx = mysql.connector.connect(user=f"{user}", password=f"{password}")
 cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
 
-app = Flask(__name__,static_folder='./frontend/build', static_url_path='/')
+app = Flask(__name__)
 CORS(app)
 
 @app.route('/quizes', methods=["GET"])
