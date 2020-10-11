@@ -17,12 +17,12 @@ cnx = mysql.connector.connect(user=f"{user}", password=f"{password}")
 cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
 
-app = Flask(__name__,static_folder='./build', static_url_path='/')
+app = Flask(__name__,static_folder='./frontend/build', static_url_path='/')
 CORS(app)
 
 @app.route('/')
 def index():
-    return app.send_static_file('index.html')
+    return app.send_static_file('./frontend/index.html')
 
 @app.route('/quizes', methods=["GET"])
 def quizes():
