@@ -155,8 +155,7 @@
     justify-content: center;
     flex-direction: column; }
     .quiz-button2 span {
-      display: block;
-      margin-top: 10px; }
+      display: block; }
 
   .quiz-button2:hover {
     cursor: pointer;

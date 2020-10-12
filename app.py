@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template, send_from_directory
 from queries import fetch_quizes, fetch_quiz, fetch_attempt, fetch_questions
 from create import create_quiz, create_score_attempts
 import mysql.connector
@@ -17,12 +17,23 @@ cnx = mysql.connector.connect(user=f"{user}", password=f"{password}")
 cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
 
-app = Flask(__name__,static_folder='./frontend/build', static_url_path='/')
-CORS(app)
+app = Flask(__name__,static_folder='build', static_url_path='/')
+# CORS(app)
 
-@app.route('/')
-def index():
-    return app.send_static_file('./frontend/index.html')
+# @app.route('/')
+# def index():
+#     return render_template('index.html')
+
+app = Flask(__name__, static_folder='frontend/build')
+
+# Serve React App
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(app.static_folder + '/' + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/quizes', methods=["GET"])
 def quizes():
