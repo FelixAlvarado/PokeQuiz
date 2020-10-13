@@ -10,21 +10,21 @@ from subprocess import Popen, PIPE
 
 load_dotenv()
 
-host = port = DB_NAME = password = user = None 
-stdout, stderr = Popen(['heroku', 'config'], stdout=PIPE, stderr=PIPE).communicate()
-for line in stdout.decode('ascii').split('\n'):
-    split = line.split(':')
-    if len(split) == 2:
-        if split[0] == 'AWS_USERNAME':
-            user = split[1].strip()
-        elif split[0] == 'AWS_PASSWORD':
-            password = split[1].strip()
-        elif split[0] == 'AWS_HOST':
-            host = split[1].strip()
-        elif split[0] == 'AWS_PORT':
-            port = split[1].strip()
-        elif split[0] == 'AWS_DB_NAME':
-            DB_NAME = split[1].strip()
+# host = port = DB_NAME = password = user = None 
+# stdout, stderr = Popen(['heroku', 'config'], stdout=PIPE, stderr=PIPE).communicate()
+# for line in stdout.decode('ascii').split('\n'):
+#     split = line.split(':')
+#     if len(split) == 2:
+#         if split[0] == 'AWS_USERNAME':
+#             user = split[1].strip()
+#         elif split[0] == 'AWS_PASSWORD':
+#             password = split[1].strip()
+#         elif split[0] == 'AWS_HOST':
+#             host = split[1].strip()
+#         elif split[0] == 'AWS_PORT':
+#             port = split[1].strip()
+#         elif split[0] == 'AWS_DB_NAME':
+#             DB_NAME = split[1].strip()
         
 
 user = os.environ.get("AWS_USERNAME")
