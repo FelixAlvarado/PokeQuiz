@@ -15,7 +15,7 @@ DB_NAME = os.environ.get("AWS_DB_NAME")
 port = os.environ.get("AWS_PORT")
 host = os.environ.get("AWS_HOST")
 
-cnx = mysql.connector.connect(user=f"{user}", password=f"{password}", host=f"{host}", port=port)
+cnx = mysql.connector.connect(user=f"{user}", password=f"{password}", host=f"{host}", port=f"{int(port)}")
 cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
 
