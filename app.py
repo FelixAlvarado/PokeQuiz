@@ -6,8 +6,26 @@ from mysql.connector import errorcode
 from dotenv import load_dotenv
 import os 
 from flask_cors import CORS
+from subprocess import Popen, PIPE
 
 load_dotenv()
+
+host = port = DB_NAME = password = user = None 
+stdout, stderr = Popen(['heroku', 'config'], stdout=PIPE, stderr=PIPE).communicate()
+for line in stdout.decode('ascii').split('\n'):
+    split = line.split(':')
+    if len(split) == 2:
+        if split[0] == 'AWS_USERNAME':
+            user = split[1].strip()
+        elif split[0] == 'AWS_PASSWORD':
+            password = split[1].strip()
+        elif split[0] == 'AWS_HOST':
+            host = split[1].strip()
+        elif split[0] == 'AWS_PORT':
+            port = split[1].strip()
+        elif split[0] == 'AWS_DB_NAME':
+            DB_NAME = split[1].strip()
+        
 
 user = os.environ.get("AWS_USERNAME")
 password = os.environ.get("AWS_PASSWORD")
@@ -15,7 +33,7 @@ DB_NAME = os.environ.get("AWS_DB_NAME")
 port = os.environ.get("AWS_PORT")
 host = os.environ.get("AWS_HOST")
 
-cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host="gtizpe105piw2gfq.cbetxkdyhwsb.us-east-1.rds.amazonaws.com", port="3306")
+cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
 cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
 
