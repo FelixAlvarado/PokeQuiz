@@ -57,13 +57,15 @@ CORS(app)
 @app.route('/<path:path>')
 def serve(path):
     if path != "" and os.path.exists(app.static_folder + '/' + path):
-        return 'first return'
-        # return send_from_directory(app.static_folder, path)
+        # return 'first return'
+        return send_from_directory(app.static_folder, path)
     else:
-        string = f"here is the path: {path} \n here is the os: {os.path} \n"
-        return string
+        #os.path is always  balnk on heroku, index.html doesn't render on heroku. always returns 404 not found
+        # string = f"here is the path: {path} \n here is the os: {os.path} \n"
+        # return string
+        # return send_from_directory(app.static_folder, path)
         # return app.send_static_file('./frontend/build/index.html')
-        # return send_from_directory(app.static_folder, 'index.html')
+        return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/quizes', methods=["GET"])
 def quizes():
