@@ -38,6 +38,8 @@ cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
 
 # app = Flask(__name__)
+# CORS(app)
+
 
 
 # @app.route('/')
