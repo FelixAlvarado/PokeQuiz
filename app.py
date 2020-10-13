@@ -60,8 +60,9 @@ def serve(path):
         return 'first return'
         # return send_from_directory(app.static_folder, path)
     else:
-        # return 'second return'
-        return app.send_static_file('./frontend/build/index.html')
+        string = f"here is the path: {path} \n here is the os: {os.path} \n"
+        return string
+        # return app.send_static_file('./frontend/build/index.html')
         # return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/quizes', methods=["GET"])
