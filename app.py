@@ -38,28 +38,28 @@ cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
 
 # app = Flask(__name__)
-app = Flask(__name__, static_folder='frontend/build')
-CORS(app)
-
-
-
-@app.route('/')
-def index():
-#     return app.send_static_file('.frontend/build/index.html')
-      return send_from_directory(app.static_folder, 'index.html')
-
-
 # app = Flask(__name__, static_folder='frontend/build')
 # CORS(app)
 
+# web: gunicorn --preload app:app
+
+# @app.route('/')
+# def index():
+#     return app.send_static_file('.frontend/build/index.html')
+    #   return send_from_directory(app.static_folder, 'index.html')
+
+
+app = Flask(__name__, static_folder='frontend/build')
+CORS(app)
+
 # Serve React App
-# @app.route('/', defaults={'path': ''})
-# @app.route('/<path:path>')
-# def serve(path):
-#     if path != "" and os.path.exists(app.static_folder + '/' + path):
-#         return send_from_directory(app.static_folder, path)
-#     else:
-#         return send_from_directory(app.static_folder, 'index.html')
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(app.static_folder + '/' + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/quizes', methods=["GET"])
 def quizes():
