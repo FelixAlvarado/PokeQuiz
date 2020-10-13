@@ -47,7 +47,7 @@ export default function ScoreList({scores, quizId}) {
 
 
     if (scores) {
-        scoreList = scores.map((score,i)=>{
+        scoreList = scores.reverse().map((score,i)=>{
             return (
                 <div className="score-info" key={i}>
                     <span>{score[0]}</span>

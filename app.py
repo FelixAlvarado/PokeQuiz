@@ -9,33 +9,34 @@ from flask_cors import CORS
 
 load_dotenv()
 
-user = os.environ.get("USERNAME")
-password = os.environ.get("PASSWORD")
-DB_NAME = os.environ.get("DB_NAME")
+user = os.environ.get("AWS_USERNAME")
+password = os.environ.get("AWS_PASSWORD")
+DB_NAME = os.environ.get("AWS_DB_NAME")
+port = os.environ.get("AWS_PORT")
+host = os.environ.get("AWS_HOST")
 
-cnx = mysql.connector.connect(user=f"{user}", password=f"{password}")
+cnx = mysql.connector.connect(user=f"{user}", password=f"{password}", host=f"{host}", port=f"{port}")
 cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
 
-app = Flask(__name__)
+# app = Flask(__name__)
+
+
+# @app.route('/')
+# def index():
+#     return app.send_static_file('.frontend/build/index.html')
+
+app = Flask(__name__, static_folder='frontend/build')
 CORS(app)
 
-@app.route('/')
-def index():
-    return app.send_static_file('.frontend/build/index.html')
-
-# app = Flask(__name__, static_folder='frontend/build')
-
-
-
 # Serve React App
-# @app.route('/', defaults={'path': ''})
-# @app.route('/<path:path>')
-# def serve(path):
-#     if path != "" and os.path.exists(app.static_folder + '/' + path):
-#         return send_from_directory(app.static_folder, path)
-#     else:
-#         return send_from_directory(app.static_folder, 'index.html')
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def serve(path):
+    if path != "" and os.path.exists(app.static_folder + '/' + path):
+        return send_from_directory(app.static_folder, path)
+    else:
+        return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/quizes', methods=["GET"])
 def quizes():

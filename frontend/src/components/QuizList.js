@@ -17,7 +17,7 @@ export default function QuizList() {
   });
 
   if(quizes) { 
-          quizList = Object.values(quizes).map((quiz, i) =>{
+          quizList = Object.values(quizes).reverse().map((quiz, i) =>{
           return <QuizItem key={i} quiz={quiz} />
       })
 
