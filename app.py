@@ -10,23 +10,6 @@ from subprocess import Popen, PIPE
 
 load_dotenv()
 
-# host = port = DB_NAME = password = user = None 
-# stdout, stderr = Popen(['heroku', 'config'], stdout=PIPE, stderr=PIPE).communicate()
-# for line in stdout.decode('ascii').split('\n'):
-#     split = line.split(':')
-#     if len(split) == 2:
-#         if split[0] == 'AWS_USERNAME':
-#             user = split[1].strip()
-#         elif split[0] == 'AWS_PASSWORD':
-#             password = split[1].strip()
-#         elif split[0] == 'AWS_HOST':
-#             host = split[1].strip()
-#         elif split[0] == 'AWS_PORT':
-#             port = split[1].strip()
-#         elif split[0] == 'AWS_DB_NAME':
-#             DB_NAME = split[1].strip()
-        
-
 user = os.environ.get("AWS_USERNAME")
 password = os.environ.get("AWS_PASSWORD")
 DB_NAME = os.environ.get("AWS_DB_NAME")
@@ -37,34 +20,15 @@ cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"
 cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
 
-# app = Flask(__name__)
-# app = Flask(__name__, static_folder='frontend/build')
-# CORS(app)
-
-# web: gunicorn --preload app:app
-
-# @app.route('/')
-# def index():
-#     return app.send_static_file('.frontend/build/index.html')
-    #   return send_from_directory(app.static_folder, 'index.html')
-
-
 app = Flask(__name__, static_folder='frontend/build')
 CORS(app)
 
-# Serve React App
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def serve(path):
     if path != "" and os.path.exists(app.static_folder + '/' + path):
-        # return 'first return'
         return send_from_directory(app.static_folder, path)
     else:
-        #os.path is always  balnk on heroku, index.html doesn't render on heroku. always returns 404 not found
-        # string = f"here is the path: {path} \n here is the os: {os.path} \n"
-        # return string
-        # return send_from_directory(app.static_folder, path)
-        # return app.send_static_file('./frontend/build/index.html')
         return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/quizes', methods=["GET"])

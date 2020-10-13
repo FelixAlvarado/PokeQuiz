@@ -37,7 +37,7 @@ export default function TestPage() {
          let newObject = Object.assign({}, quizSubmitted)
          newObject.scoreId = response 
          newObject.boolean = true
-        setQuizSubmitted(newObject)
+        setTimeout(setQuizSubmitted(newObject),500)
        })
        .catch((error) =>{
         console.log(error)

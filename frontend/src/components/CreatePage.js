@@ -111,7 +111,7 @@ export default function CreatePage() {
           let newObject = Object.assign({},newQuiz)
           newObject.boolean = true; 
           newObject.id = response
-          setNewQuiz(newObject)
+          setTimeout(setNewQuiz(newObject),500)
         }).catch(error => {
             console.log('error from the server side', error)
             alert('An error occurred with our servers. Please try submitting your quiz at a later time.')}
