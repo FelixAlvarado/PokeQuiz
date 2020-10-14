@@ -24,7 +24,9 @@ export default function ScorePage() {
 
  
     const quiz = useSelector(state => {
+      console.log('here is the quizId being used', quizId)
       if(state.quizes[`${quizId}`]){
+        console.log('here is the quiz being used', state.quizes[`${quizId}`])
       return state.quizes[`${quizId}`]
       }else{
         setTimeout(reFetch(state),750)
