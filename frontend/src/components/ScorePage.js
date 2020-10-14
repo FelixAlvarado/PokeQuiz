@@ -25,7 +25,7 @@ export default function ScorePage() {
  
     const quiz = useSelector(state => {
       console.log('here is the quizId being used', quizId)
-      if(state.quizes[`${quizId}`]){
+      if(state.quizes[`${quizId}`] && state.quizes[`${quizId}`].scores[0][0]){
         console.log('here is the quiz being used', state.quizes[`${quizId}`])
       return state.quizes[`${quizId}`]
       }else{
