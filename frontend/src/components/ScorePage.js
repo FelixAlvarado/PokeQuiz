@@ -25,7 +25,7 @@ export default function ScorePage() {
  
     const quiz = useSelector(state => {
       console.log('here is the quizId being used', quizId)
-      if(state.quizes[`${quizId}`]){
+      if(state.quizes[`${quizId}`] && state.quizes[`${quizId}`].attempts){
         console.log('here is the quiz being used', state.quizes[`${quizId}`])
       return state.quizes[`${quizId}`]
       }else{
@@ -37,7 +37,7 @@ export default function ScorePage() {
     function reFetch(state){
       console.log('made it to refetch for score page')
       if(!!state.quizes[`${quizId}`]){
-        console.log('re fetching for score page')
+        console.log('re fetching for score page with the following score_id', scoreId)
         dispatch(getQuizAttempt(scoreId))
       }
     }
