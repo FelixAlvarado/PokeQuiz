@@ -27,9 +27,18 @@ export default function ScorePage() {
       if(state.quizes[`${quizId}`]){
       return state.quizes[`${quizId}`]
       }else{
+        setTimeout(reFetch(state),750)
         return {scores:[[]]}
       }
     })
+
+    function reFetch(state){
+      console.log('made it to refetch for score page')
+      if(!!state.quizes[`${quizId}`]){
+        console.log('re fetching for score page')
+        dispatch(getQuizAttempt(scoreId))
+      }
+    }
 
     function handleClick(e) {
       e.preventDefault()
@@ -38,8 +47,6 @@ export default function ScorePage() {
       document.execCommand("copy")
       setCopyIcon({icon:faCheckCircle,className:"copy-icon2"})
     }
-
-    console.log('here is the quiz', quiz)
 
     function handleImage(){
       if (picture.length > 0){

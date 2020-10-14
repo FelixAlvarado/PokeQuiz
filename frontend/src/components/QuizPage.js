@@ -25,12 +25,20 @@ export default function QuizPage() {
     if(state.quizes[`${id}`]){
     return state.quizes[`${id}`]
     }else{
+      setTimeout(reFetch(state),750)
       return {}
     }
   })
 
   const title = quiz ? quiz.title : ''
 
+  function reFetch(state){
+    console.log('made it to refetch for quiz page')
+    if(!!state.quizes[`${id}`]){
+      console.log('re fetching for quiz page')
+      dispatch(getQuiz(id))
+    }
+  }
 
   function handleImage(){
     if (picture.length > 0){
@@ -47,7 +55,6 @@ export default function QuizPage() {
   function handleClick(e) {
     e.preventDefault()
     let text = document.getElementById("currentLink")
-    console.log('here is the text', text)
     text.select()
     document.execCommand("copy")
     setCopyIcon({icon:faCheckCircle,className:"copy-icon2"})

@@ -7,10 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 
 export default function AttemptItem({attempt, question}) {
-    console.log('questions length', question.correct_answer.length)
     function handleIcon(){
-        console.log('answer', attempt.answer)
-        console.log('correct answer', question.correct_answer)
         if(attempt.answer === question.correct_answer){
             return <FontAwesomeIcon className="right" icon={faCheck} size="lg" />
         } else {

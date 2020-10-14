@@ -1,4 +1,5 @@
 import random
+from threading import Timer
 
 def fetch_quizes(cursor):
     result = {'quizes':{}}
@@ -79,8 +80,9 @@ def fetch_attempt(cursor,id):
                                                               "question_id":attempt[11],  
                                                               "score_id":attempt[12],
                                                               "answer":attempt[13]
-                                                              }                                                      
-    
+                                                      }                                                      
+
+
     return result
 
 
