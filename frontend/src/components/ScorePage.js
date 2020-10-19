@@ -39,8 +39,8 @@ export default function ScorePage() {
       if(!!state.quizes[`${quizId}`]){
         console.log('re fetching for score page with the following score_id', scoreId)
        // dispatch(getQuizAttempt(scoreId))
-        location.reload()
-      }
+       console.log('here isthe location', location)
+       window.location.reload(false);       }
     }
 
     function handleClick(e) {
