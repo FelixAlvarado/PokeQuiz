@@ -29,16 +29,17 @@ export default function ScorePage() {
         console.log('here is the quiz being used', state.quizes[`${quizId}`])
       return state.quizes[`${quizId}`]
       }else{
-        reFetch(state)
+        refresh(state)
         return {scores:[[]]}
       }
     })
 
-    function reFetch(state){
+    function refresh(state){
       console.log('made it to refetch for score page')
       if(!!state.quizes[`${quizId}`]){
         console.log('re fetching for score page with the following score_id', scoreId)
-        dispatch(getQuizAttempt(scoreId))
+       // dispatch(getQuizAttempt(scoreId))
+        location.reload()
       }
     }
 
