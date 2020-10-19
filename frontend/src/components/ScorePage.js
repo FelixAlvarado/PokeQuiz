@@ -29,7 +29,7 @@ export default function ScorePage() {
         console.log('here is the quiz being used', state.quizes[`${quizId}`])
       return state.quizes[`${quizId}`]
       }else{
-        refresh(state)
+       // setTimeout(refresh(state),750)
         return {scores:[[]]}
       }
     })
@@ -38,9 +38,8 @@ export default function ScorePage() {
       console.log('made it to refetch for score page')
       if(!!state.quizes[`${quizId}`]){
         console.log('re fetching for score page with the following score_id', scoreId)
-       // dispatch(getQuizAttempt(scoreId))
-       console.log('here isthe location', location)
-       window.location.reload(false);       }
+       dispatch(getQuizAttempt(scoreId))
+            }
     }
 
     function handleClick(e) {
