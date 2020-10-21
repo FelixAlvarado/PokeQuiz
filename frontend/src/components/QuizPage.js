@@ -21,7 +21,7 @@ export default function QuizPage() {
   let [alertText, setAlertText] = useState('');
 
 
-  let quiz = useSelector(state => {
+  const quiz = useSelector(state => {
     if(state.quizes[`${id}`]){
     return state.quizes[`${id}`]
     }else{
@@ -29,7 +29,7 @@ export default function QuizPage() {
     }
   })
 
-  const title = quiz ? quiz.title : ''
+  let title = quiz ? quiz.title : ''
 
   if(location.state && location.state.title){
     title = location.state.title
