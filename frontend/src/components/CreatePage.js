@@ -140,7 +140,7 @@ export default function CreatePage() {
 
   function handleRedirect(){
     if(newQuiz.boolean){
-      return <Redirect to={{pathname:`/quiz/${newQuiz.id}`,state:{justCreated:true}}}/>
+      return <Redirect to={{pathname:`/quiz/${newQuiz.id}`,state:{title:title,justCreated:true}}}/>
     }
   }
 

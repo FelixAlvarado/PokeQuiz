@@ -31,6 +31,10 @@ export default function QuizPage() {
 
   const title = quiz ? quiz.title : ''
 
+  if(location.state && location.state.title){
+    title = location.state.title
+  }
+
   // function reFetch(state){
   //   console.log('made it to refetch for quiz page')
   //   if(!!state.quizes[`${id}`]){
@@ -70,6 +74,8 @@ export default function QuizPage() {
 useEffect(() => {
 
   if(onLoad.current){
+    document.body.scrollTop = 0; 
+    document.documentElement.scrollTop = 0;
     dispatch(getQuiz(id))
     setPicture(pokePicture())
     if(location.state && location.state.justCreated){

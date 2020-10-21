@@ -67,6 +67,8 @@ export default function ScorePage() {
 
     useEffect(() => {
       if(onLoad.current){
+        document.body.scrollTop = 0; 
+        document.documentElement.scrollTop = 0;
         dispatch(getQuizAttempt(scoreId))
         setPicture(pokePicture())
         if(location.state && location.state.justScored){
