@@ -15,6 +15,7 @@ def create_quiz(cnx, cursor, title, questions):
     result["scores"] = []
     result["questions"] = {}
     result["test_questions"] = {}
+    result["title"] = title
 
     quiz_format = ("INSERT INTO quizes "
         "(title) "
@@ -48,8 +49,6 @@ def create_quiz(cnx, cursor, title, questions):
         answers.append(question["wrongAnswer3"])
         random.shuffle(answers)
         result["test_questions"][f"{question_id}"] = {"id":question_id,"question":question["question"],"correct_answer":question["correctAnswer"],"answer_1": answers[0],"answer_2":answers[1],"answer_3":answers[2],"answer_4":answers[3]}
-
-
     
     return result
 
