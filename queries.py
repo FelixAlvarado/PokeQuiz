@@ -93,6 +93,8 @@ def fetch_questions(cursor, quiz_id):
     for quiz in cursor:
         result[f"{quiz[0]}"] = {"title":quiz[1]}
         result[f"{quiz[0]}"]["questions"] = {}
+    
+    result[f"{quiz_id}"]["test_questions"] = {}
 
     cursor.execute(f"SELECT questions.id, question, correct_answer, wrong_answer1, wrong_answer2, wrong_answer3 FROM questions JOIN quiz_questions ON questions.id = quiz_questions.question_id JOIN quizes ON quizes.id = quiz_questions.quiz_id WHERE quizes.id = {quiz_id}")
 
@@ -103,8 +105,12 @@ def fetch_questions(cursor, quiz_id):
         answers.append(question[4])
         answers.append(question[5])
         random.shuffle(answers)
-        result[f"{quiz_id}"]["questions"][f"{question[0]}"] = {"id":question[0],"question":question[1],"correct_answer":question[2],"answer_1": answers[0],"answer_2":answers[1],"answer_3":answers[2],"answer_4":answers[3]}
+        result[f"{quiz_id}"]["test_questions"][f"{question[0]}"] = {"id":question[0],"question":question[1],"correct_answer":question[2],"answer_1": answers[0],"answer_2":answers[1],"answer_3":answers[2],"answer_4":answers[3]}
+        result[f"{quiz_id}"]["questions"][f"{question[0]}"] = {"id":question[0],"question":question[1],"correct_answer":question[2],"wrong_answer1": question[3],"wrong_answer2":question[4],"wrong_answer3":question[5]}
+
     
     result[f"{quiz_id}"]["scores"] = [[]]
+
+    result[f"{quiz_id}"]["id"] = quiz_id
 
     return result

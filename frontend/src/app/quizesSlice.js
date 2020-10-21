@@ -43,10 +43,14 @@ export const getQuizes = createAsyncThunk(
   )
 
 
+
 export const quizesSlice = createSlice({
   name: 'quizes',
   initialState: {},
-        reducers:{},
+        reducers:{addQuiz: (state, action) => {
+          console.log('made it to add quiz dispatch')
+          Object.assign(state,action.payload)
+        }},
         extraReducers:{
         [getQuizes.fulfilled]: (state, action) => {
             Object.assign(state,action.payload)
@@ -63,6 +67,8 @@ export const quizesSlice = createSlice({
 
   },
 });
+
+export const { addQuiz } = quizesSlice.actions;
 
 
 export const { receiveQuiz } = quizesSlice.actions;

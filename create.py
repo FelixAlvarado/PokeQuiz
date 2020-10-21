@@ -1,3 +1,5 @@
+import copy
+
 def create_question(cursor, cnx, question_format, question_data, junction_format, quiz_id):
     cursor.execute(question_format, question_data)
     cnx.commit()
@@ -10,8 +12,7 @@ def create_quiz(cnx, cursor, title, questions):
     quiz_format = ("INSERT INTO quizes "
         "(title) "
         "VALUES (%s)")
-    print("here is the title")
-    print(title)
+
     quiz_data = (title,)
 
     cursor.execute(quiz_format, quiz_data)
@@ -36,17 +37,25 @@ def create_quiz(cnx, cursor, title, questions):
 
 def create_score_attempts(cnx,cursor, attempts,score):
 
+    scoreArray = []
+
+    scoreArray.append(score["quiz"]["id"])
+    scoreArray.append(score["testTaker"])
+    scoreArray.append(score["score"])
+
     score_format = ("INSERT INTO scores "
         "(quiz_id, test_taker, score) "
         "VALUES (%s, %s, %s)")
 
-    score_data = (score["quizId"], score["testTaker"],score["score"])
+    score_data = (score["quiz"]["id"], score["testTaker"],score["score"])
 
     cursor.execute(score_format, score_data)
 
     cnx.commit()
 
     score_id = cursor.lastrowid
+
+    new_attempts = {}
 
     for attempt in attempts:
         attempt_format = ("INSERT INTO attempts "
@@ -58,8 +67,21 @@ def create_score_attempts(cnx,cursor, attempts,score):
         cursor.execute(attempt_format, attempt_data)
 
         cnx.commit()
+
+        attempt_id = cursor.lastrowid
+
+        new_attempts[f"{attempt_id}"] = {"question_id": attempt["questionId"], "score_id": score_id, "answer":attempt["answer"]}
+
+        print('here are the attempts')
+        print(new_attempts)
+
+    quiz_copy = copy.deepcopy(score["quiz"])
+
+    quiz_copy["attempts"] = new_attempts
+
+    quiz_copy["scores"] = [scoreArray]
     
-    return str(score_id)
+    return {"score_id":score_id,"quiz":{f"{quiz_copy['id']}":quiz_copy}}
 
 
 

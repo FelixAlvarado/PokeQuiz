@@ -62,11 +62,7 @@ def questions():
 def score():
     data = request.json 
     attempts = data['attempts']
-    print('attempts')
-    print(attempts)
     score = data['score']
-    print('here is the score')
-    print(score)
     return create_score_attempts(cnx, cursor,attempts, score)
 
 

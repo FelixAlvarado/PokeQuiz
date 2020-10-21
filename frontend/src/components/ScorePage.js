@@ -29,7 +29,7 @@ export default function ScorePage() {
         console.log('here is the quiz being used', state.quizes[`${quizId}`])
       return state.quizes[`${quizId}`]
       }else{
-       // setTimeout(refresh(state),750)
+        // setTimeout(refresh(state),750)
         return {scores:[[]]}
       }
     })

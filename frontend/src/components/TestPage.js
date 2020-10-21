@@ -1,7 +1,7 @@
 import React,{ useState, useRef, useEffect } from 'react';
 import '../style/scorepage.css'
 import { useSelector, useDispatch } from 'react-redux';
-import { getQuestions  } from '../app/quizesSlice.js'
+import { getQuestions, addQuiz  } from '../app/quizesSlice.js'
 import {gradeQuiz} from '../utility/util'
 import {Redirect} from "react-router-dom";
 import '../style/createpage.css'
@@ -32,11 +32,13 @@ export default function TestPage() {
       if (Object.keys(questionList).length !== Object.keys(attempts).length) unfilled.push('Please answer all of the questions before submitting your answers')
   
       if(unfilled.length === 0){
-       scoreQuiz(Object.values(attempts),{score:gradeQuiz(quiz.questions, attempts),testTaker:name, quizId:quizId})
+       scoreQuiz(Object.values(attempts),{score:gradeQuiz(quiz.questions, attempts),testTaker:name, quiz:quiz})
        .then(response => {
          let newObject = Object.assign({}, quizSubmitted)
-         newObject.scoreId = response 
+         newObject.scoreId = response.score_id 
          newObject.boolean = true
+         console.log('quiz being sent to dispatch on test submit', response.quiz)
+         dispatch(addQuiz(response.quiz))
         setTimeout(setQuizSubmitted(newObject),500)
        })
        .catch((error) =>{
@@ -93,8 +95,8 @@ export default function TestPage() {
     },[dispatch,quizId]);
 
     if(quiz && quiz.questions){
-      questionList = Object.keys(quiz.questions).map((key,i) =>{
-        let question = quiz.questions[`${key}`]
+      questionList = Object.keys(quiz.test_questions).map((key,i) =>{
+        let question = quiz.test_questions[`${key}`]
         return (
           <div key={i} className="question-holder question-margin">
             <div className="question">
