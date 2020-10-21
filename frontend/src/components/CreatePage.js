@@ -4,6 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import {createQuiz} from '../utility/quizMethods'
 import {Redirect} from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { getQuestions, addQuiz  } from '../app/quizesSlice.js'
+
 
 export default function CreatePage() {
 
@@ -13,6 +16,7 @@ export default function CreatePage() {
   const [index, setIndex] = useState(1)
   const [newQuiz, setNewQuiz] = useState({boolean: false,id:''})
   let questionForm
+  const dispatch = useDispatch();
 
   function removeQuestion(e){
     e.preventDefault();
@@ -110,7 +114,11 @@ export default function CreatePage() {
         createQuiz(title, Object.values(questions)).then(response =>{
           let newObject = Object.assign({},newQuiz)
           newObject.boolean = true; 
-          newObject.id = response
+          newObject.id = response.id
+          let quizObject = {}
+          quizObject[`${response.id}`] = response
+          console.log('here is the new quiz being added', quizObject)
+          dispatch(addQuiz(quizObject))
           setTimeout(setNewQuiz(newObject),500)
         }).catch(error => {
             console.log('error from the server side', error)
@@ -140,7 +148,7 @@ export default function CreatePage() {
 
   function handleRedirect(){
     if(newQuiz.boolean){
-      return <Redirect to={{pathname:`/quiz/${newQuiz.id}`,state:{title:title,justCreated:true}}}/>
+      return <Redirect to={{pathname:`/quiz/${newQuiz.id}`,state:{justCreated:true}}}/>
     }
   }
 

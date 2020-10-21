@@ -31,10 +31,6 @@ export default function QuizPage() {
 
   let title = quiz ? quiz.title : ''
 
-  if(location.state && location.state.title){
-    title = location.state.title
-  }
-
   console.log('here is the title being used', title)
 
 
