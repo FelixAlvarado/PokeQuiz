@@ -3,11 +3,11 @@ import random
 
 def create_question(cursor, cnx, question_format, question_data, junction_format, quiz_id):
     cursor.execute(question_format, question_data)
-    cnx.commit()
-    cursor.execute(junction_format, (quiz_id, cursor.lastrowid))
     question_id = cursor.lastrowid
     cnx.commit()
-    return question_id 
+    cursor.execute(junction_format, (quiz_id, cursor.lastrowid))
+    cnx.commit()
+    return question_id
 
 def create_quiz(cnx, cursor, title, questions):
     quiz_id = ''
@@ -41,6 +41,7 @@ def create_quiz(cnx, cursor, title, questions):
     for question in questions:
         question_data = (question["question"], question["correctAnswer"], question["wrongAnswer1"], question["wrongAnswer2"], question["wrongAnswer3"])
         question_id = create_question(cursor, cnx, question_format, question_data, junction_format, quiz_id)
+        print('here is the question id', question_id)
         result["questions"][f"{question_id}"] = {"id":question_id,"question":question["question"],"correct_answer":question["correctAnswer"],"wrong_answer1":question["wrongAnswer1"] ,"wrongAnswer2":question["wrongAnswer2"],"wrong_answer3":question["wrongAnswer3"]}
         answers = []
         answers.append(question["correctAnswer"])
