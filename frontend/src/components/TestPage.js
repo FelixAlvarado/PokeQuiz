@@ -19,6 +19,7 @@ export default function TestPage() {
     let questionList
 
     const quiz = useSelector(state => {
+      console.log('here is the current state used in selector', state)
       if(state.quizes[`${quizId}`])
         return state.quizes[`${quizId}`]
         else{

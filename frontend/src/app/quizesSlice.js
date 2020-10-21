@@ -46,6 +46,7 @@ export const quizesSlice = createSlice({
   name: 'quizes',
   initialState: {},
         reducers:{addQuiz: (state, action) => {
+          console.log('quiz being added in quiz slice', action.payload)
           Object.assign(state,action.payload)
         }},
         extraReducers:{

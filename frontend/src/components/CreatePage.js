@@ -117,7 +117,6 @@ export default function CreatePage() {
           newObject.id = response.id
           let quizObject = {}
           quizObject[`${response.id}`] = response
-          console.log('here is the new quiz being added', quizObject)
           dispatch(addQuiz(quizObject))
           setNewQuiz(newObject)
         }).catch(error => {
