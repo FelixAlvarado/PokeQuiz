@@ -36,6 +36,8 @@ export const fetchQuizAttempt = (id) => {
 export const fetchQuestions = (id) => {
     return axios.get(`${host}/questions?id=${id}`).then(response =>{
         return response.data
+    }).catch(error =>{
+        console.log('error occurred on server side when attempting to fetch questions', error)
     })
 }
 

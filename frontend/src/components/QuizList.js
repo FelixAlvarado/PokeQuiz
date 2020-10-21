@@ -11,6 +11,8 @@ export default function QuizList() {
 
   useEffect(() => {
     if(onLoad.current){
+      document.body.scrollTop = 0; 
+      document.documentElement.scrollTop = 0;
       dispatch(getQuizes());
       onLoad.current = false;
     }
