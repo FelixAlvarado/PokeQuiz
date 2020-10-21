@@ -39,7 +39,7 @@ export default function TestPage() {
          newObject.boolean = true
          console.log('quiz being sent to dispatch on test submit', response.quiz)
          dispatch(addQuiz(response.quiz))
-        setTimeout(setQuizSubmitted(newObject),500)
+         setQuizSubmitted(newObject)
        })
        .catch((error) =>{
         console.log(error)

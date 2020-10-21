@@ -119,7 +119,7 @@ export default function CreatePage() {
           quizObject[`${response.id}`] = response
           console.log('here is the new quiz being added', quizObject)
           dispatch(addQuiz(quizObject))
-          setTimeout(setNewQuiz(newObject),500)
+          setNewQuiz(newObject)
         }).catch(error => {
             console.log('error from the server side', error)
             alert('An error occurred with our servers. Please try submitting your quiz at a later time.')}
