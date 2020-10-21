@@ -59,7 +59,11 @@ export const quizesSlice = createSlice({
            Object.assign(state,action.payload)
     },
     [getQuestions.fulfilled]: (state, action) => {
-       Object.assign(state,action.payload)
+      console.log('get questions payload', action.payload)
+      if(Object.values(action.payload).title){
+        console.log('made it to modifying quiz')
+        Object.assign(state,action.payload)
+      }
 }
 
   },
