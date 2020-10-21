@@ -88,6 +88,7 @@ def fetch_attempt(cursor,id):
 
 def fetch_questions(cursor, quiz_id):
     result = {}
+    result[f"{quiz_id}"] = {}
     cursor.execute(f"SELECT * FROM quizes WHERE id = {quiz_id}")
 
     for quiz in cursor:
