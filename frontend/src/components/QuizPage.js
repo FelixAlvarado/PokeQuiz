@@ -35,6 +35,9 @@ export default function QuizPage() {
     title = location.state.title
   }
 
+  console.log('here is the title bieng used', title)
+
+
   // function reFetch(state){
   //   console.log('made it to refetch for quiz page')
   //   if(!!state.quizes[`${id}`]){
