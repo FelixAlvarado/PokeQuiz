@@ -26,7 +26,6 @@ export const scoreQuiz = (attempts, score) => {
         attempts: attempts,
         score: score
         }).then(response =>{
-            console.log('here is the score quiz response', response)
             return response.data
         })
 

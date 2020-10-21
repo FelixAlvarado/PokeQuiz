@@ -15,7 +15,6 @@ export const getQuizes = createAsyncThunk(
     'quiz/fetchQuizStatus',
     async (id) => {
       const response = await fetchQuiz(id)
-      console.log('got a response from fetchQuiz')
       return response
     
     }     
@@ -25,7 +24,6 @@ export const getQuizes = createAsyncThunk(
   export const getQuizAttempt = createAsyncThunk(
     'quiz/fetchQuizStatus',
     async (id) => {
-      console.log('made it to get quiz attempt')
       const response = await fetchQuizAttempt(id)
       return response
     
@@ -48,7 +46,6 @@ export const quizesSlice = createSlice({
   name: 'quizes',
   initialState: {},
         reducers:{addQuiz: (state, action) => {
-          console.log('made it to add quiz dispatch')
           Object.assign(state,action.payload)
         }},
         extraReducers:{
