@@ -35,7 +35,7 @@ export default function QuizPage() {
     title = location.state.title
   }
 
-  console.log('here is the title bieng used', title)
+  console.log('here is the title being used', title)
 
 
   // function reFetch(state){

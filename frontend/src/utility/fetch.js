@@ -18,6 +18,7 @@ export const fetchQuizes = () => {
 
 export const fetchQuiz = (id) => {
     return axios.get(`${host}/quiz?id=${id}`).then(response =>{
+        console.log('here is the data that was fetched for quiz page', response.data.quiz)
         return response.data.quiz
     })
 }
