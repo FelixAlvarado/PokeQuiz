@@ -25,6 +25,7 @@ def fetch_quizes(cursor):
     return result
 
 def fetch_quiz(cursor, id):
+    print('here is the id', id)
     cursor.execute(f"SELECT * FROM quizes WHERE id = {id}")
     result = {'quiz':{}}
     for quiz in cursor:

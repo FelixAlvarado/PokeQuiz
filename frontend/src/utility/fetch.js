@@ -13,6 +13,8 @@ if(window.origin.includes("herokuapp")){
 export const fetchQuizes = () => {
     return axios.get(`${host}/quizes`).then(response =>{
         return response.data.quizes
+    }).catch(error =>{
+        console.log('error occurred on server side when attempting to fetch questions', error)
     })
 }
 
@@ -20,6 +22,8 @@ export const fetchQuiz = (id) => {
     return axios.get(`${host}/quiz?id=${id}`).then(response =>{
         console.log('here is the data that was fetched for quiz page', response.data.quiz)
         return response.data.quiz
+    }).catch(error =>{
+        console.log('error occurred on server side when attempting to fetch questions', error)
     })
 }
 
