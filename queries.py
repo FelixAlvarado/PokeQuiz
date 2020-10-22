@@ -20,7 +20,7 @@ def fetch_quizes(cursor):
 
 #tuple returned is (id, quiz_id, test_taker, score)
     for score in cursor:
-        result['quizes'][f"{score[1]}"]['scores'].append([score[2],score[3]])
+        result['quizes'][f"{score[1]}"]['scores'].append([score[2],score[3],score[1]])
   
     return result
 
@@ -49,6 +49,8 @@ def fetch_attempt(cursor,id):
     for score in cursor:
         scores = [score[2],score[3],score[0]]
         quiz_id = score[1]
+    
+    print('here is the quiz id', quiz_id)
     
     result[f"{quiz_id}"] = {}
     result[f"{quiz_id}"]["scores"] = [scores]
@@ -113,5 +115,7 @@ def fetch_questions(cursor, quiz_id):
     result[f"{quiz_id}"]["scores"] = [[]]
 
     result[f"{quiz_id}"]["id"] = quiz_id
+
+    print('here is the result', result)
 
     return result

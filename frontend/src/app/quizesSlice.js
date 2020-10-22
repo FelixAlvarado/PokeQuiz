@@ -22,7 +22,7 @@ export const getQuizes = createAsyncThunk(
 
   //fetches questions and attempt data for the quiz associated with the score id
   export const getQuizAttempt = createAsyncThunk(
-    'quiz/fetchQuizStatus',
+    'quiz/fetchQuizAttemptStatus',
     async (id) => {
       const response = await fetchQuizAttempt(id)
       return response
@@ -32,7 +32,7 @@ export const getQuizes = createAsyncThunk(
 
   //fetches questions for test page
   export const getQuestions = createAsyncThunk(
-    'quiz/fetchQuizStatus',
+    'quiz/fetchQuestionsStatus',
     async (id) => {
       const response = await fetchQuestions(id)
       return response
@@ -54,6 +54,7 @@ export const quizesSlice = createSlice({
             Object.assign(state,action.payload)
         },
         [getQuiz.fulfilled]: (state, action) => {
+          console.log('made it to get quiz payload', action.payload)
           Object.assign(state,action.payload)
       },
         [getQuizAttempt.fulfilled]: (state, action) => {
@@ -62,7 +63,7 @@ export const quizesSlice = createSlice({
     [getQuestions.fulfilled]: (state, action) => {
       console.log('get questions payload', action.payload)
       let newQuiz = Object.values(action.payload)[0]
-      if(newQuiz && newQuiz.title && newQuiz.questions && newQuiz.test_questions){
+      if(newQuiz && newQuiz.title && newQuiz.questions){
         console.log('made it to modifying quiz')
         Object.assign(state,action.payload)
       }

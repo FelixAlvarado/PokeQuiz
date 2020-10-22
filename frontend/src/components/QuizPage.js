@@ -29,10 +29,9 @@ export default function QuizPage() {
     }
   })
 
+  console.log('here is the quiz', quiz)
+
   let title = quiz ? quiz.title : ''
-
-  console.log('here is the title being used', title)
-
 
   // function reFetch(state){
   //   console.log('made it to refetch for quiz page')

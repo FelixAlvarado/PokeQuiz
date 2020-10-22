@@ -6,6 +6,10 @@ import {Link} from "react-router-dom";
 
 
 export default function ScoreList({scores, quizId}) {
+
+    console.log('here are the scores', scores)
+    console.log('here is the quiz id', quizId)
+
     let scoreList 
     //sets width of bars based on window height
     const [widthBase, setWidthBase] = useState(findWidthBase())

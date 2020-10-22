@@ -32,6 +32,8 @@ export default function ScorePage() {
       }
     })
 
+    console.log('here is the quiz', quiz)
+    
     function refresh(state){
       if(!!state.quizes[`${quizId}`]){
        dispatch(getQuizAttempt(scoreId))
