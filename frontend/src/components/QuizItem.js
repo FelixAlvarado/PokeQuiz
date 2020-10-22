@@ -10,7 +10,7 @@ export default function QuizItem({quiz}) {
   function handleImage(){
     if (picture.length > 0){
       return(
-        <img alt="pokemon" src={picture} className="picture"/>
+        <object type="image/png" alt="pokemon" data={picture} className="picture"/>
       )
     } else {
       return(
