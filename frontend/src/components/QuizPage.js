@@ -74,7 +74,7 @@ useEffect(() => {
   if(onLoad.current){
     document.body.scrollTop = 0; 
     document.documentElement.scrollTop = 0;
-    dispatch(getQuiz(id))
+    if(!location.state) dispatch(getQuiz(id))
     setPicture(pokePicture())
     if(location.state && location.state.justCreated){
       if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
