@@ -43,6 +43,7 @@ def fetch_quiz(cursor, id):
     for quiz in cursor:
         result['quiz'][f"{quiz[0]}"] = {'id':quiz[0],'title':quiz[1], 'scores':[]}
     
+    print('this is the id being used to fetch the score', id)
     try:
         cursor.execute(f"SELECT * FROM scores WHERE quiz_id = {id}")
     except:
@@ -51,7 +52,8 @@ def fetch_quiz(cursor, id):
     for score in cursor:
         print('here is the score information', score)
         result['quiz'][f"{score[1]}"]['scores'].append([score[2],score[3],score[0]])
- 
+    
+    print('here is the result', result)
     return result 
 
 def fetch_attempt(cursor,id):
