@@ -7,6 +7,8 @@ from dotenv import load_dotenv
 import os 
 from flask_cors import CORS
 from subprocess import Popen, PIPE
+from utility import set_interval, restart_connection
+import threading
 
 load_dotenv()
 
@@ -19,6 +21,29 @@ host = os.environ.get("AWS_HOST")
 cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
 cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
+
+# set_interval(restart_connection(mysql,cursor, cnx, user,password, DB_NAME, host, port),28700)
+
+# def set_interval(func, sec,cnx,cursor):
+#     def func_wrapper():
+#         set_interval(func, sec, cnx,cursor)
+#         func(cnx,cursor)
+#     t = threading.Timer(sec, func_wrapper)
+#     t.start()
+#     return t
+
+# def restart_connection(cnx,cursor):
+    # print('print is the old cnx', cnx)
+    # print('print is the old cursor', cursor)
+    # cnx.close()
+    # cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
+    # print('here is the new cnx', cnx)
+    # cursor = cnx.cursor(buffered=True)
+    # print('print is the new cursor', cursor)
+    # cursor.execute("USE {}".format(DB_NAME))
+
+# set_interval(restart_connection,15,cnx,cursor)
+    
 
 app = Flask(__name__, static_folder='frontend/build')
 CORS(app)
@@ -33,6 +58,7 @@ def serve(path):
 
 @app.route('/quizes', methods=["GET"])
 def quizes():
+    print("here is the cursor being passed into fetch_quizes", cursor)
     return fetch_quizes(cursor)
 
 @app.route('/quiz', methods=["GET"])

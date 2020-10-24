@@ -44,7 +44,7 @@ export default function QuizPage() {
   function handleImage(){
     if (picture.length > 0){
       return(
-        <object alt="pokemon" type="image/png" data={picture} className="page-picture"/>
+        <img alt="pokemon" src={picture} className="page-picture" style={{width: '100px'}}/>
       )
     } else {
       return(

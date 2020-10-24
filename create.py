@@ -2,10 +2,18 @@ import copy
 import random
 
 def create_question(cursor, cnx, question_format, question_data, junction_format, quiz_id):
-    cursor.execute(question_format, question_data)
+    try:
+        cursor.execute(question_format, question_data)
+    except:
+         cursor.execute(question_format, question_data)
+
     question_id = cursor.lastrowid
     cnx.commit()
-    cursor.execute(junction_format, (quiz_id, cursor.lastrowid))
+    try:
+        cursor.execute(junction_format, (quiz_id, cursor.lastrowid))
+    except:
+        cursor.execute(junction_format, (quiz_id, cursor.lastrowid))
+
     cnx.commit()
     return question_id
 
@@ -22,8 +30,11 @@ def create_quiz(cnx, cursor, title, questions):
         "VALUES (%s)")
 
     quiz_data = (title,)
+    try:
+        cursor.execute(quiz_format, quiz_data)
+    except:
+        cursor.execute(quiz_format, quiz_data)
 
-    cursor.execute(quiz_format, quiz_data)
 
     cnx.commit()
 
@@ -67,7 +78,11 @@ def create_score_attempts(cnx,cursor, attempts,score):
 
     score_data = (score["quiz"]["id"], score["testTaker"],score["score"])
 
-    cursor.execute(score_format, score_data)
+    try:
+        cursor.execute(score_format, score_data)
+    except:
+        cursor.execute(score_format, score_data)
+
 
     cnx.commit()
 
@@ -82,7 +97,11 @@ def create_score_attempts(cnx,cursor, attempts,score):
 
         attempt_data = (attempt["questionId"], score_id, attempt["answer"])
 
-        cursor.execute(attempt_format, attempt_data)
+        try:
+            cursor.execute(attempt_format, attempt_data)
+        except:
+            cursor.execute(attempt_format, attempt_data)
+
 
         cnx.commit()
 
