@@ -22,27 +22,31 @@ cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"
 cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
 
+class Database:
+    def __init__(self, cursor_value, cnx_value):
+        self.cursor = cursor_value 
+        self.cnx = cnx_value
+
+    def restart_connection(self):
+        self.cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
+        self.cursor = self.cnx.cursor(buffered=True)
+        self.cursor.execute("USE {}".format(DB_NAME))
+
+
+database = Database(cursor, cnx)
+
 # set_interval(restart_connection(mysql,cursor, cnx, user,password, DB_NAME, host, port),28700)
 
-# def set_interval(func, sec,cnx,cursor):
-#     def func_wrapper():
-#         set_interval(func, sec, cnx,cursor)
-#         func(cnx,cursor)
-#     t = threading.Timer(sec, func_wrapper)
-#     t.start()
-#     return t
+def set_interval(func, sec):
+    def func_wrapper():
+        set_interval(func, sec)
+        func()
+    t = threading.Timer(sec, func_wrapper)
+    t.start()
+    return t
 
-# def restart_connection(cnx,cursor):
-    # print('print is the old cnx', cnx)
-    # print('print is the old cursor', cursor)
-    # cnx.close()
-    # cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
-    # print('here is the new cnx', cnx)
-    # cursor = cnx.cursor(buffered=True)
-    # print('print is the new cursor', cursor)
-    # cursor.execute("USE {}".format(DB_NAME))
 
-# set_interval(restart_connection,15,cnx,cursor)
+set_interval(database.restart_connection,28500)
     
 
 app = Flask(__name__, static_folder='frontend/build')
@@ -58,38 +62,37 @@ def serve(path):
 
 @app.route('/quizes', methods=["GET"])
 def quizes():
-    print("here is the cursor being passed into fetch_quizes", cursor)
-    return fetch_quizes(cursor)
+    return fetch_quizes(database.cursor)
 
 @app.route('/quiz', methods=["GET"])
 def quiz():
     quiz_id = request.args.get('id')
-    return fetch_quiz(cursor,quiz_id)
+    return fetch_quiz(database.cursor,quiz_id)
 
 @app.route('/attempt', methods=["GET"])
 def attempt():
     score_id = request.args.get('id')
-    return fetch_attempt(cursor,score_id)
+    return fetch_attempt(database.cursor,score_id)
 
 @app.route('/create', methods=["POST"])
 def create():
     data = request.json 
     title = data['title']
     questions = data['questions']
-    quiz_id = create_quiz(cnx, cursor, title, questions)
+    quiz_id = create_quiz(database.cnx, database.cursor, title, questions)
     return quiz_id
 
 @app.route('/questions', methods=["GET"])
 def questions():
     quiz_id = request.args.get('id')
-    return fetch_questions(cursor,quiz_id)
+    return fetch_questions(database.cursor,quiz_id)
 
 @app.route('/score', methods=["POST"])
 def score():
     data = request.json 
     attempts = data['attempts']
     score = data['score']
-    return create_score_attempts(cnx, cursor,attempts, score)
+    return create_score_attempts(database.cnx, database.cursor,attempts, score)
 
 
 if __name__ == "__main__":
