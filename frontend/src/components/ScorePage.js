@@ -27,18 +27,12 @@ export default function ScorePage() {
       if(state.quizes[`${quizId}`] && state.quizes[`${quizId}`].attempts){
       return state.quizes[`${quizId}`]
       }else{
-        // setTimeout(refresh(state),750)
         return {scores:[[]]}
       }
     })
 
     console.log('here is the quiz', quiz)
-    
-    function refresh(state){
-      if(!!state.quizes[`${quizId}`]){
-       dispatch(getQuizAttempt(scoreId))
-            }
-    }
+
 
     function handleClick(e) {
       e.preventDefault()

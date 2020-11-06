@@ -1,7 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, lazy, Suspense } from 'react';
 import { getQuizes, selectQuizes } from '../app/quizesSlice.js'
 import { useSelector, useDispatch } from 'react-redux';
 import QuizItem from './QuizItem'
+const QuizItemLazy = lazy(() => import('./QuizItem'))
+
 
 export default function QuizList() {
     const quizes = useSelector(selectQuizes)
@@ -20,10 +22,18 @@ export default function QuizList() {
 
   if(quizes) { 
           quizList = Object.values(quizes).reverse().map((quiz, i) =>{
-            if(quiz.title){
-              return <QuizItem key={i} quiz={quiz} />
+            if(quiz.title && i < 12){
+              return (
+                <QuizItem key={i} quiz={quiz} />
+                )
+            }else if (quiz.title){
+              return(
+              <Suspense key={i}  fallback={<div></div>}>
+                <QuizItemLazy quiz={quiz} />
+              </Suspense>
+              )
             }else{
-              return
+              return <div></div>
             }
       })
 

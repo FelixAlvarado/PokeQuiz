@@ -5,7 +5,7 @@ import { faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import {createQuiz} from '../utility/quizMethods'
 import {Redirect} from 'react-router-dom'
 import { useDispatch } from 'react-redux';
-import { getQuestions, addQuiz  } from '../app/quizesSlice.js'
+import { addQuiz  } from '../app/quizesSlice.js'
 
 
 export default function CreatePage() {
