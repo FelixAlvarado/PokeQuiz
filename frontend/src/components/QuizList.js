@@ -22,7 +22,7 @@ export default function QuizList() {
 
   if(quizes) { 
           quizList = Object.values(quizes).reverse().map((quiz, i) =>{
-            if(quiz.title && i < 12){
+            if(quiz.title && i < 10){
               return (
                 <QuizItem key={i} quiz={quiz} />
                 )

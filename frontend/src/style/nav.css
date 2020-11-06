@@ -30,16 +30,12 @@
   background-color: #35BB70;
   color: black;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 14px;
   border: black solid 2px; }
 
 .create-quiz-button:hover {
   cursor: pointer;
   background-color: #D5F5E3; }
-
-.mobile-nav {
-  padding-bottom: 5px;
-  font-size: 14px; }
 
 @media screen and (max-width: 275px) {
   .create-quiz-button {
