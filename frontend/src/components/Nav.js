@@ -12,7 +12,7 @@ export default function Nav() {
 
     if(onLoad.current){
         if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-          setFont(14)
+          setFont(16)
         }
       onLoad.current = false;
     }
