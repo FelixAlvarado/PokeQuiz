@@ -34,3 +34,18 @@ export const gradeQuiz = (questions, answers) => {
   return Math.floor((correct / quizLength) * 100)
 
 }
+
+export const organizeState = (state, action) => {
+  console.log('here is the state', state, 'here is the action', action)
+  let result = Object.assign({}, state)
+  let actionKeys = Object.keys(action)
+  actionKeys.forEach((action) =>{
+    if(state[`${action.id}`] && state[`${action.id}`].scores.length > 0 && action.scores.length === 0){
+      
+    }else {
+      result[`${action.id}`] = action
+    }
+  })
+  console.log('here is the result', result)
+  return result
+};

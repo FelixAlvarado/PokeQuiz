@@ -19,6 +19,7 @@ export default function QuizPage() {
   let location = useLocation()
   let [showAlert, setShowAlert] = useState(false)
   let [alertText, setAlertText] = useState('');
+  let [marginMod, setMarginMod] = useState('')
 
 
   const quiz = useSelector(state => {
@@ -29,17 +30,12 @@ export default function QuizPage() {
     }
   })
 
-  console.log('here is the quiz', quiz)
+
+
+
+  // console.log('here is the quiz', quiz)
 
   let title = quiz ? quiz.title : ''
-
-  // function reFetch(state){
-  //   console.log('made it to refetch for quiz page')
-  //   if(!!state.quizes[`${id}`]){
-  //     console.log('re fetching for quiz page')
-  //     dispatch(getQuiz(id))
-  //   }
-  // }
 
   function handleImage(){
     if (picture.length > 0){
@@ -71,9 +67,13 @@ export default function QuizPage() {
 useEffect(() => {
 
   if(onLoad.current){
+  
+    if (navigator.userAgent.toLowerCase().indexOf('safari/') > -1 && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+      setMarginMod('margin-mod')
+    }
     document.body.scrollTop = 0; 
     document.documentElement.scrollTop = 0;
-    if(!location.state) dispatch(getQuiz(id))
+    if(!location.state) dispatch(getQuiz(id,quiz))
     setPicture(pokePicture())
     if(location.state && location.state.justCreated){
       if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -96,7 +96,7 @@ useEffect(() => {
             <div className="page-title"><div>{title}</div></div>
               <div className="link-button-holder">
               <Link to={`/test/${id}`} className="quiz-button">Take Quiz</Link>
-              <div className="page-link-holder">
+              <div className={`page-link-holder ${marginMod}`}>
                 <input id="currentLink" defaultValue={window.location.href}/>
                 <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />
               </div>

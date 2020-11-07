@@ -4,11 +4,12 @@ let host
 
 if(window.origin.includes("herokuapp")){
     host = "https://pokequiz1.herokuapp.com"
-}else if (window.origin.includes(":5000")) {
+}else if (window.origin.includes(":5000") ||window.origin.includes(":3000")) {
     host = "http://localhost:5000"
 } else {
     host = "http://127.0.0.1:8000"
 }
+
 
 
 export const createQuiz = (title, questions) => {

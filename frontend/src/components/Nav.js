@@ -16,7 +16,7 @@ export default function Nav() {
         }
       onLoad.current = false;
     }
-  });
+  },[setFont]);
 
   return (
     <div className="nav-bar">

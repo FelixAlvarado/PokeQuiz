@@ -35,6 +35,10 @@
     }
 }
 
+.margin-mod{
+    margin-top:26px;
+}
+
 .page-link-holder {
     flex-grow: 3;
     display: flex;
@@ -44,6 +48,10 @@
         width: 175px;
         height: 30px;
         @extend %vertical-center;
+    }
+
+    .icon-margin{
+        margin-top: 30px;
     }
 }
 

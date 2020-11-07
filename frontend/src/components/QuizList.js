@@ -33,7 +33,7 @@ export default function QuizList() {
               </Suspense>
               )
             }else{
-              return <div></div>
+              return <div key={i}></div>
             }
       })
 

@@ -51,10 +51,9 @@ export const quizesSlice = createSlice({
         }},
         extraReducers:{
         [getQuizes.fulfilled]: (state, action) => {
-            Object.assign(state,action.payload)
+          Object.assign(state,action.payload)
         },
         [getQuiz.fulfilled]: (state, action) => {
-          console.log('made it to get quiz payload', action.payload)
           Object.assign(state,action.payload)
       },
         [getQuizAttempt.fulfilled]: (state, action) => {

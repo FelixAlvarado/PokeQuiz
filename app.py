@@ -18,7 +18,13 @@ DB_NAME = os.environ.get("AWS_DB_NAME")
 port = os.environ.get("AWS_PORT")
 host = os.environ.get("AWS_HOST")
 
+clearDBU = os.environ.get("ClearDB_User")
+clearDBP = os.environ.get("ClearDB_Pass")
+clearDBN = os.environ.get("ClearDB_Name")
+clearDBH = os.environ.get("ClearDB_Host")
+
 cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
+# cnx = mysql.connector.connect(user=f"{clearDBU}", password=f"{clearDBP}")
 cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
 
@@ -46,7 +52,7 @@ def set_interval(func, sec):
     return t
 
 
-set_interval(database.restart_connection,28500)
+set_interval(database.restart_connection,290)
     
 
 app = Flask(__name__, static_folder='frontend/build')

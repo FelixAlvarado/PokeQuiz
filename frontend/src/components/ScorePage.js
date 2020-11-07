@@ -20,8 +20,7 @@ export default function ScorePage() {
     let location = useLocation()
     let [showAlert, setShowAlert] = useState(false)
     let [alertText, setAlertText] = useState('');
-
-
+    let [marginMod, setMarginMod] = useState('')
  
     const quiz = useSelector(state => {
       if(state.quizes[`${quizId}`] && state.quizes[`${quizId}`].attempts){
@@ -63,6 +62,9 @@ export default function ScorePage() {
 
     useEffect(() => {
       if(onLoad.current){
+        if (navigator.userAgent.toLowerCase().indexOf('safari/') > -1 && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+          setMarginMod('margin-mod')
+        }
         document.body.scrollTop = 0; 
         document.documentElement.scrollTop = 0;
         dispatch(getQuizAttempt(scoreId))
@@ -96,7 +98,7 @@ export default function ScorePage() {
             <div className="page-title"><div>{quiz.title}</div></div>
               <div className="link-button-holder">
               <Link className="quiz-button" to={`/quiz/${quizId}`}>Quiz Page</Link>
-              <div className="page-link-holder">
+              <div className={`page-link-holder ${marginMod}`}>
                 <input id="currentLink" defaultValue={window.location.href}/>
                 <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />
               </div>
