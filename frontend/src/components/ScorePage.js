@@ -60,7 +60,7 @@ export default function ScorePage() {
 
     useEffect(() => {
       if(onLoad.current){
-        if (navigator.userAgent.toLowerCase().indexOf('safari/') > -1 && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+        if (navigator.userAgent.toLowerCase().indexOf('safari') > -1 && !(navigator.userAgent.toLowerCase().indexOf('chrome') > -1) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
           setMarginMod('margin-mod')
         }
         document.body.scrollTop = 0; 
