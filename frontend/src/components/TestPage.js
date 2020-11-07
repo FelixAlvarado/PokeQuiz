@@ -19,7 +19,6 @@ export default function TestPage() {
     let questionList
 
     const quiz = useSelector(state => {
-      console.log('here is the current state used in selector', state)
       if(state.quizes[`${quizId}`])
         return state.quizes[`${quizId}`]
         else{
@@ -38,7 +37,6 @@ export default function TestPage() {
          let newObject = Object.assign({}, quizSubmitted)
          newObject.scoreId = response.score_id 
          newObject.boolean = true
-         console.log('quiz being sent to dispatch on test submit', response.quiz)
          dispatch(addQuiz(response.quiz))
          setQuizSubmitted(newObject)
        })

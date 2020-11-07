@@ -34,6 +34,7 @@ def fetch_quizes(cursor):
     return result
 
 def fetch_quiz(cursor, id, scores):
+    print('here are the scores being passed from the frontend', scores)
     print('here is the quiz id', id)
     try:
         cursor.execute(f"SELECT * FROM quizes WHERE id = {id}")
@@ -53,9 +54,9 @@ def fetch_quiz(cursor, id, scores):
     for score in cursor:
         print('here is the score information', score)
         result['quiz'][f"{score[1]}"]['scores'].append([score[2],score[3],score[0]])
-    
-    if(not result['quiz'][f"{id}"]["scores"] and scores and scores.length > 0):
-        result['quiz'][f"{score[1]}"]['scores'].append([scores])
+    if(scores):
+        if(not result['quiz'][f"{id}"]["scores"] and scores.length > 0):
+            result['quiz'][f"{score[1]}"]['scores'].append([scores])
 
     print('here is the result', result)
     return result 

@@ -46,7 +46,6 @@ export const quizesSlice = createSlice({
   name: 'quizes',
   initialState: {},
         reducers:{addQuiz: (state, action) => {
-          console.log('quiz being added in quiz slice', action.payload)
           Object.assign(state,action.payload)
         }},
         extraReducers:{
@@ -60,10 +59,8 @@ export const quizesSlice = createSlice({
            Object.assign(state,action.payload)
     },
     [getQuestions.fulfilled]: (state, action) => {
-      console.log('get questions payload', action.payload)
       let newQuiz = Object.values(action.payload)[0]
       if(newQuiz && newQuiz.title && newQuiz.questions){
-        console.log('made it to modifying quiz')
         Object.assign(state,action.payload)
       }
 }

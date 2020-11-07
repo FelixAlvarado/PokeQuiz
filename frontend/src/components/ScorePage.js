@@ -30,8 +30,6 @@ export default function ScorePage() {
       }
     })
 
-    console.log('here is the quiz', quiz)
-
 
     function handleClick(e) {
       e.preventDefault()

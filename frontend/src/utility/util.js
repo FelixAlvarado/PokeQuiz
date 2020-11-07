@@ -36,7 +36,6 @@ export const gradeQuiz = (questions, answers) => {
 }
 
 export const organizeState = (state, action) => {
-  console.log('here is the state', state, 'here is the action', action)
   let result = Object.assign({}, state)
   let actionKeys = Object.keys(action)
   actionKeys.forEach((action) =>{
@@ -46,6 +45,5 @@ export const organizeState = (state, action) => {
       result[`${action.id}`] = action
     }
   })
-  console.log('here is the result', result)
   return result
 };

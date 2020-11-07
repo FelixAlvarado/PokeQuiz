@@ -73,6 +73,7 @@ useEffect(() => {
     }
     document.body.scrollTop = 0; 
     document.documentElement.scrollTop = 0;
+    console.log('here are the quiz score being passed to dispatch',quiz.scores)
     if(!location.state) dispatch(getQuiz(id,quiz.scores))
     setPicture(pokePicture())
     if(location.state && location.state.justCreated){
