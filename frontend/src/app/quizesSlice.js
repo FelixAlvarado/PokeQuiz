@@ -13,8 +13,8 @@ export const getQuizes = createAsyncThunk(
   //fetches quiz data for quiz page
   export const getQuiz = createAsyncThunk(
     'quiz/fetchQuizStatus',
-    async (id) => {
-      const response = await fetchQuiz(id)
+    async (id,scores) => {
+      const response = await fetchQuiz(id,scores)
       return response
     
     }     

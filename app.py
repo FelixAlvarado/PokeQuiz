@@ -70,10 +70,12 @@ def serve(path):
 def quizes():
     return fetch_quizes(database.cursor)
 
-@app.route('/quiz', methods=["GET"])
+@app.route('/quiz', methods=["POST"])
 def quiz():
-    quiz_id = request.args.get('id')
-    return fetch_quiz(database.cursor,quiz_id)
+    data = request.json 
+    quiz_id = data['id']
+    scores = data['scores']
+    return fetch_quiz(database.cursor,quiz_id,scores)
 
 @app.route('/attempt', methods=["GET"])
 def attempt():

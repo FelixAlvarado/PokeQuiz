@@ -18,8 +18,8 @@ export const fetchQuizes = () => {
     })
 }
 
-export const fetchQuiz = (id) => {
-    return axios.get(`${host}/quiz?id=${id}`).then(response =>{
+export const fetchQuiz = (id,scores) => {
+    return axios.post(`${host}/quiz?id`,{id:id,scores:scores}).then(response =>{
         console.log('here is the data that was fetched for quiz page', response.data.quiz)
         return response.data.quiz
     }).catch(error =>{
