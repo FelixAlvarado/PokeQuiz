@@ -3,7 +3,7 @@ import '../style/scorepage.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getQuestions, addQuiz  } from '../app/quizesSlice.js'
 import {gradeQuiz} from '../utility/util'
-import {Redirect} from "react-router-dom";
+import {Redirect, useLocation} from "react-router-dom";
 import '../style/createpage.css'
 import '../style/testpage.css'
 import {scoreQuiz} from '../utility/quizMethods'
@@ -13,6 +13,7 @@ export default function TestPage() {
     const dispatch = useDispatch();
     let quizId = window.location.href.split('/')[4].split('?')[0]
     const onLoad = useRef(true)
+    let location = useLocation()
     const [name, setName] = useState('')
     const [attempts, setAttempts] = useState({})
     const [quizSubmitted, setQuizSubmitted] = useState({boolean: false, scoreId:''})
@@ -22,9 +23,13 @@ export default function TestPage() {
       if(state.quizes[`${quizId}`])
         return state.quizes[`${quizId}`]
         else{
-          return {}
+          return {scores:[]}
         }
     })
+
+    if(location.state && location.state.scores){
+      quiz.scores.concat(location.state.scores)
+    }
 
     function handleSubmit()  {
       let unfilled = []
@@ -32,12 +37,15 @@ export default function TestPage() {
       if (Object.keys(questionList).length !== Object.keys(attempts).length) unfilled.push('Please answer all of the questions before submitting your answers')
   
       if(unfilled.length === 0){
-       scoreQuiz(Object.values(attempts),{score:gradeQuiz(quiz.questions, attempts),testTaker:name, quiz:quiz})
+       scoreQuiz(Object.values(attempts),{score:gradeQuiz(quiz.questions, attempts),quiz:quiz,testTaker:name})
        .then(response => {
          let newObject = Object.assign({}, quizSubmitted)
          newObject.scoreId = response.score_id 
          newObject.boolean = true
-         dispatch(addQuiz(response.quiz))
+         let newQuiz = Object.assign({}, response.quiz)
+         if (!newQuiz.scores) newQuiz.scores = []
+         newQuiz.scores.concat(quiz.scores)
+         dispatch(addQuiz(newQuiz))
          setQuizSubmitted(newObject)
        })
        .catch((error) =>{

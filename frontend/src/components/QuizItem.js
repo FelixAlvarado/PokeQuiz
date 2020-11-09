@@ -10,11 +10,11 @@ export default function QuizItem({quiz}) {
   function handleImage(){
     if (picture.length > 0){
       return(
-        <img alt="pokemon" src={picture} className="picture" style={{width: '100px'}}/>
+        <img alt="pokemon" src={picture} className="picture" />
       )
     } else {
       return(
-        <div className="picture" style={{width: '100px'}}></div>
+        <div className="picture"></div>
       )
     }
   }
@@ -28,7 +28,7 @@ export default function QuizItem({quiz}) {
 
   return (
     <Link to={`/quiz/${quiz.id}`} className="quiz-item">
-      {handleImage()}
+          {handleImage()}
           <div className="column2"><h2>{quiz.title}</h2></div>
           <div className="column3">
             <h3>Average Score: {averageScore(quiz.scores)}</h3>

@@ -66,6 +66,8 @@ def create_quiz(cnx, cursor, title, questions):
 
 def create_score_attempts(cnx,cursor, attempts,score):
 
+    print('here is the score', score)
+
     scoreArray = []
 
     scoreArray.append(score["quiz"]["id"])

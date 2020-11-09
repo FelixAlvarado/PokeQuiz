@@ -35,15 +35,24 @@ export const gradeQuiz = (questions, answers) => {
 
 }
 
-export const organizeState = (state, action) => {
-  let result = Object.assign({}, state)
-  let actionKeys = Object.keys(action)
-  actionKeys.forEach((action) =>{
-    if(state[`${action.id}`] && state[`${action.id}`].scores.length > 0 && action.scores.length === 0){
-      
-    }else {
-      result[`${action.id}`] = action
+export const mergeScores = (oldQuiz, newQuiz) => {
+  console.log('here is the old quiz', oldQuiz)
+  console.log('here is the new quiz', newQuiz)
+  let result = Object.assign({}, oldQuiz)
+  let keys = {}
+
+  result.scores.forEach((score) =>{
+    keys[`${score[0]}`] = true
+  })
+
+  oldQuiz.scores.forEach((score) =>{
+    if(!keys[`${score[0]}`]){
+      result.scores.push(score)
     }
   })
+
+  result.scores.sort((a,b) => a[3] - b[3])
+  
+  console.log('here is the result', result)
   return result
 };

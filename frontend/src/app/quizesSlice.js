@@ -59,6 +59,7 @@ export const quizesSlice = createSlice({
            Object.assign(state,action.payload)
     },
     [getQuestions.fulfilled]: (state, action) => {
+      console.log('here is the action',action)      
       let newQuiz = Object.values(action.payload)[0]
       if(newQuiz && newQuiz.title && newQuiz.questions){
         Object.assign(state,action.payload)

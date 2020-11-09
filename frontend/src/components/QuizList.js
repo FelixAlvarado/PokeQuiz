@@ -26,7 +26,7 @@ export default function QuizList() {
               return (
                 <QuizItem key={i} quiz={quiz} />
                 )
-            }else if (quiz.title && i < 20){
+            }else if (quiz.title && i < 30){
               return(
               <Suspense key={i}  fallback={<div></div>}>
                 <QuizItemLazy quiz={quiz} />

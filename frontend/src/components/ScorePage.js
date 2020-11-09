@@ -30,6 +30,9 @@ export default function ScorePage() {
       }
     })
 
+    if(location.state && location.state.scores){
+      quiz.scores.concat(location.state.scores)
+    }
 
     function handleClick(e) {
       e.preventDefault()
@@ -95,7 +98,7 @@ export default function ScorePage() {
           <div className="page-top-right">
             <div className="page-title"><div>{quiz.title}</div></div>
               <div className="link-button-holder">
-              <Link className="quiz-button" to={`/quiz/${quizId}`}>Quiz Page</Link>
+              <Link className="quiz-button" state={{scores:quiz.scores}} to={`/quiz/${quizId}`}>Quiz Page</Link>
               <div className={`page-link-holder ${marginMod}`}>
                 <input id="currentLink" defaultValue={window.location.href}/>
                 <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />

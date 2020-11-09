@@ -7,7 +7,7 @@
     width: 100%;
     height: 125px;
     display: grid;
-    grid-template-columns: 20% 40% 40%;
+    grid-template-columns: 24% 38% 38%;
     grid-template-rows: 100%;
     flex-direction: row;
     color:black;
@@ -31,7 +31,7 @@
 
 .quiz-item {
     div{
-        margin-left: 20px;
+        // margin-left: 20px;
         text-align: center;
         width: 100%;
         display: flex;
@@ -55,13 +55,15 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin-top: 70px;
+    margin-top: 75px;
 }
 
 .picture{
     grid-column: 1;
     width: 100px;
-    height: 100%;
+    height: 120px;
+    margin: auto;
+
 }
 
 @media screen and (max-width: 880px) {
@@ -82,11 +84,20 @@
 
     .picture {
         width: 80px;
+        height: 110px;
     }
 
 
 
   }
+
+//   @media screen and (max-width: 450px) {
+
+//     .picture {
+//         width: 60px;
+//     }
+
+//   }
 
 
   @media screen and (max-width: 375px) {
@@ -100,7 +111,8 @@
     }
 
     .picture {
-        width: 70px;
+        width: 65px;
+        height: 90px;
     }
 
   }
@@ -116,7 +128,8 @@
     }
 
     .picture {
-        width: 65px;
+        width: 50px;
+        height: 75px;
     }
 
   }

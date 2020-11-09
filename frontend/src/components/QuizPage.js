@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { getQuiz  } from '../app/quizesSlice.js'
 import { useSelector, useDispatch } from 'react-redux';
 import '../style/quizpage.css'
-import {pokePicture} from '../utility/util'
+import {pokePicture, mergeScores} from '../utility/util'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import ScoreList from './ScoreList'
@@ -19,8 +19,7 @@ export default function QuizPage() {
   let location = useLocation()
   let [showAlert, setShowAlert] = useState(false)
   let [alertText, setAlertText] = useState('');
-  let [marginMod, setMarginMod] = useState('')
-
+  let [marginMod, setMarginMod] = useState('');
 
   const quiz = useSelector(state => {
     if(state.quizes[`${id}`]){
@@ -30,8 +29,11 @@ export default function QuizPage() {
     }
   })
 
+  if(location.state && location.state.scores){
+    quiz.scores = mergeScores(quiz,{scores:location.state.scores})
+  }
 
-
+  console.log('here is the quiz', quiz)
 
   // console.log('here is the quiz', quiz)
 
@@ -73,7 +75,6 @@ useEffect(() => {
     }
     document.body.scrollTop = 0; 
     document.documentElement.scrollTop = 0;
-    console.log('here are the quiz score being passed to dispatch',quiz.scores)
     if(!location.state) dispatch(getQuiz(id,quiz.scores))
     setPicture(pokePicture())
     if(location.state && location.state.justCreated){
@@ -96,7 +97,7 @@ useEffect(() => {
           <div className="page-top-right">
             <div className="page-title"><div>{title}</div></div>
               <div className="link-button-holder">
-              <Link to={`/test/${id}`} className="quiz-button">Take Quiz</Link>
+              <Link to={`/test/${id}`} state={{scores:quiz.scores}} className="quiz-button">Take Quiz</Link>
               <div className={`page-link-holder ${marginMod}`}>
                 <input id="currentLink" defaultValue={window.location.href}/>
                 <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />
