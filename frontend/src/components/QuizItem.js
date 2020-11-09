@@ -14,7 +14,7 @@ export default function QuizItem({quiz}) {
       )
     } else {
       return(
-        <div className="picture"></div>
+        <div className="picture" style={{width: '100px'}}></div>
       )
     }
   }
@@ -28,12 +28,13 @@ export default function QuizItem({quiz}) {
 
   return (
     <Link to={`/quiz/${quiz.id}`} className="quiz-item">
-        {handleImage()}
-        <div><h2>{quiz.title}</h2></div>
-        <div>
-          <h3>Average Score: {averageScore(quiz.scores)}</h3>
-        </div>
+      {handleImage()}
+          <div className="column2"><h2>{quiz.title}</h2></div>
+          <div className="column3">
+            <h3>Average Score: {averageScore(quiz.scores)}</h3>
+          </div>
     </Link>
+
 
   );    
 }
