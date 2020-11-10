@@ -36,23 +36,22 @@ export const gradeQuiz = (questions, answers) => {
 }
 
 export const mergeScores = (oldQuiz, newQuiz) => {
-  console.log('here is the old quiz', oldQuiz)
-  console.log('here is the new quiz', newQuiz)
-  let result = Object.assign({}, oldQuiz)
+
+  let result = JSON.parse(JSON.stringify(oldQuiz))
   let keys = {}
 
   result.scores.forEach((score) =>{
-    keys[`${score[0]}`] = true
+    keys[`${score[2]}`] = true
   })
 
-  oldQuiz.scores.forEach((score) =>{
-    if(!keys[`${score[0]}`]){
+  newQuiz.scores.forEach((score) =>{
+
+    if(!keys[`${score[2]}`]){
       result.scores.push(score)
     }
   })
 
-  result.scores.sort((a,b) => a[3] - b[3])
+  result.scores.sort((a,b) => a[2] - b[2])
   
-  console.log('here is the result', result)
   return result
 };

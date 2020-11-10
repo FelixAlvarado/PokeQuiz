@@ -97,7 +97,7 @@ useEffect(() => {
           <div className="page-top-right">
             <div className="page-title"><div>{title}</div></div>
               <div className="link-button-holder">
-              <Link to={`/test/${id}`} state={{scores:quiz.scores}} className="quiz-button">Take Quiz</Link>
+              <Link to={{pathname:`/test/${id}`,state:{scores:quiz.scores}}}  className="quiz-button">Take Quiz</Link>
               <div className={`page-link-holder ${marginMod}`}>
                 <input id="currentLink" defaultValue={window.location.href}/>
                 <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />

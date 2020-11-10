@@ -54,7 +54,7 @@ export default function ScoreList({scores, quizId}) {
                     <span>{score[0]}</span>
                     <div className="score-bar" style={{width: `${scoreWidthPercent(score[1])}`, marginRight: `${margin(score[1])}`, backgroundColor: `${barColor(score[1])}`}}></div>
                     <span>{score[1]}</span>
-                    <Link to={`/score/${score[2]}?quiz=${quizId}`} state={{scores:scores}}><button className="attempt-button">Attempt</button></Link>
+                    <Link to={{pathname:`/score/${score[2]}?quiz=${quizId}`,state:{scores:scores}}}><button className="attempt-button">Attempt</button></Link>
                 </div>
             )
         })

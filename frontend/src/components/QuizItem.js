@@ -27,7 +27,7 @@ export default function QuizItem({quiz}) {
   },[onLoad]);
 
   return (
-    <Link to={`/quiz/${quiz.id}`} state={{scores:quiz.scores}} className="quiz-item">
+    <Link to={{pathname:`/quiz/${quiz.id}`,state:{scores:quiz.scores}}} className="quiz-item">
           {handleImage()}
           <div className="column2"><h2>{quiz.title}</h2></div>
           <div className="column3">

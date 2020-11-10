@@ -2,14 +2,18 @@ import React,{ useState, useRef, useEffect } from 'react';
 import '../style/scorepage.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getQuizAttempt  } from '../app/quizesSlice.js'
-import {pokePicture} from '../utility/util'
+import {pokePicture, mergeScores} from '../utility/util'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import AttemptItem from './AttemptItem'
 import {Link, useLocation} from "react-router-dom";
 import AlertModal from './alertModal.js'
 
-export default function ScorePage() {
+export default function ScorePage(scores, props) {
+  console.log('here are the scores')
+  console.log(scores)
+  console.log('here are the props')
+  console.log(props)
     const dispatch = useDispatch();
     let scoreId = window.location.href.split('/')[4].split('?')[0]
     let quizId =  window.location.href.split('=')[1]
@@ -22,16 +26,17 @@ export default function ScorePage() {
     let [alertText, setAlertText] = useState('');
     let [marginMod, setMarginMod] = useState('')
  
-    const quiz = useSelector(state => {
+    let quiz = useSelector(state => {
       if(state.quizes[`${quizId}`] && state.quizes[`${quizId}`].attempts){
-      return state.quizes[`${quizId}`]
+      let newObject = Object.assign({}, state.quizes[`${quizId}`])
+      return newObject
       }else{
         return {scores:[[]]}
       }
     })
 
     if(location.state && location.state.scores){
-      quiz.scores.concat(location.state.scores)
+      quiz = mergeScores(quiz,{scores:location.state.scores})
     }
 
     console.log('here is the score page quiz', quiz)

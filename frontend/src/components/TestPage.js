@@ -2,7 +2,7 @@ import React,{ useState, useRef, useEffect } from 'react';
 import '../style/scorepage.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getQuestions, addQuiz  } from '../app/quizesSlice.js'
-import {gradeQuiz} from '../utility/util'
+import {gradeQuiz, mergeScores} from '../utility/util'
 import {Redirect, useLocation} from "react-router-dom";
 import '../style/createpage.css'
 import '../style/testpage.css'
@@ -28,11 +28,11 @@ export default function TestPage() {
     })
 
     if(location.state && location.state.scores){
-      quiz.scores.concat(location.state.scores)
+      quiz = mergeScores(quiz,{scores:location.state.scores})
     }
 
     console.log('here is the test page quiz', quiz)
-
+    
     function handleSubmit()  {
       let unfilled = []
       if (name.length === 0) unfilled.push('Please enter your name before submitting your answers')
