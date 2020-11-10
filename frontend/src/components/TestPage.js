@@ -47,6 +47,7 @@ export default function TestPage() {
          let newQuiz = Object.assign({}, response.quiz)
          if (!newQuiz.scores) newQuiz.scores = []
          newQuiz.scores.concat(quiz.scores)
+         console.log('here are the new quiz scores after pressing the submit button', newQuiz.scores)
          dispatch(addQuiz(newQuiz))
          setQuizSubmitted(newObject)
        })
@@ -91,7 +92,7 @@ export default function TestPage() {
 
     function handleRedirect(){
       if(quizSubmitted.boolean){
-        return <Redirect to={{pathname:`/score/${quizSubmitted.scoreId}?quiz=${quizId}`,state:{justScored:true,scores:quiz.scores,score:gradeQuiz(quiz.questions, attempts)}}}/>
+        return <Redirect to={{pathname:`/score/${quizSubmitted.scoreId}?quiz=${quizId}`,state:{justScored:true,score:gradeQuiz(quiz.questions, attempts)}}}/>
       }
     }
 
