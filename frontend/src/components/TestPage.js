@@ -19,7 +19,7 @@ export default function TestPage() {
     const [quizSubmitted, setQuizSubmitted] = useState({boolean: false, scoreId:''})
     let questionList
 
-    const quiz = useSelector(state => {
+    let quiz = useSelector(state => {
       if(state.quizes[`${quizId}`])
         return state.quizes[`${quizId}`]
         else{
@@ -28,7 +28,8 @@ export default function TestPage() {
     })
 
     if(location.state && location.state.scores){
-      quiz = mergeScores(quiz,{scores:location.state.scores})
+      quiz = Object.assign({},quiz)
+      quiz.scores = mergeScores(quiz,{scores:location.state.scores})
     }
 
     console.log('here is the test page quiz', quiz)
@@ -45,10 +46,15 @@ export default function TestPage() {
          newObject.scoreId = response.score_id 
          newObject.boolean = true
          let newQuiz = Object.assign({}, response.quiz)
+         newQuiz.questions = quiz.questions
          if (!newQuiz.scores) newQuiz.scores = []
+         console.log('here are the new quiz scores', newQuiz.scores)
+         console.log('here are the quiz scores', quiz.scores)
          newQuiz.scores.concat(quiz.scores)
          console.log('here are the new quiz scores after pressing the submit button', newQuiz.scores)
-         dispatch(addQuiz(newQuiz))
+         let stateObject = {}
+         stateObject[`${quizId}`] = newQuiz
+         dispatch(addQuiz(stateObject))
          setQuizSubmitted(newObject)
        })
        .catch((error) =>{
@@ -92,7 +98,8 @@ export default function TestPage() {
 
     function handleRedirect(){
       if(quizSubmitted.boolean){
-        return <Redirect to={{pathname:`/score/${quizSubmitted.scoreId}?quiz=${quizId}`,state:{justScored:true,score:gradeQuiz(quiz.questions, attempts)}}}/>
+        let stateScores = (location.state && location.state.scores) ? location.state.scores : []
+        return <Redirect to={{pathname:`/score/${quizSubmitted.scoreId}?quiz=${quizId}`,state:{justScored:true,score:gradeQuiz(quiz.questions, attempts),scores:stateScores}}}/>
       }
     }
 
@@ -104,7 +111,7 @@ export default function TestPage() {
       }
     },[dispatch,quizId]);
 
-    if(quiz && quiz.questions){
+    if(quiz && quiz.questions && quiz.test_questions){
       questionList = Object.keys(quiz.test_questions).map((key,i) =>{
         let question = quiz.test_questions[`${key}`]
         return (

@@ -61,7 +61,7 @@ def create_quiz(cnx, cursor, title, questions):
         answers.append(question["wrongAnswer3"])
         random.shuffle(answers)
         result["test_questions"][f"{question_id}"] = {"id":question_id,"question":question["question"],"correct_answer":question["correctAnswer"],"answer_1": answers[0],"answer_2":answers[1],"answer_3":answers[2],"answer_4":answers[3]}
-    
+
     return result
 
 def create_score_attempts(cnx,cursor, attempts,score):
@@ -69,10 +69,6 @@ def create_score_attempts(cnx,cursor, attempts,score):
     print('here is the score', score)
 
     scoreArray = []
-
-    scoreArray.append(score["quiz"]["id"])
-    scoreArray.append(score["testTaker"])
-    scoreArray.append(score["score"])
 
     score_format = ("INSERT INTO scores "
         "(quiz_id, test_taker, score) "
@@ -89,6 +85,10 @@ def create_score_attempts(cnx,cursor, attempts,score):
     cnx.commit()
 
     score_id = cursor.lastrowid
+    scoreArray.append(score_id)
+    scoreArray.append(score["quiz"]["id"])
+    scoreArray.append(score["testTaker"])
+    scoreArray.append(score["score"])
 
     new_attempts = {}
 
@@ -119,9 +119,5 @@ def create_score_attempts(cnx,cursor, attempts,score):
     quiz_copy["attempts"] = new_attempts
 
     quiz_copy["scores"] = [scoreArray]
-    
+
     return {"score_id":score_id,"quiz":{f"{quiz_copy['id']}":quiz_copy}}
-
-
-
-

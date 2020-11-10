@@ -10,10 +10,6 @@ import {Link, useLocation} from "react-router-dom";
 import AlertModal from './alertModal.js'
 
 export default function ScorePage(scores, props) {
-  console.log('here are the scores')
-  console.log(scores)
-  console.log('here are the props')
-  console.log(props)
     const dispatch = useDispatch();
     let scoreId = window.location.href.split('/')[4].split('?')[0]
     let quizId =  window.location.href.split('=')[1]
@@ -28,18 +24,20 @@ export default function ScorePage(scores, props) {
  
     let quiz = useSelector(state => {
       if(state.quizes[`${quizId}`] && state.quizes[`${quizId}`].attempts){
-      let newObject = Object.assign({}, state.quizes[`${quizId}`])
-      return newObject
+      return state.quizes[`${quizId}`]
       }else{
-        return {scores:[[]]}
+        return {scores:[]}
       }
     })
 
     if(location.state && location.state.scores){
-      quiz = mergeScores(quiz,{scores:location.state.scores})
+      quiz = Object.assign({},quiz)
+      quiz.scores = mergeScores(quiz,{scores:location.state.scores})
     }
 
     console.log('here is the score page quiz', quiz)
+    let testee = quiz.scores[0] ? quiz.scores[0][2] : ''
+    let score =  quiz.scores[0] ? quiz.scores[0][3] : ''
 
     function handleClick(e) {
       e.preventDefault()
@@ -116,8 +114,8 @@ export default function ScorePage(scores, props) {
       <Link className="quiz-button2" to={`/quiz/${quizId}`}><span>Quiz Page</span></Link>
       <button onClick={(e) => handleClick(e)} className="copy-link">Copy Link</button>
       <div className="score-info-holder">
-        <div>Testee: {quiz.scores[0][0]}</div>
-        <div>Score: {quiz.scores[0][1]}</div>
+        <div>Testee: {testee}</div>
+        <div>Score: {score}</div>
       </div>
       <div className="questions">
         <div className="result-title">Results</div>

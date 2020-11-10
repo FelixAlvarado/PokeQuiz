@@ -49,13 +49,14 @@ export default function ScoreList({scores, quizId}) {
 
     if (scores) {
         console.log('here are the scores in quiz page', scores)
-        scoreList = scores.map((score,i)=>{
+        let sortedScores = [...scores].sort((a,b) => a[0] - b[0])
+        scoreList = sortedScores.map((score,i)=>{
             return (
                 <div className="score-info" key={i}>
-                    <span>{score[0]}</span>
-                    <div className="score-bar" style={{width: `${scoreWidthPercent(score[1])}`, marginRight: `${margin(score[1])}`, backgroundColor: `${barColor(score[1])}`}}></div>
-                    <span>{score[1]}</span>
-                    <Link to={{pathname:`/score/${score[2]}?quiz=${quizId}`,state:{scores:scores}}}><button className="attempt-button">Attempt</button></Link>
+                    <span>{score[2]}</span>
+                    <div className="score-bar" style={{width: `${scoreWidthPercent(score[3])}`, marginRight: `${margin(score[3])}`, backgroundColor: `${barColor(score[3])}`}}></div>
+                    <span>{score[3]}</span>
+                    <Link to={{pathname:`/score/${score[0]}?quiz=${quizId}`,state:{scores:scores}}}><button className="attempt-button">Attempt</button></Link>
                 </div>
             )
         })

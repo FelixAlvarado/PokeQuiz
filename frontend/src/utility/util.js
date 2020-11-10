@@ -15,7 +15,7 @@ export const averageScore = (scores) => {
     let total = 0;
 
     scores.forEach(score =>{
-      total += score[1]
+      total += score[3]
     })
 
     return Math.floor(total / scores.length).toString() + '%'
@@ -36,25 +36,26 @@ export const gradeQuiz = (questions, answers) => {
 }
 
 export const mergeScores = (oldQuiz, newQuiz) => {
+  console.log('here is the old quiz', oldQuiz)
+  console.log('here is the new quiz', newQuiz)
 
-  let result = JSON.parse(JSON.stringify(oldQuiz))
+  let scores = []
   let keys = {}
 
-  result.scores.forEach((score) =>{
-    keys[`${score[2]}`] = true
+  oldQuiz.scores.forEach((score) =>{
+    keys[`${score[0]}`] = true
+    scores.push(score)
   })
 
   newQuiz.scores.forEach((score) =>{
 
-    if(!keys[`${score[2]}`]){
-      result.scores.push(score)
+    if(!keys[`${score[0]}`]){
+      scores.push(score)
     }
   })
 
-  result.scores.sort((a,b) => a[2] - b[2])
-
   console.log('here is the result from utility')
-  console.log(result)
+  console.log(scores)
   
-  return result
+  return scores
 };

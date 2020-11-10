@@ -2,9 +2,9 @@ from flask import Flask, request, render_template, send_from_directory
 from queries import fetch_quizes, fetch_quiz, fetch_attempt, fetch_questions
 from create import create_quiz, create_score_attempts
 import mysql.connector
-from mysql.connector import errorcode 
+from mysql.connector import errorcode
 from dotenv import load_dotenv
-import os 
+import os
 from flask_cors import CORS
 from subprocess import Popen, PIPE
 from utility import set_interval, restart_connection
@@ -30,7 +30,7 @@ cursor.execute("USE {}".format(DB_NAME))
 
 class Database:
     def __init__(self, cursor_value, cnx_value):
-        self.cursor = cursor_value 
+        self.cursor = cursor_value
         self.cnx = cnx_value
 
     def restart_connection(self):
@@ -53,7 +53,7 @@ def set_interval(func, sec):
 
 
 set_interval(database.restart_connection,290)
-    
+
 
 app = Flask(__name__, static_folder='frontend/build')
 CORS(app)
@@ -72,10 +72,10 @@ def quizes():
 
 @app.route('/quiz', methods=["POST"])
 def quiz():
-    data = request.json 
+    data = request.json
     quiz_id = data['id']
-    scores = data['scores']
-    return fetch_quiz(database.cursor,quiz_id,scores)
+    # scores = data['scores']
+    return fetch_quiz(database.cursor,quiz_id)
 
 @app.route('/attempt', methods=["GET"])
 def attempt():
@@ -84,7 +84,7 @@ def attempt():
 
 @app.route('/create', methods=["POST"])
 def create():
-    data = request.json 
+    data = request.json
     title = data['title']
     questions = data['questions']
     quiz_id = create_quiz(database.cnx, database.cursor, title, questions)
@@ -97,7 +97,7 @@ def questions():
 
 @app.route('/score', methods=["POST"])
 def score():
-    data = request.json 
+    data = request.json
     attempts = data['attempts']
     score = data['score']
     return create_score_attempts(database.cnx, database.cursor,attempts, score)

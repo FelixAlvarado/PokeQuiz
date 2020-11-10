@@ -25,7 +25,7 @@ export default function QuizPage() {
     if(state.quizes[`${id}`]){
     return state.quizes[`${id}`]
     }else{
-      return {scores:[[]]}
+      return {scores:[]}
     }
   })
 
@@ -33,7 +33,8 @@ export default function QuizPage() {
   console.log(quiz)
 
   if(location.state && location.state.scores){
-    quiz = mergeScores(quiz,{scores:location.state.scores})
+    quiz = Object.assign({},quiz)
+    quiz.scores = mergeScores(quiz,{scores:location.state.scores})
   }
 
   console.log('here is the quiz page quiz', quiz)
