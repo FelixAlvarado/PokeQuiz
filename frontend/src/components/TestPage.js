@@ -91,7 +91,7 @@ export default function TestPage() {
 
     function handleRedirect(){
       if(quizSubmitted.boolean){
-        return <Redirect to={{pathname:`/score/${quizSubmitted.scoreId}?quiz=${quizId}`,state:{justScored:true,score:gradeQuiz(quiz.questions, attempts)}}}/>
+        return <Redirect to={{pathname:`/score/${quizSubmitted.scoreId}?quiz=${quizId}`,state:{justScored:true,scores:quiz.scores,score:gradeQuiz(quiz.questions, attempts)}}}/>
       }
     }
 
