@@ -34,6 +34,8 @@ export default function ScorePage() {
       quiz.scores.concat(location.state.scores)
     }
 
+    console.log('here is the score page quiz', quiz)
+
     function handleClick(e) {
       e.preventDefault()
       let text = document.getElementById("currentLink")

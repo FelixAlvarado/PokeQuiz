@@ -31,6 +31,8 @@ export default function TestPage() {
       quiz.scores.concat(location.state.scores)
     }
 
+    console.log('here is the test page quiz', quiz)
+
     function handleSubmit()  {
       let unfilled = []
       if (name.length === 0) unfilled.push('Please enter your name before submitting your answers')

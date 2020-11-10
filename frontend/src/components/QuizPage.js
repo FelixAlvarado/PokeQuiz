@@ -33,7 +33,7 @@ export default function QuizPage() {
     quiz.scores = mergeScores(quiz,{scores:location.state.scores})
   }
 
-  console.log('here is the quiz', quiz)
+  console.log('here is the quiz page quiz', quiz)
 
   // console.log('here is the quiz', quiz)
 
