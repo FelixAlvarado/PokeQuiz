@@ -32,10 +32,10 @@ export default function QuizPage() {
   console.log('here is the qui before checking')
   console.log(quiz)
 
-  if(location.state && location.state.scores){
-    quiz = Object.assign({},quiz)
-    quiz.scores = mergeScores(quiz,{scores:location.state.scores})
-  }
+  // if(location.state && location.state.scores){
+  //   quiz = Object.assign({},quiz)
+  //   quiz.scores = mergeScores(quiz,{scores:location.state.scores})
+  // }
 
   console.log('here is the quiz page quiz', quiz)
 

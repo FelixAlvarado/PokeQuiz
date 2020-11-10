@@ -30,10 +30,10 @@ export default function ScorePage(scores, props) {
       }
     })
 
-    if(location.state && location.state.scores){
-      quiz = Object.assign({},quiz)
-      quiz.scores = mergeScores(quiz,{scores:location.state.scores})
-    }
+    // if(location.state && location.state.scores){
+    //   quiz = Object.assign({},quiz)
+    //   quiz.scores = mergeScores(quiz,{scores:location.state.scores})
+    // }
 
     console.log('here is the score page quiz', quiz)
     let testee = quiz.scores[0] ? quiz.scores[0][2] : ''

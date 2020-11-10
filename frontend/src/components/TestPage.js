@@ -27,10 +27,10 @@ export default function TestPage() {
         }
     })
 
-    if(location.state && location.state.scores){
-      quiz = Object.assign({},quiz)
-      quiz.scores = mergeScores(quiz,{scores:location.state.scores})
-    }
+    // if(location.state && location.state.scores){
+    //   quiz = Object.assign({},quiz)
+    //   quiz.scores = mergeScores(quiz,{scores:location.state.scores})
+    // }
 
     console.log('here is the test page quiz', quiz)
     
