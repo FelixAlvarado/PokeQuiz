@@ -25,7 +25,7 @@ export default function QuizPage() {
     if(state.quizes[`${id}`]){
     return state.quizes[`${id}`]
     }else{
-      return {}
+      return {scores:[[]]}
     }
   })
 

@@ -48,6 +48,7 @@ export default function ScoreList({scores, quizId}) {
 
 
     if (scores) {
+        console.log('here are the scores in quiz page', scores)
         scoreList = scores.map((score,i)=>{
             return (
                 <div className="score-info" key={i}>
