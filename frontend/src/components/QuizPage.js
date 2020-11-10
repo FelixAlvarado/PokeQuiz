@@ -29,8 +29,9 @@ export default function QuizPage() {
     }
   })
 
-  console.log('here is the qui before checking', quiz)
-  
+  console.log('here is the qui before checking')
+  console.log(quiz)
+
   if(location.state && location.state.scores){
     quiz = mergeScores(quiz,{scores:location.state.scores})
   }
