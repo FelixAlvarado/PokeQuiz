@@ -45,16 +45,17 @@ export default function TestPage() {
          let newObject = Object.assign({}, quizSubmitted)
          newObject.scoreId = response.score_id 
          newObject.boolean = true
-         let newQuiz = Object.assign({}, response.quiz)
-         newQuiz.questions = quiz.questions
-         if (!newQuiz.scores) newQuiz.scores = []
-         console.log('here are the new quiz scores', newQuiz.scores)
-         console.log('here are the quiz scores', quiz.scores)
-         newQuiz.scores.concat(quiz.scores)
-         console.log('here are the new quiz scores after pressing the submit button', newQuiz.scores)
-         let stateObject = {}
-         stateObject[`${quizId}`] = newQuiz
-         dispatch(addQuiz(stateObject))
+         console.log('here is the quiz returns from the backend',response.quiz)
+        //  let newQuiz = Object.assign({}, response.quiz)
+        //  newQuiz.questions = quiz.questions
+        //  if (!newQuiz.scores) newQuiz.scores = []
+        //  console.log('here are the new quiz scores', newQuiz.scores)
+        //  console.log('here are the quiz scores', quiz.scores)
+        //  newQuiz.scores.concat(quiz.scores)
+        //  console.log('here are the new quiz scores after pressing the submit button', newQuiz.scores)
+        //  let stateObject = {}
+        //  stateObject[`${quizId}`] = newQuiz
+         dispatch(addQuiz(response.quiz))
          setQuizSubmitted(newObject)
        })
        .catch((error) =>{

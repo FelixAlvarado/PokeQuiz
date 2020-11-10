@@ -73,7 +73,7 @@ export default function ScorePage(scores, props) {
         }
         document.body.scrollTop = 0; 
         document.documentElement.scrollTop = 0;
-        dispatch(getQuizAttempt(scoreId))
+        if(!location.state) dispatch(getQuizAttempt(scoreId))
         setPicture(pokePicture())
         if(location.state && location.state.justScored){
           if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
