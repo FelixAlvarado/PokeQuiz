@@ -52,6 +52,8 @@ export const mergeScores = (oldQuiz, newQuiz) => {
   })
 
   result.scores.sort((a,b) => a[2] - b[2])
+
+  console.log('here is the result from utility', result)
   
   return result
 };

@@ -21,7 +21,7 @@ export default function QuizPage() {
   let [alertText, setAlertText] = useState('');
   let [marginMod, setMarginMod] = useState('');
 
-  const quiz = useSelector(state => {
+  let quiz = useSelector(state => {
     if(state.quizes[`${id}`]){
     return state.quizes[`${id}`]
     }else{
@@ -29,13 +29,13 @@ export default function QuizPage() {
     }
   })
 
+  console.log('here is the qui before checking', quiz)
+  
   if(location.state && location.state.scores){
     quiz = mergeScores(quiz,{scores:location.state.scores})
   }
 
   console.log('here is the quiz page quiz', quiz)
-
-  // console.log('here is the quiz', quiz)
 
   let title = quiz ? quiz.title : ''
 
