@@ -116,7 +116,7 @@ TABLES['attempts'] = (
 #     "  `name` varchar(256) NOT NULL"
 #     ")")
 
-databasecursor.execute("USE {}".format(DB_NAME))
+database.cursor.execute("USE {}".format(DB_NAME))
 
 for table_name in TABLES:
     table_description = TABLES[table_name]
