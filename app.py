@@ -12,24 +12,25 @@ import threading
 
 load_dotenv()
 
-# user = os.environ.get("AWS_USERNAME")
-# password = os.environ.get("AWS_PASSWORD")
-# DB_NAME = os.environ.get("AWS_DB_NAME")
-# port = os.environ.get("AWS_PORT")
-# host = os.environ.get("AWS_HOST")
+user = os.environ.get("AWS_USERNAME")
+password = os.environ.get("AWS_PASSWORD")
+DB_NAME = os.environ.get("AWS_DB_NAME")
+port = os.environ.get("AWS_PORT")
+host = os.environ.get("AWS_HOST")
+
 
 # clearDBU = os.environ.get("ClearDB_User")
 # clearDBP = os.environ.get("ClearDB_Pass")
 # clearDBN = os.environ.get("ClearDB_Name")
 # clearDBH = os.environ.get("ClearDB_Host")
 
-user = os.environ.get("P_User")
-password = os.environ.get("P_Password")
-DB_NAME = os.environ.get("P_Name")
-port = os.environ.get("P_Port")
-host = os.environ.get("P_Host")
+# user = os.environ.get("P_User")
+# password = os.environ.get("P_Password")
+# DB_NAME = os.environ.get("P_Name")
+# port = os.environ.get("P_Port")
+# host = os.environ.get("P_Host")
 
-cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=5432)
+cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
 # cnx = mysql.connector.connect(user=f"{clearDBU}", password=f"{clearDBP}")
 cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
@@ -116,20 +117,20 @@ TABLES['attempts'] = (
 #     "  `name` varchar(256) NOT NULL"
 #     ")")
 
-database.cursor.execute("USE {}".format(DB_NAME))
+# database.cursor.execute("USE {}".format(DB_NAME))
 
-for table_name in TABLES:
-    table_description = TABLES[table_name]
-    try:
-        print("Creating table {}: ".format(table_name), end='')
-        database.cursor.execute(table_description)
-    except mysql.connector.Error as err:
-        if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
-            print("already exists.")
-        else:
-            print(err.msg)
-    else:
-        print("OK")
+# for table_name in TABLES:
+#     table_description = TABLES[table_name]
+#     try:
+#         print("Creating table {}: ".format(table_name), end='')
+#         database.cursor.execute(table_description)
+#     except mysql.connector.Error as err:
+#         if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
+#             print("already exists.")
+#         else:
+#             print(err.msg)
+#     else:
+#         print("OK")
 
 
 @app.route('/', defaults={'path': ''})
