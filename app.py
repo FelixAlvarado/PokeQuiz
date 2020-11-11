@@ -29,7 +29,7 @@ DB_NAME = os.environ.get("P_Name")
 port = os.environ.get("P_Port")
 host = os.environ.get("P_Host")
 
-cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
+cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=5432)
 # cnx = mysql.connector.connect(user=f"{clearDBU}", password=f"{clearDBP}")
 cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
