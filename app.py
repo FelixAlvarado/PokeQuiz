@@ -19,10 +19,10 @@ load_dotenv()
 # host = os.environ.get("AWS_HOST")
 
 
-clearDBU = os.environ.get("ClearDB_User")
-clearDBP = os.environ.get("ClearDB_Pass")
-clearDBN = os.environ.get("ClearDB_Name")
-clearDBH = os.environ.get("ClearDB_Host")
+user = os.environ.get("ClearDB_User")
+password = os.environ.get("ClearDB_Pass")
+DB_NAME = os.environ.get("ClearDB_Name")
+host = os.environ.get("ClearDB_Host")
 
 # user = os.environ.get("P_User")
 # password = os.environ.get("P_Password")
@@ -32,9 +32,9 @@ clearDBH = os.environ.get("ClearDB_Host")
 
 print("about to connect")
 # cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
-cnx = mysql.connector.connect(user=f"{clearDBU}", password=f"{clearDBP}",database="{clearDBN}")
+cnx = mysql.connector.connect(user=f"{user}", password=f"{password}", host=f"{host}")
 cursor = cnx.cursor(buffered=True)
-cursor.execute("USE {}".format(clearDBN))
+cursor.execute("USE {}".format(DB_NAME))
 print("made it past connect")
 
 
@@ -46,7 +46,7 @@ class Database:
     def restart_connection(self):
         self.cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
         self.cursor = self.cnx.cursor(buffered=True)
-        self.cursor.execute("USE {}".format(clearDBN))
+        self.cursor.execute("USE {}".format(DB_NAME))
 
 
 database = Database(cursor, cnx)
