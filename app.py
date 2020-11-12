@@ -130,13 +130,13 @@ CORS(app)
 #         print("OK")
 
 
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def serve(path):
-    if path != "" and os.path.exists(app.static_folder + '/' + path):
-        return send_from_directory(app.static_folder, path)
-    elif path != 'test_create' and path!= 'test_retrieve':
-        return send_from_directory(app.static_folder, 'index.html')
+# @app.route('/', defaults={'path': ''})
+# @app.route('/<path:path>')
+# def serve(path):
+#     if path != "" and os.path.exists(app.static_folder + '/' + path):
+#         return send_from_directory(app.static_folder, path)
+#     elif path != 'test_create' and path!= 'test_retrieve':
+#         return send_from_directory(app.static_folder, 'index.html')
 
 @app.route('/quizes', methods=["GET"])
 def quizes():
@@ -176,39 +176,35 @@ def score():
 
 @app.route('/test_create', methods=["GET"])
 def test_create():
-    print('made it to test create')
-    name = request.args.get('name')
+    letters = string.ascii_lowercase
+    created_string = ''.join(random.choice(letters) for i in range(20))
 
     test_format = ("INSERT INTO test "
         "(name) "
         "VALUES (%s)")
 
-    test_data = (name,)
+    test_data = (created_string,)
 
-    cursor.execute(test_format, test_data)
+    database.cursor.execute(test_format, test_data)
 
-    id = cursor.lastrowid
+    database.cnx.commit()
 
-    return f"Entry successfully created. the id of the new entry is {id}"
+    id = database.cursor.lastrowid
+
+    return f"Entry successfully created. the id of the new entry is {id}. New Entry is {created_string}"
 
 @app.route('/test_retrieve', methods=["GET"])
 def test_retrieve():
 
-    id = request.args.get('id')
-
     result_string = ''
 
-    # if id != None:
-    #     cursor.execute(f"SELECT * FROM test WHERE id = {id}")
-    #     result_string += 'Here is the entry you requested:'
-    # else:
-    cursor.execute("SELECT * FROM test")
-    result_string += 'Here are all entries for the table: '
+    database.cursor.execute("SELECT * FROM test")
+    result_string += 'Here are all entries for the table:  '
 
     for entry in cursor:
         print('here is the entry')
         print(entry)
-        result_string += f"id: {entry[0]} name: {entry[1]}"
+        result_string += f"id: {entry[0]} name: {entry[1]}                "
     
     return result_string
 
