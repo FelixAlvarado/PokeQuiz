@@ -15,7 +15,7 @@ load_dotenv()
 # user = os.environ.get("AWS_USERNAME")
 # password = os.environ.get("AWS_PASSWORD")
 # DB_NAME = os.environ.get("AWS_DB_NAME")
-port = os.environ.get("AWS_PORT")
+# port = os.environ.get("AWS_PORT")
 # host = os.environ.get("AWS_HOST")
 
 
@@ -27,7 +27,7 @@ port = os.environ.get("AWS_PORT")
 user = os.environ.get("P_User")
 password = os.environ.get("P_Password")
 DB_NAME = os.environ.get("P_Name")
-# port = os.environ.get("P_Port")
+port = os.environ.get("P_Port")
 host = os.environ.get("P_Host")
 
 cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
@@ -111,26 +111,20 @@ TABLES['attempts'] = (
     "  FOREIGN KEY (`score_id`) REFERENCES `scores` (`id`)"
     ")")
 
-# TABLES['test'] = (
-#     "CREATE TABLE `test` ("
-#     "  `id` int NOT NULL AUTO_INCREMENT UNIQUE,"
-#     "  `name` varchar(256) NOT NULL"
-#     ")")
+database.cursor.execute("USE {}".format(DB_NAME))
 
-# database.cursor.execute("USE {}".format(DB_NAME))
-
-# for table_name in TABLES:
-#     table_description = TABLES[table_name]
-#     try:
-#         print("Creating table {}: ".format(table_name), end='')
-#         database.cursor.execute(table_description)
-#     except mysql.connector.Error as err:
-#         if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
-#             print("already exists.")
-#         else:
-#             print(err.msg)
-#     else:
-#         print("OK")
+for table_name in TABLES:
+    table_description = TABLES[table_name]
+    try:
+        print("Creating table {}: ".format(table_name), end='')
+        database.cursor.execute(table_description)
+    except mysql.connector.Error as err:
+        if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
+            print("already exists.")
+        else:
+            print(err.msg)
+    else:
+        print("OK")
 
 
 @app.route('/', defaults={'path': ''})
