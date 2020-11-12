@@ -56,6 +56,9 @@ def fetch_quiz(cursor, id):
     except:
         cursor.execute(f"SELECT * FROM scores WHERE quiz_id = {id}")
 
+    print('here is the last statement')
+    print(cursor.statement)
+
     for score in cursor:
         print('here is the score information', score)
         print('here is the current result before appending', result)
