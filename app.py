@@ -12,17 +12,17 @@ import threading
 
 load_dotenv()
 
-# user = os.environ.get("AWS_USERNAME")
-# password = os.environ.get("AWS_PASSWORD")
-# DB_NAME = os.environ.get("AWS_DB_NAME")
-# port = os.environ.get("AWS_PORT")
-# host = os.environ.get("AWS_HOST")
+user = os.environ.get("AWS_USERNAME")
+password = os.environ.get("AWS_PASSWORD")
+DB_NAME = os.environ.get("AWS_DB_NAME")
+port = os.environ.get("AWS_PORT")
+host = os.environ.get("AWS_HOST")
 
 
-user = os.environ.get("ClearDB_User")
-password = os.environ.get("ClearDB_Pass")
-DB_NAME = os.environ.get("ClearDB_Name")
-host = os.environ.get("ClearDB_Host")
+# user = os.environ.get("ClearDB_User")
+# password = os.environ.get("ClearDB_Pass")
+# DB_NAME = os.environ.get("ClearDB_Name")
+# host = os.environ.get("ClearDB_Host")
 
 # user = os.environ.get("P_User")
 # password = os.environ.get("P_Password")
@@ -31,8 +31,8 @@ host = os.environ.get("ClearDB_Host")
 # host = os.environ.get("P_Host")
 
 print("about to connect")
-# cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
-cnx = mysql.connector.connect(user=f"{user}", password=f"{password}", host=f"{host}")
+cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
+# cnx = mysql.connector.connect(user=f"{user}", password=f"{password}", host=f"{host}")
 cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
 print("made it past connect")
