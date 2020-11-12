@@ -30,10 +30,13 @@ DB_NAME = os.environ.get("P_Name")
 port = os.environ.get("P_Port")
 host = os.environ.get("P_Host")
 
+print("about to connect")
 cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
 # cnx = mysql.connector.connect(user=f"{clearDBU}", password=f"{clearDBP}")
 cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
+print("made it past connect")
+
 
 class Database:
     def __init__(self, cursor_value, cnx_value):

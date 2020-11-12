@@ -6,10 +6,15 @@ def fetch_quizes(cursor):
     search_string = ""
     count = 0
 
+    print("about to fetch quizes")
+
+
     try:
         cursor.execute("SELECT * FROM quizes")
     except:
         cursor.execute("SELECT * FROM quizes")
+
+    print("made it past fetching quizes")
 
 
 #tuple returned is (id, title)
