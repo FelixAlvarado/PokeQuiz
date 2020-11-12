@@ -32,7 +32,7 @@ clearDBH = os.environ.get("ClearDB_Host")
 
 print("about to connect")
 # cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
-cnx = mysql.connector.connect(user=f"{clearDBU}", password=f"{clearDBP}",database="{clearDBN}",host=f"{clearDBH}")
+cnx = mysql.connector.connect(user=f"{clearDBU}", password=f"{clearDBP}",database="{clearDBN}")
 cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(clearDBN))
 print("made it past connect")
