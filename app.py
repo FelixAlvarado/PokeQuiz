@@ -32,12 +32,10 @@ host = os.environ.get("AWS_HOST")
 # port = os.environ.get("P_Port")
 # host = os.environ.get("P_Host")
 
-print("about to connect")
 cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
 # cnx = mysql.connector.connect(user=f"{user}", password=f"{password}", host=f"{host}")
 cursor = cnx.cursor(buffered=True)
 cursor.execute("USE {}".format(DB_NAME))
-print("made it past connect")
 
 
 class Database:
@@ -207,7 +205,7 @@ def test_retrieve():
         print('here is the entry')
         print(entry)
         result_string += f"id: {entry[0]} name: {entry[1]}                "
-    
+
     return result_string
 
 
