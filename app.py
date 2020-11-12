@@ -12,11 +12,11 @@ import threading
 
 load_dotenv()
 
-# user = os.environ.get("AWS_USERNAME")
-# password = os.environ.get("AWS_PASSWORD")
-# DB_NAME = os.environ.get("AWS_DB_NAME")
-# port = os.environ.get("AWS_PORT")
-# host = os.environ.get("AWS_HOST")
+user = os.environ.get("AWS_USERNAME")
+password = os.environ.get("AWS_PASSWORD")
+DB_NAME = os.environ.get("AWS_DB_NAME")
+port = os.environ.get("AWS_PORT")
+host = os.environ.get("AWS_HOST")
 
 
 # clearDBU = os.environ.get("ClearDB_User")
@@ -24,11 +24,11 @@ load_dotenv()
 # clearDBN = os.environ.get("ClearDB_Name")
 # clearDBH = os.environ.get("ClearDB_Host")
 
-user = os.environ.get("P_User")
-password = os.environ.get("P_Password")
-DB_NAME = os.environ.get("P_Name")
-port = os.environ.get("P_Port")
-host = os.environ.get("P_Host")
+# user = os.environ.get("P_User")
+# password = os.environ.get("P_Password")
+# DB_NAME = os.environ.get("P_Name")
+# port = os.environ.get("P_Port")
+# host = os.environ.get("P_Host")
 
 cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
 # cnx = mysql.connector.connect(user=f"{clearDBU}", password=f"{clearDBP}")
@@ -65,66 +65,66 @@ set_interval(database.restart_connection,290)
 app = Flask(__name__, static_folder='frontend/build')
 CORS(app)
 
-TABLES = {}
+# TABLES = {}
 
-TABLES['quizes'] = (
-    "CREATE TABLE `quizes` ("
-    "  `id` int NOT NULL AUTO_INCREMENT,"
-    "  `title` varchar(256) NOT NULL,"
-    "  PRIMARY KEY (`id`)"
-    ")")
+# TABLES['quizes'] = (
+#     "CREATE TABLE `quizes` ("
+#     "  `id` int NOT NULL AUTO_INCREMENT,"
+#     "  `title` varchar(256) NOT NULL,"
+#     "  PRIMARY KEY (`id`)"
+#     ")")
 
-TABLES['questions'] = (
-    "CREATE TABLE `questions` ("
-    "  `id` int NOT NULL AUTO_INCREMENT UNIQUE,"
-    "  `question` varchar(1000) NOT NULL,"
-    "  `correct_answer` varchar(1000) NOT NULL,"
-    "  `wrong_answer1` varchar(1000) NOT NULL,"
-    "  `wrong_answer2` varchar(1000) NOT NULL,"
-    "  `wrong_answer3` varchar(1000) NOT NULL,"
-    "   PRIMARY KEY (`id`)"
-    ")")
+# TABLES['questions'] = (
+#     "CREATE TABLE `questions` ("
+#     "  `id` int NOT NULL AUTO_INCREMENT UNIQUE,"
+#     "  `question` varchar(1000) NOT NULL,"
+#     "  `correct_answer` varchar(1000) NOT NULL,"
+#     "  `wrong_answer1` varchar(1000) NOT NULL,"
+#     "  `wrong_answer2` varchar(1000) NOT NULL,"
+#     "  `wrong_answer3` varchar(1000) NOT NULL,"
+#     "   PRIMARY KEY (`id`)"
+#     ")")
 
-TABLES['quiz_questions'] = (
-    "CREATE TABLE `quiz_questions` ("
-    "  `quiz_id` int NOT NULL,"
-    "  `question_id` int NOT NULL"
-    ")")
+# TABLES['quiz_questions'] = (
+#     "CREATE TABLE `quiz_questions` ("
+#     "  `quiz_id` int NOT NULL,"
+#     "  `question_id` int NOT NULL"
+#     ")")
 
-TABLES['scores'] = (
-    "CREATE TABLE `scores` ("
-    "  `id` int NOT NULL AUTO_INCREMENT UNIQUE,"
-    "  `quiz_id` int NOT NULL,"
-    "  `test_taker` varchar(256) NOT NULL,"
-    "  `score` int NOT NULL,"
-    "  FOREIGN KEY (`quiz_id`) REFERENCES `quizes` (`id`)"
-    ")")
+# TABLES['scores'] = (
+#     "CREATE TABLE `scores` ("
+#     "  `id` int NOT NULL AUTO_INCREMENT UNIQUE,"
+#     "  `quiz_id` int NOT NULL,"
+#     "  `test_taker` varchar(256) NOT NULL,"
+#     "  `score` int NOT NULL,"
+#     "  FOREIGN KEY (`quiz_id`) REFERENCES `quizes` (`id`)"
+#     ")")
 
 #attempts table has been created
-TABLES['attempts'] = (
-    "CREATE TABLE `attempts` ("
-    "  `id` int NOT NULL AUTO_INCREMENT UNIQUE,"
-    "  `question_id` int NOT NULL,"
-    "  `score_id` int NOT NULL,"
-    "  `answer` varchar(1000) NOT NULL,"
-    "  FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`),"
-    "  FOREIGN KEY (`score_id`) REFERENCES `scores` (`id`)"
-    ")")
+# TABLES['attempts'] = (
+#     "CREATE TABLE `attempts` ("
+#     "  `id` int NOT NULL AUTO_INCREMENT UNIQUE,"
+#     "  `question_id` int NOT NULL,"
+#     "  `score_id` int NOT NULL,"
+#     "  `answer` varchar(1000) NOT NULL,"
+#     "  FOREIGN KEY (`question_id`) REFERENCES `questions` (`id`),"
+#     "  FOREIGN KEY (`score_id`) REFERENCES `scores` (`id`)"
+#     ")")
 
-database.cursor.execute("USE {}".format(DB_NAME))
+# database.cursor.execute("USE {}".format(DB_NAME))
 
-for table_name in TABLES:
-    table_description = TABLES[table_name]
-    try:
-        print("Creating table {}: ".format(table_name), end='')
-        database.cursor.execute(table_description)
-    except mysql.connector.Error as err:
-        if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
-            print("already exists.")
-        else:
-            print(err.msg)
-    else:
-        print("OK")
+# for table_name in TABLES:
+#     table_description = TABLES[table_name]
+#     try:
+#         print("Creating table {}: ".format(table_name), end='')
+#         database.cursor.execute(table_description)
+#     except mysql.connector.Error as err:
+#         if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
+#             print("already exists.")
+#         else:
+#             print(err.msg)
+#     else:
+#         print("OK")
 
 
 @app.route('/', defaults={'path': ''})
