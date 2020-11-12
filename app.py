@@ -30,6 +30,18 @@ DB_NAME = os.environ.get("P_Name")
 port = os.environ.get("P_Port")
 host = os.environ.get("P_Host")
 
+
+print('user')
+print(user)
+print('password')
+print(password)
+print('db name')
+print(DB_NAME)
+print('port')
+print(port)
+print('host')
+print(host)
+
 cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
 # cnx = mysql.connector.connect(user=f"{clearDBU}", password=f"{clearDBP}")
 cursor = cnx.cursor(buffered=True)
@@ -111,20 +123,20 @@ TABLES['attempts'] = (
     "  FOREIGN KEY (`score_id`) REFERENCES `scores` (`id`)"
     ")")
 
-database.cursor.execute("USE {}".format(DB_NAME))
+# database.cursor.execute("USE {}".format(DB_NAME))
 
-for table_name in TABLES:
-    table_description = TABLES[table_name]
-    try:
-        print("Creating table {}: ".format(table_name), end='')
-        database.cursor.execute(table_description)
-    except mysql.connector.Error as err:
-        if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
-            print("already exists.")
-        else:
-            print(err.msg)
-    else:
-        print("OK")
+# for table_name in TABLES:
+#     table_description = TABLES[table_name]
+#     try:
+#         print("Creating table {}: ".format(table_name), end='')
+#         database.cursor.execute(table_description)
+#     except mysql.connector.Error as err:
+#         if err.errno == errorcode.ER_TABLE_EXISTS_ERROR:
+#             print("already exists.")
+#         else:
+#             print(err.msg)
+#     else:
+        # print("OK")
 
 
 @app.route('/', defaults={'path': ''})
