@@ -12,11 +12,11 @@ import threading
 
 load_dotenv()
 
-user = os.environ.get("AWS_USERNAME")
-password = os.environ.get("AWS_PASSWORD")
-DB_NAME = os.environ.get("AWS_DB_NAME")
+# user = os.environ.get("AWS_USERNAME")
+# password = os.environ.get("AWS_PASSWORD")
+# DB_NAME = os.environ.get("AWS_DB_NAME")
 port = os.environ.get("AWS_PORT")
-host = os.environ.get("AWS_HOST")
+# host = os.environ.get("AWS_HOST")
 
 
 # clearDBU = os.environ.get("ClearDB_User")
@@ -24,11 +24,11 @@ host = os.environ.get("AWS_HOST")
 # clearDBN = os.environ.get("ClearDB_Name")
 # clearDBH = os.environ.get("ClearDB_Host")
 
-# user = os.environ.get("P_User")
-# password = os.environ.get("P_Password")
-# DB_NAME = os.environ.get("P_Name")
+user = os.environ.get("P_User")
+password = os.environ.get("P_Password")
+DB_NAME = os.environ.get("P_Name")
 # port = os.environ.get("P_Port")
-# host = os.environ.get("P_Host")
+host = os.environ.get("P_Host")
 
 cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
 # cnx = mysql.connector.connect(user=f"{clearDBU}", password=f"{clearDBP}")
