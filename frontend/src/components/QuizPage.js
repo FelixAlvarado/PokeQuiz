@@ -29,6 +29,9 @@ export default function QuizPage() {
     }
   })
 
+  const justCreated = (quiz.title && location.state && location.state.justCreated) ? true : false
+
+
   console.log('here is the qui before checking')
   console.log(quiz)
 
@@ -71,15 +74,16 @@ export default function QuizPage() {
 useEffect(() => {
 
   if(onLoad.current){
-  
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
     if (navigator.userAgent.toLowerCase().indexOf('safari') > -1 && !(navigator.userAgent.toLowerCase().indexOf('chrome') > -1) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
       setMarginMod('margin-mod')
     }
-    document.body.scrollTop = 0; 
+    document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-    dispatch(getQuiz(id,quiz.scores))
+    if(!justCreated) dispatch(getQuiz(id,quiz.scores))
     setPicture(pokePicture())
-    if(location.state && location.state.justCreated){
+    if(justCreated){
       if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
         alert("Your quiz was successfully created! Share this page's link with your friends to see how they score!")
       }else{
@@ -99,7 +103,7 @@ useEffect(() => {
           <div className="page-top-right">
             <div className="page-title"><div>{title}</div></div>
               <div className="link-button-holder">
-              <Link to={{pathname:`/test/${id}`,state:{scores:quiz.scores}}}  className="quiz-button">Take Quiz</Link>
+              <Link to={{pathname:`/test/${id}`,state:{justCreated:justCreated}}}  className="quiz-button">Take Quiz</Link>
               <div className={`page-link-holder ${marginMod}`}>
                 <input id="currentLink" defaultValue={window.location.href}/>
                 <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />
@@ -114,5 +118,5 @@ useEffect(() => {
     </div>
 
 
-  );    
+  );
 }

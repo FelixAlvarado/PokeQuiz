@@ -27,6 +27,9 @@ export default function TestPage() {
         }
     })
 
+    const justCreated = (quiz.questions && location.state && location.state.justCreated) ? true : false
+
+
     // if(location.state && location.state.scores){
     //   quiz = Object.assign({},quiz)
     //   quiz.scores = mergeScores(quiz,{scores:location.state.scores})
@@ -107,7 +110,7 @@ export default function TestPage() {
 
     useEffect(() => {
       if(onLoad.current){
-        dispatch(getQuestions(quizId))
+      if(!justCreated) dispatch(getQuestions(quizId))
         onLoad.current = false;
       }
     },[dispatch,quizId]);
