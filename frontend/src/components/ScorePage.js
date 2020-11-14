@@ -76,7 +76,7 @@ export default function ScorePage(scores, props) {
           <div className="page-top-right">
             <div className="page-title"><div>{title}</div></div>
               <div className="link-button-holder">
-              <Link to={{pathname:`/test/${quizId}`}}  className="quiz-button">Take Quiz</Link>
+              <Link to={{pathname:`/quiz/${quizId}`}}  className="quiz-button">Quiz Page</Link>
               <div className={`page-link-holder ${marginMod}`}>
                 <input id="currentLink" defaultValue={window.location.href}/>
                 <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />
@@ -91,7 +91,7 @@ export default function ScorePage(scores, props) {
           <div className="page-top-right">
             <div className="page-title"><div>{title}</div></div>
               <div className="link-button-holder">
-              <Link to={{pathname:`/test/${quizId}`}}  className="quiz-button">Take Quiz</Link>
+              <Link to={{pathname:`/quiz/${quizId}`}}  className="quiz-button">Quiz Page</Link>
               <div className={`page-link-holder ${marginMod}`}>
                 <input id="currentLink" defaultValue={window.location.href}/>
                 <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />
