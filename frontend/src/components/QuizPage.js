@@ -23,7 +23,9 @@ export default function QuizPage() {
   let [alertText, setAlertText] = useState('');
   let [marginMod, setMarginMod] = useState('');
   let scores = useSelector(state => state.scores)
+  console.log('here are the raw scores', scores)
   let quizScores = organizeScores(scores, id)
+  console.log('here are the quiz scores', quizScores)
 
   let quiz = useSelector(state => {
     if(state.quizes[`${id}`]){
