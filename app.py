@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, send_from_directory
-from queries import fetch_quizes, fetch_quiz, fetch_attempt, fetch_questions
+from queries import fetch_quizes, fetch_quiz, fetch_attempt, fetch_questions, fetch_scores
 from create import create_quiz, create_score_attempts
 import mysql.connector
 from mysql.connector import errorcode
@@ -35,7 +35,8 @@ host = os.environ.get("AWS_HOST")
 cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
 # cnx = mysql.connector.connect(user=f"{user}", password=f"{password}", host=f"{host}")
 cursor = cnx.cursor(buffered=True)
-cursor.execute("USE {}".format(DB_NAME))
+cursor.execute("USE {}".format(DB_NAME)) 
+
 
 
 class Database:
@@ -173,6 +174,12 @@ def score():
     attempts = data['attempts']
     score = data['score']
     return create_score_attempts(database.cnx, database.cursor,attempts, score)
+
+@app.route('/scores', methods=["GET"])
+def scores():
+    print('made it to scores route')
+    quiz_id = request.args.get('id')
+    return fetch_scores(database.cursor,quiz_id)
 
 @app.route('/test_create', methods=["GET"])
 def test_create():

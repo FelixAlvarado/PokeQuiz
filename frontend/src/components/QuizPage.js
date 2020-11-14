@@ -1,8 +1,10 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { getQuiz  } from '../app/quizesSlice.js'
+import { getScores,addScore } from '../app/scoresSlice.js'
 import { useSelector, useDispatch } from 'react-redux';
 import '../style/quizpage.css'
-import {pokePicture, mergeScores} from '../utility/util'
+import {pokePicture, organizeScores} from '../utility/util'
+import {fetchScores} from '../utility/fetch'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
 import ScoreList from './ScoreList'
@@ -20,6 +22,8 @@ export default function QuizPage() {
   let [showAlert, setShowAlert] = useState(false)
   let [alertText, setAlertText] = useState('');
   let [marginMod, setMarginMod] = useState('');
+  let scores = useSelector(state => state.scores)
+  let quizScores = organizeScores(scores, id)
 
   let quiz = useSelector(state => {
     if(state.quizes[`${id}`]){
@@ -30,17 +34,6 @@ export default function QuizPage() {
   })
 
   const justCreated = (quiz.title && location.state && location.state.justCreated) ? true : false
-
-
-  console.log('here is the qui before checking')
-  console.log(quiz)
-
-  // if(location.state && location.state.scores){
-  //   quiz = Object.assign({},quiz)
-  //   quiz.scores = mergeScores(quiz,{scores:location.state.scores})
-  // }
-
-  console.log('here is the quiz page quiz', quiz)
 
   let title = quiz ? quiz.title : ''
 
@@ -81,7 +74,13 @@ useEffect(() => {
     }
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-    if(!justCreated) dispatch(getQuiz(id,quiz.scores))
+    if(!justCreated){
+        fetchScores(id).then(newScores =>{
+          dispatch(addScore(newScores))
+          dispatch(getQuiz(id))
+        })
+ 
+      }
     setPicture(pokePicture())
     if(justCreated){
       if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
@@ -113,7 +112,7 @@ useEffect(() => {
       </div>
       <Link to={`/test/${id}`} className="quiz-button2"><span>Take Quiz</span></Link>
       <button onClick={(e) => handleClick(e)} className="copy-link">Copy Link</button>
-      <ScoreList scores={quiz.scores} quizId={quiz.id} />
+      <ScoreList scores={quizScores} quizId={quiz.id} />
       {handleAlert()}
     </div>
 

@@ -18,8 +18,8 @@ export const fetchQuizes = () => {
     })
 }
 
-export const fetchQuiz = (id,scores) => {
-    return axios.post(`${host}/quiz`,{id:id,scores:scores}).then(response =>{
+export const fetchQuiz = (id) => {
+    return axios.post(`${host}/quiz`,{id:id}).then(response =>{
         return response.data.quiz
     }).catch(error =>{
         console.log('error occurred on server side when attempting to fetch questions', error)
@@ -39,6 +39,16 @@ export const fetchQuestions = (id) => {
         return response.data
     }).catch(error =>{
         console.log('error occurred on server side when attempting to fetch questions', error)
+    })
+}
+
+export const fetchScores = (id) => {
+    console.log('about to fetch scores with thi quiz id', id)
+    return axios.get(`${host}/scores?id=${id}`).then(response =>{
+        console.log('got this response from fetch scores', response)
+        return response.data
+    }).catch(error =>{
+        console.log('error occurred on server side when attempting to fetch scores', error)
     })
 }
 

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import {fetchQuizes, fetchQuiz, fetchQuizAttempt, fetchQuestions} from '../utility/fetch'
+// import store from './store'
 
 export const getQuizes = createAsyncThunk(
     'quiz/fetchQuizesStatus',
@@ -13,8 +14,8 @@ export const getQuizes = createAsyncThunk(
   //fetches quiz data for quiz page
   export const getQuiz = createAsyncThunk(
     'quiz/fetchQuizStatus',
-    async (id,scores) => {
-      const response = await fetchQuiz(id,scores)
+    async (id) => {
+      const response = await fetchQuiz(id)
       return response
     
     }     
@@ -46,7 +47,6 @@ export const quizesSlice = createSlice({
   name: 'quizes',
   initialState: {},
         reducers:{addQuiz: (state, action) => {
-          console.log('adding new quiz', action.payload)
           Object.assign(state,action.payload)
         }},
         extraReducers:{
@@ -60,7 +60,6 @@ export const quizesSlice = createSlice({
            Object.assign(state,action.payload)
     },
     [getQuestions.fulfilled]: (state, action) => {
-      console.log('here is the action',action)      
       let newQuiz = Object.values(action.payload)[0]
       if(newQuiz && newQuiz.title && newQuiz.questions){
         Object.assign(state,action.payload)

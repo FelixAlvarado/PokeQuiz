@@ -2,6 +2,7 @@ import React,{ useState, useRef, useEffect } from 'react';
 import '../style/scorepage.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { getQuestions, addQuiz  } from '../app/quizesSlice.js'
+import { addScore  } from '../app/scoresSlice.js'
 import {gradeQuiz, mergeScores} from '../utility/util'
 import {Redirect, useLocation} from "react-router-dom";
 import '../style/createpage.css'
@@ -58,8 +59,11 @@ export default function TestPage() {
         //  console.log('here are the new quiz scores after pressing the submit button', newQuiz.scores)
         //  let stateObject = {}
         //  stateObject[`${quizId}`] = newQuiz
-         dispatch(addQuiz(response.quiz))
-         setQuizSubmitted(newObject)
+        let scoreObject = {}
+        scoreObject[`${response.score_id}`] = [response.score_id,quizId,name,gradeQuiz(quiz.questions, attempts)]
+        dispatch(addScore(scoreObject))
+        dispatch(addQuiz(response.quiz))
+        setQuizSubmitted(newObject)
        })
        .catch((error) =>{
         console.log(error)
@@ -103,7 +107,7 @@ export default function TestPage() {
     function handleRedirect(){
       if(quizSubmitted.boolean){
         let stateScores = (location.state && location.state.scores) ? location.state.scores : []
-        return <Redirect to={{pathname:`/score/${quizSubmitted.scoreId}?quiz=${quizId}`,state:{justScored:true,score:gradeQuiz(quiz.questions, attempts),scores:stateScores}}}/>
+        return <Redirect to={{pathname:`/score/${quizSubmitted.scoreId}?quiz=${quizId}`,state:{justScored:true,score:gradeQuiz(quiz.questions,attempts)}}}/>
       }
     }
 

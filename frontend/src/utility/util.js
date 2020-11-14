@@ -59,3 +59,13 @@ export const mergeScores = (oldQuiz, newQuiz) => {
   
   return scores
 };
+
+export const organizeScores = (scores, id) => {
+  let  result = []
+  Object.values(scores).forEach((score) =>{
+    if(id == score[1]) result.push(score)
+  })
+
+  return result
+
+ }
