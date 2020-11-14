@@ -69,6 +69,9 @@
 .quiz-button2 {
   display: none; }
 
+.none {
+  display: none; }
+
 .quiz-button {
   height: 41px;
   width: 95%;

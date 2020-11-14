@@ -121,3 +121,24 @@ def create_score_attempts(cnx,cursor, attempts,score):
     quiz_copy["scores"] = [scoreArray]
 
     return {"score_id":score_id,"quiz":{f"{quiz_copy['id']}":quiz_copy}}
+
+def delete_quiz(cnx,cursor,quiz_id):
+
+    cursor.execute(f"SELECT * from scores WHERE quiz_id = {quiz_id}")
+
+    score_ids = []
+
+    for score in cursor:
+        print(score)
+        score_ids.append(score[0])
+    
+    for id in score_ids:
+        cursor.execute(f"DELETE from attempts WHERE score_id = {id}")
+        cnx.commit()      
+        cursor.execute(f"DELETE from scores WHERE id = {id}")
+        cnx.commit()
+
+    cursor.execute(f"DELETE from quizes WHERE id = {quiz_id}")
+    cnx.commit()
+    
+    return 'quiz deleted'

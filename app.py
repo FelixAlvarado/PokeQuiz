@@ -1,6 +1,6 @@
 from flask import Flask, request, render_template, send_from_directory
 from queries import fetch_quizes, fetch_quiz, fetch_attempt, fetch_questions, fetch_scores
-from create import create_quiz, create_score_attempts
+from create import create_quiz, create_score_attempts, delete_quiz
 import mysql.connector
 from mysql.connector import errorcode
 from dotenv import load_dotenv
@@ -35,7 +35,7 @@ host = os.environ.get("AWS_HOST")
 cnx = mysql.connector.connect(user=f"{user}", password=f"{password}",database=f"{DB_NAME}", host=f"{host}", port=f"{port}")
 # cnx = mysql.connector.connect(user=f"{user}", password=f"{password}", host=f"{host}")
 cursor = cnx.cursor(buffered=True)
-cursor.execute("USE {}".format(DB_NAME)) 
+cursor.execute("USE {}".format(DB_NAME))
 
 
 
@@ -180,6 +180,11 @@ def scores():
     print('made it to scores route')
     quiz_id = request.args.get('id')
     return fetch_scores(database.cursor,quiz_id)
+
+@app.route('/delete', methods=["GET"])
+def delete():
+    quiz_id = request.args.get('id')
+    return delete_quiz(database.cnx,database.cursor, quiz_id)
 
 @app.route('/test_create', methods=["GET"])
 def test_create():

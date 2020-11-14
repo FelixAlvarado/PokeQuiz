@@ -4,6 +4,7 @@ import { getScores,addScore } from '../app/scoresSlice.js'
 import { useSelector, useDispatch } from 'react-redux';
 import '../style/quizpage.css'
 import {pokePicture, organizeScores} from '../utility/util'
+import {deleteQuiz} from '../utility/fetch'
 import {fetchScores} from '../utility/fetch'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCopy, faCheckCircle } from '@fortawesome/free-solid-svg-icons'
@@ -23,9 +24,12 @@ export default function QuizPage() {
   let [alertText, setAlertText] = useState('');
   let [marginMod, setMarginMod] = useState('');
   let scores = useSelector(state => state.scores)
-  console.log('here are the raw scores', scores)
   let quizScores = organizeScores(scores, id)
-  console.log('here are the quiz scores', quizScores)
+  let pass = window.location.href.split('/')[5]
+  console.log('here is the passs', pass)
+  console.log('here is the env pass', process.env.pass)
+
+  
 
   let quiz = useSelector(state => {
     if(state.quizes[`${id}`]){
@@ -100,6 +104,13 @@ export default function QuizPage() {
     }
   }
 
+  function handleClick(e){
+    e.preventDefault()
+    deleteQuiz(id).then(response =>{
+    }).catch(error => console.log('error occurred while deleted quiz', error))
+  }
+
+
 
 useEffect(() => {
 
@@ -135,6 +146,7 @@ useEffect(() => {
 
     <div className="page-holder">
       {topSection()}
+      <button className={pass === process.env.pass ? "none" : ''} onClick={e => handleClick(e)}>delete quiz</button>
       <Link to={`/test/${id}`} className="quiz-button2"><span>Take Quiz</span></Link>
       <button onClick={(e) => handleClick(e)} className="copy-link">Copy Link</button>
       <ScoreList scores={quizScores} quizId={quiz.id} />

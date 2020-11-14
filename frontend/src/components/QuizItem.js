@@ -2,10 +2,13 @@ import React, { useEffect, useState, useRef} from 'react';
 import '../style/quizesview.css'
 import {pokePicture, averageScore} from '../utility/util'
 import {Link} from "react-router-dom";
+ 
 
 export default function QuizItem({quiz}) {
   const [picture, setPicture] = useState('')
   const onLoad = useRef(true)
+
+
 
   function handleImage(){
     if (picture.length > 0){

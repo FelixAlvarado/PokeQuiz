@@ -16,6 +16,10 @@
     display: none;
 }
 
+.none {
+    display:none;
+}
+
 .quiz-button{
     @include top-section-button(41px,7px, 95%);
     text-align: center;

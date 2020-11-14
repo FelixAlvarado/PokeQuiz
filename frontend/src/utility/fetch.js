@@ -52,6 +52,14 @@ export const fetchScores = (id) => {
     })
 }
 
+export const deleteQuiz = (id) => {
+    return axios.get(`${host}/delete?id=${id}`).then(response =>{
+        return response.data
+    }).catch(error =>{
+        console.log('error occurred on server side when attempting to fetch scores', error)
+    })
+}
+
 
 
   
