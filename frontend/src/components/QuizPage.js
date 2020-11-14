@@ -65,6 +65,41 @@ export default function QuizPage() {
     }
   }
 
+  function topSection() {
+    if(/chrome/i.test( navigator.userAgent )){
+      return( 
+    <div className="page-top-section">
+      {handleImage()}
+        <div className="page-top-right">
+          <div className="page-title"><div>{title}</div></div>
+            <div className="link-button-holder">
+            <Link to={{pathname:`/test/${id}`,state:{justCreated:justCreated}}}  className="quiz-button">Take Quiz</Link>
+            <div className={`page-link-holder ${marginMod}`}>
+              <input id="currentLink" defaultValue={window.location.href}/>
+              <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />
+            </div>
+          </div>
+        </div>
+    </div>)
+    }else {
+      return(
+    <div className="page-top-section-grid">
+      {handleImage()}
+        <div className="page-top-right">
+          <div className="page-title"><div>{title}</div></div>
+            <div className="link-button-holder">
+            <Link to={{pathname:`/test/${id}`,state:{justCreated:justCreated}}}  className="quiz-button">Take Quiz</Link>
+            <div className={`page-link-holder ${marginMod}`}>
+              <input id="currentLink" defaultValue={window.location.href}/>
+              <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />
+            </div>
+          </div>
+        </div>
+    </div>
+      )
+    }
+  }
+
 
 useEffect(() => {
 
@@ -99,19 +134,7 @@ useEffect(() => {
   return (
 
     <div className="page-holder">
-      <div className="page-top-section">
-        {handleImage()}
-          <div className="page-top-right">
-            <div className="page-title"><div>{title}</div></div>
-              <div className="link-button-holder">
-              <Link to={{pathname:`/test/${id}`,state:{justCreated:justCreated}}}  className="quiz-button">Take Quiz</Link>
-              <div className={`page-link-holder ${marginMod}`}>
-                <input id="currentLink" defaultValue={window.location.href}/>
-                <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />
-              </div>
-            </div>
-          </div>
-      </div>
+      {topSection()}
       <Link to={`/test/${id}`} className="quiz-button2"><span>Take Quiz</span></Link>
       <button onClick={(e) => handleClick(e)} className="copy-link">Copy Link</button>
       <ScoreList scores={quizScores} quizId={quiz.id} />

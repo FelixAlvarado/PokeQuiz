@@ -6,7 +6,7 @@
 
 .page-top-section {
   border: black solid 2px;
-  display: grid;
+  display: flex;
   background-color: rgba(255, 255, 255, 0.75);
   width: 100%; }
   .page-top-section .page-picture {
@@ -42,6 +42,24 @@
 .submit:hover {
   cursor: pointer;
   background-color: #D5F5E3; }
+
+.page-top-section-grid {
+  border: black solid 2px;
+  display: grid;
+  grid-template-columns: 12% 88%;
+  grid-template-rows: 100%;
+  background-color: rgba(255, 255, 255, 0.75);
+  width: 100%; }
+  .page-top-section-grid .page-picture {
+    width: 100px;
+    height: 100px;
+    grid-column: 1;
+    margin: auto; }
+  .page-top-section-grid .page-top-right {
+    grid-column: 2;
+    justify-content: space-evenly;
+    display: flex;
+    flex-grow: 3; }
 
 .test-title div {
   position: relative;

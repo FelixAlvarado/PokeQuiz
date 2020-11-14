@@ -29,6 +29,8 @@ export default function ScorePage(scores, props) {
         return {scores:[]}
       }
     })
+    let title = quiz ? quiz.title : ''
+
 
     // if(location.state && location.state.scores){
     //   quiz = Object.assign({},quiz)
@@ -66,6 +68,42 @@ export default function ScorePage(scores, props) {
       }
     }
 
+    function topSection() {
+      if(/chrome/i.test( navigator.userAgent )){
+        return( 
+      <div className="page-top-section-grid">
+        {handleImage()}
+          <div className="page-top-right">
+            <div className="page-title"><div>{title}</div></div>
+              <div className="link-button-holder">
+              <Link to={{pathname:`/test/${quizId}`}}  className="quiz-button">Take Quiz</Link>
+              <div className={`page-link-holder ${marginMod}`}>
+                <input id="currentLink" defaultValue={window.location.href}/>
+                <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />
+              </div>
+            </div>
+          </div>
+      </div>)
+      }else {
+        return(
+      <div className="page-top-section-grid">
+        {handleImage()}
+          <div className="page-top-right">
+            <div className="page-title"><div>{title}</div></div>
+              <div className="link-button-holder">
+              <Link to={{pathname:`/test/${quizId}`}}  className="quiz-button">Take Quiz</Link>
+              <div className={`page-link-holder ${marginMod}`}>
+                <input id="currentLink" defaultValue={window.location.href}/>
+                <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />
+              </div>
+            </div>
+          </div>
+      </div>
+        )
+      }
+    }
+  
+
     useEffect(() => {
       if(onLoad.current){
         if (navigator.userAgent.toLowerCase().indexOf('safari') > -1 && !(navigator.userAgent.toLowerCase().indexOf('chrome') > -1) && !/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
@@ -98,19 +136,7 @@ export default function ScorePage(scores, props) {
   return (
   
 <div className="page-holder">
-      <div className="page-top-section">
-        {handleImage()}
-          <div className="page-top-right">
-            <div className="page-title"><div>{quiz.title}</div></div>
-              <div className="link-button-holder">
-              <Link className="quiz-button" state={{scores:quiz.scores}} to={`/quiz/${quizId}`}>Quiz Page</Link>
-              <div className={`page-link-holder ${marginMod}`}>
-                <input id="currentLink" defaultValue={window.location.href}/>
-                <FontAwesomeIcon onClick={(e) => handleClick(e)} className="copy-icon" icon={copyIcon.icon} size="lg" />
-              </div>
-            </div>
-          </div>
-      </div>
+      {topSection()}
       <Link className="quiz-button2" to={`/quiz/${quizId}`}><span>Quiz Page</span></Link>
       <button onClick={(e) => handleClick(e)} className="copy-link">Copy Link</button>
       <div className="score-info-holder">
