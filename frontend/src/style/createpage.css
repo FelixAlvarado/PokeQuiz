@@ -62,8 +62,8 @@
     flex-grow: 3; }
 
 @media screen and (max-width: 500px) {
-  .page-top-section-grid .page-picture {
-    opacity: .7; } }
+  .page-top-section-grid .picture-opacity {
+    opacity: .70; } }
 .quiz-form {
   background-color: rgba(255, 255, 255, 0.75);
   border: solid black 2px; }

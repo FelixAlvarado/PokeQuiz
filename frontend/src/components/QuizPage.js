@@ -41,12 +41,13 @@ export default function QuizPage() {
 
   const justCreated = (quiz.title && location.state && location.state.justCreated) ? true : false
 
-  let title = quiz ? quiz.title : ''
+  let title = (quiz && quiz.title) ? quiz.title : ''
+  let pictureClass = title.length > 12 ? 'picture-opacity' : ''
 
   function handleImage(){
     if (picture.length > 0){
       return(
-        <img alt="pokemon" src={picture} className="page-picture" style={{width: '100px'}}/>      )
+        <img alt="pokemon" src={picture} className={`page-picture ${pictureClass}`} style={{width: '100px'}}/>      )
     } else {
       return(
         <div className="page-picture"></div>
@@ -90,7 +91,8 @@ export default function QuizPage() {
     <div className="page-top-section-grid">
       {handleImage()}
         <div className="page-top-right">
-          <div className="page-title"><div>{title}</div></div>
+          {/* <div className="page-title"><div>{title}</div></div> */}
+            <div className="page-title"><div>{title}</div></div>
             <div className="link-button-holder">
             <Link to={{pathname:`/test/${id}`,state:{justCreated:justCreated}}}  className="quiz-button">Take Quiz</Link>
             <div className={`page-link-holder ${marginMod}`}>
