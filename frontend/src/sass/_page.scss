@@ -84,6 +84,7 @@
         height: 95px;
         grid-column: 1;
         margin:auto;
+        // opacity: .9;
     }
 
     .page-top-right{
@@ -94,3 +95,14 @@
      }
 
 }
+
+@media screen and (max-width: 500px) {
+
+.page-top-section-grid{
+    .page-picture{
+        opacity: .7;
+    }
+}
+
+
+  }

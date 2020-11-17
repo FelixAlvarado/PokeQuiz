@@ -61,6 +61,9 @@
     display: flex;
     flex-grow: 3; }
 
+@media screen and (max-width: 500px) {
+  .page-top-section-grid .page-picture {
+    opacity: .7; } }
 .page-title div, .page-link-holder input, .copy-icon, .copy-icon2 {
   position: relative;
   top: 50%;
