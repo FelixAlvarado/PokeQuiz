@@ -26,10 +26,6 @@ export default function QuizPage() {
   let scores = useSelector(state => state.scores)
   let quizScores = organizeScores(scores, id)
   let pass = window.location.href.split('/')[5]
-  console.log('here is the passs', pass)
-  console.log('here is the env pass', process.env.pass)
-
-  
 
   let quiz = useSelector(state => {
     if(state.quizes[`${id}`]){

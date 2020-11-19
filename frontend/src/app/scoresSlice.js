@@ -16,12 +16,10 @@ export const scoresSlice = createSlice({
   name: 'scores',
   initialState: {},
         reducers:{addScore: (state, action) => {
-          console.log('here is the new score being added', action.payload)
           Object.assign(state,action.payload)
         }},
         extraReducers:{
         [getScores.fulfilled]: (state, action) => {
-          console.log('here are the new score being added', action.payload)
           Object.assign(state,action.payload)
         }
   },

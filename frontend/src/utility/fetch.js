@@ -43,9 +43,7 @@ export const fetchQuestions = (id) => {
 }
 
 export const fetchScores = (id) => {
-    console.log('about to fetch scores with thi quiz id', id)
     return axios.get(`${host}/scores?id=${id}`).then(response =>{
-        console.log('got this response from fetch scores', response)
         return response.data
     }).catch(error =>{
         console.log('error occurred on server side when attempting to fetch scores', error)

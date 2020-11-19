@@ -30,14 +30,6 @@ export default function TestPage() {
 
     const justCreated = (quiz.questions && location.state && location.state.justCreated) ? true : false
 
-
-    // if(location.state && location.state.scores){
-    //   quiz = Object.assign({},quiz)
-    //   quiz.scores = mergeScores(quiz,{scores:location.state.scores})
-    // }
-
-    console.log('here is the test page quiz', quiz)
-    
     function handleSubmit()  {
       let unfilled = []
       if (name.length === 0) unfilled.push('Please enter your name before submitting your answers')
@@ -49,16 +41,6 @@ export default function TestPage() {
          let newObject = Object.assign({}, quizSubmitted)
          newObject.scoreId = response.score_id 
          newObject.boolean = true
-         console.log('here is the quiz returns from the backend',response.quiz)
-        //  let newQuiz = Object.assign({}, response.quiz)
-        //  newQuiz.questions = quiz.questions
-        //  if (!newQuiz.scores) newQuiz.scores = []
-        //  console.log('here are the new quiz scores', newQuiz.scores)
-        //  console.log('here are the quiz scores', quiz.scores)
-        //  newQuiz.scores.concat(quiz.scores)
-        //  console.log('here are the new quiz scores after pressing the submit button', newQuiz.scores)
-        //  let stateObject = {}
-        //  stateObject[`${quizId}`] = newQuiz
         let scoreObject = {}
         scoreObject[`${response.score_id}`] = [response.score_id,quizId,name,gradeQuiz(quiz.questions, attempts)]
         dispatch(addScore(scoreObject))

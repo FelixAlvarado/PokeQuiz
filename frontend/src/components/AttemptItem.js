@@ -16,8 +16,6 @@ export default function AttemptItem({attempt, question}) {
     }
 
     function handleAnswer(wrongAnswer){
-        console.log('here is the wrong answer', wrongAnswer)
-        console.log('here is the wrong answer length', wrongAnswer.length)
         if(wrongAnswer !== attempt.answer || (wrongAnswer === attempt.answer && wrongAnswer === question.correct_answer)){
             return <div>{wrongAnswer}</div>
         } else {
@@ -31,8 +29,6 @@ export default function AttemptItem({attempt, question}) {
     <div className="question">
         {handleIcon()}<div>{question.question}</div>
     </div>
-        {/* {console.log('here is the correct answer', question.correct_answer)}
-        {console.log('here is the correct answer length', question.correct_answer.length)} */}
         <mark className="correct">{question.correct_answer}</mark>
         {handleAnswer(question.wrong_answer1)}
         {handleAnswer(question.wrong_answer2)}

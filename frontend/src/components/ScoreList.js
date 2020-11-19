@@ -48,7 +48,6 @@ export default function ScoreList({scores, quizId}) {
 
 
     if (scores) {
-        console.log('here are the scores in quiz page', scores)
         let sortedScores = [...scores].sort((a,b) => a[0] - b[0])
         scoreList = sortedScores.map((score,i)=>{
             return (

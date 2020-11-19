@@ -6,16 +6,10 @@ def fetch_quizes(cursor):
     search_string = ""
     count = 0
 
-    print("about to fetch quizes")
-
-
     try:
         cursor.execute("SELECT * FROM quizes")
     except:
         cursor.execute("SELECT * FROM quizes")
-
-    print("made it past fetching quizes")
-
 
 #tuple returned is (id, title)
     for quiz in cursor:
@@ -35,12 +29,9 @@ def fetch_quizes(cursor):
     for score in cursor:
         result['quizes'][f"{score[1]}"]['scores'].append([score[0],score[1],score[2],score[3]])
 
-    print('here is the result', result)
     return result
 
 def fetch_quiz(cursor, id):
-    # print('here are the scores being passed from the frontend', scores)
-    print('here is the quiz id', id)
     try:
         cursor.execute(f"SELECT * FROM quizes WHERE id = {id}")
     except:
@@ -50,26 +41,6 @@ def fetch_quiz(cursor, id):
     for quiz in cursor:
         result['quiz'][f"{quiz[0]}"] = {'id':quiz[0],'title':quiz[1]}
 
-    # print('this is the id being used to fetch the score', id)
-    # try:
-    #     cursor.execute(f"SELECT * FROM scores WHERE quiz_id = {id}")
-    # except:
-    #     cursor.execute(f"SELECT * FROM scores WHERE quiz_id = {id}")
-    #
-    # print('here is the last statement')
-    # print(cursor.statement)
-    #
-    # for score in cursor:
-    #     print('here is the score information', score)
-    #     print('here is the current result before appending', result)
-    #     print('here is the score array in result', result['quiz'][f"{score[1]}"]['scores'])
-    #     result['quiz'][f"{score[1]}"]['scores'].append([score[0],score[1],score[2],score[3]])
-    # if(scores):
-    #     if(not result['quiz'][f"{id}"]["scores"] and scores.length > 0):
-    #         result['quiz'][f"{score[1]}"]['scores'].append([scores])
-
-    print('here is the result')
-    print(result)
     return result
 
 def fetch_attempt(cursor,id):
@@ -87,8 +58,6 @@ def fetch_attempt(cursor,id):
     for score in cursor:
         scores = [score[0],score[1],score[2],score[3]]
         quiz_id = score[1]
-
-    print('here is the quiz id', quiz_id)
 
     result[f"{quiz_id}"] = {}
     result[f"{quiz_id}"]["scores"] = [scores]
@@ -169,14 +138,9 @@ def fetch_questions(cursor, quiz_id):
 
     result[f"{quiz_id}"]["id"] = quiz_id
 
-    print('here is the result', result)
-
     return result
 
 def fetch_scores(cursor, quiz_id):
-
-    print('usin gthis quiz id to fetch scores')
-    print(quiz_id)
 
     cursor.execute(f"SELECT * FROM scores WHERE quiz_id = {quiz_id}")
 
@@ -184,8 +148,5 @@ def fetch_scores(cursor, quiz_id):
 
     for score in cursor:
         result[f"{score[0]}"] = [score[0],score[1],score[2],score[3]]
-
-    print('here is the result being returned for fetching scores')
-    print(result)
 
     return result

@@ -52,7 +52,6 @@ def create_quiz(cnx, cursor, title, questions):
     for question in questions:
         question_data = (question["question"], question["correctAnswer"], question["wrongAnswer1"], question["wrongAnswer2"], question["wrongAnswer3"])
         question_id = create_question(cursor, cnx, question_format, question_data, junction_format, quiz_id)
-        print('here is the question id', question_id)
         result["questions"][f"{question_id}"] = {"id":question_id,"question":question["question"],"correct_answer":question["correctAnswer"],"wrong_answer1":question["wrongAnswer1"] ,"wrongAnswer2":question["wrongAnswer2"],"wrong_answer3":question["wrongAnswer3"]}
         answers = []
         answers.append(question["correctAnswer"])
@@ -65,8 +64,6 @@ def create_quiz(cnx, cursor, title, questions):
     return result
 
 def create_score_attempts(cnx,cursor, attempts,score):
-
-    print('here is the score', score)
 
     scoreArray = []
 
@@ -111,9 +108,6 @@ def create_score_attempts(cnx,cursor, attempts,score):
 
         new_attempts[f"{attempt_id}"] = {"question_id": attempt["questionId"], "score_id": score_id, "answer":attempt["answer"]}
 
-        print('here are the attempts')
-        print(new_attempts)
-
     quiz_copy = copy.deepcopy(score["quiz"])
 
     quiz_copy["attempts"] = new_attempts
@@ -129,7 +123,6 @@ def delete_quiz(cnx,cursor,quiz_id):
     score_ids = []
 
     for score in cursor:
-        print(score)
         score_ids.append(score[0])
     
     for id in score_ids:

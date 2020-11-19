@@ -36,8 +36,6 @@ export const gradeQuiz = (questions, answers) => {
 }
 
 export const mergeScores = (oldQuiz, newQuiz) => {
-  console.log('here is the old quiz', oldQuiz)
-  console.log('here is the new quiz', newQuiz)
 
   let scores = []
   let keys = {}
@@ -53,9 +51,6 @@ export const mergeScores = (oldQuiz, newQuiz) => {
       scores.push(score)
     }
   })
-
-  console.log('here is the result from utility')
-  console.log(scores)
   
   return scores
 };
