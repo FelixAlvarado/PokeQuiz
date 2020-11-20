@@ -19,8 +19,7 @@ PokeQuiz is a pokemon themed sites that allows users to make quizes and share th
 
 ### Multibrowser Functionality 
 
-[![quizPage.gif](https://i.postimg.cc/jdkY1d4P/quizPage.gif)](https://postimg.cc/GHYf8RNm)
-
+![Text](https://i.postimg.cc/jdkY1d4P/quizPage.gif)
 
 
 
