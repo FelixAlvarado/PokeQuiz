@@ -14,14 +14,25 @@ PokeQuiz is a pokemon themed sites that allows users to make quizes and share th
 * Axios
 * Vanilla DOM
 * Pokemon API
+* SASS
 
-# Key Features  
+# Features  
 
-### Multibrowser Functionality 
+* Quiz creation and scoring.
+* Quiz attempt pages that show the answers each testee picked.
+* The use to theading to restart MySql at a set interval to prevent connection timeouts.
+* Makes use of media queries and browser detection to ensure an execellent user experience on all desktop and mobile browser types.
+* Utilizes raw SQL queries to save and retrieve data.
+* Uses the Redux Toolkit to ensure a unidirectional data flow with less boilerplate code.
+
+
+# Code Samples 
+
+# Gallary
+
+The quiz page and its view for various page sizes:
 
 ![Quiz Page](https://media.giphy.com/media/tsEdNx3xmHARkDBTqf/giphy.gif)
-
-Utilizes media queries and browser detection to ensure an execellent user experience on all desktop and mobile browser types.
 
 
 
