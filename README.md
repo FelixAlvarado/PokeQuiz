@@ -65,7 +65,7 @@ def fetch_attempt(cursor,id):
             result[f"{quiz_id}"]["title"] = attempt[1]
             count += 1
 
-        result[f"{quiz_id}"]["questions"][f"{attempt[4]}"] = {"id":attempt[4],       "question":attempt[5],"correct_answer":attempt[6],"wrong_answer1":attempt[7],"wrong_answer2":attempt[8],"wrong_answer3":attempt[9]}
+        result[f"{quiz_id}"]["questions"][f"{attempt[4]}"] = {"id":attempt[4],"question":attempt[5],"correct_answer":attempt[6],"wrong_answer1":attempt[7],"wrong_answer2":attempt[8],"wrong_answer3":attempt[9]}
 
         result[f"{quiz_id}"]["attempts"][f"{attempt[10]}"] = {"id":attempt[10],"question_id":attempt[11],"score_id":attempt[12],"answer":attempt[13]}
 
