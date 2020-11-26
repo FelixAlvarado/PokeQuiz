@@ -4,18 +4,6 @@ PokeQuiz is a pokemon themed sites that allows users to make quizes and share th
 
 [PokeQuiz](https://pokequiz1.herokuapp.com/)
 
-# Technologies  
-
-* React
-* Redux Toolkit
-* Flask
-* MySql
-* JawsDB
-* Axios
-* Vanilla DOM
-* Pokemon API
-* SASS
-
 # Features  
 
 * Quiz creation and scoring.
@@ -25,6 +13,16 @@ PokeQuiz is a pokemon themed sites that allows users to make quizes and share th
 * Utilizes raw SQL queries to save and retrieve data.
 * Uses the Redux Toolkit to ensure a unidirectional data flow with less boilerplate code.
 
+# Technologies  
+
+* React
+* Redux Toolkit
+* Flask
+* MySql
+* JawsDB
+* Axios
+* Pokemon API
+* SASS
 
 # Code Samples 
 
