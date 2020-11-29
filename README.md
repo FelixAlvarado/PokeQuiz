@@ -1,6 +1,6 @@
 # PokeQuiz 
 
-PokeQuiz is a pokemon themed site that allows users to make quizes and share them with friends. React was used for the frontend, and Flask was used for the backend. 
+PokeQuiz is a pokemon themed site that allows users to make quizzes and share them with friends. React was used for the frontend, and Flask was used for the backend. 
 
 [PokeQuiz](https://pokequiz1.herokuapp.com/)
 
