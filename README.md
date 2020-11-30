@@ -9,7 +9,7 @@ PokeQuiz is a pokemon themed site that allows users to make quizzes and share th
 * Quiz creation and scoring.
 * Quiz attempts pages that show the answers each testee picked.
 * The use of threading to restart MySql at a set interval to prevent connection timeouts.
-* Makes use of media queries and browser detection to ensure an execellent user experience on all desktop and mobile browser types.
+* Makes use of media queries and browser detection to ensure an excellent user experience on all desktop and mobile browser types.
 * Utilizes raw SQL queries to save and retrieve data.
 * Uses the Redux Toolkit to ensure a unidirectional data flow with less boilerplate code.
 
